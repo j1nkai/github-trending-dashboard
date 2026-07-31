@@ -1,1 +1,513 @@
-/Users/j1nkai/.openclaw/workspace/memory/outputs/github-trending-2026-07-31.html
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CYBERPUNK // GitHub Daily Trending Top 15 (2026-07-31)</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Rajdhani:wght@500;600;700&display=swap');
+
+        :root {
+            --cyber-bg: #080811;
+            --cyber-card: #101221;
+            --cyber-pink: #ff007f;
+            --cyber-cyan: #00f3ff;
+            --cyber-yellow: #ffe600;
+            --cyber-purple: #9d4edd;
+            --cyber-text: #e2e8f0;
+            --cyber-muted: #64748b;
+            --cyber-border: #1e293b;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--cyber-bg);
+            background-image: 
+                radial-gradient(circle at 15% 15%, rgba(255, 0, 127, 0.08) 0%, transparent 40%),
+                radial-gradient(circle at 85% 85%, rgba(0, 243, 255, 0.08) 0%, transparent 40%),
+                linear-gradient(0deg, rgba(8, 8, 17, 0.9) 0%, rgba(8, 8, 17, 0.9) 100%),
+                repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0, 243, 255, 0.03) 3px, transparent 3px);
+            color: var(--cyber-text);
+            font-family: 'Rajdhani', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            margin: 0;
+            padding: 40px 20px;
+            display: flex;
+            justify-content: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 960px;
+            width: 100%;
+        }
+
+        .cyber-header {
+            border-bottom: 2px solid var(--cyber-cyan);
+            padding-bottom: 20px;
+            margin-bottom: 35px;
+            position: relative;
+            box-shadow: 0 4px 20px -5px rgba(0, 243, 255, 0.3);
+        }
+
+        .cyber-header::before {
+            content: 'SYSTEM.ONLINE // PROTOCOL_V2.6';
+            position: absolute;
+            top: -25px;
+            right: 0;
+            font-family: 'Orbitron', monospace;
+            font-size: 11px;
+            color: var(--cyber-pink);
+            letter-spacing: 2px;
+        }
+
+        .cyber-header h1 {
+            font-family: 'Orbitron', sans-serif;
+            color: #ffffff;
+            font-size: 32px;
+            margin: 0 0 10px 0;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            text-shadow: 0 0 10px var(--cyber-cyan), 0 0 20px rgba(0, 243, 255, 0.5);
+        }
+
+        .cyber-header h1 span {
+            color: var(--cyber-pink);
+            text-shadow: 0 0 10px var(--cyber-pink);
+        }
+
+        .cyber-header p {
+            color: var(--cyber-muted);
+            margin: 0;
+            font-size: 16px;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+        }
+
+        .cyber-card {
+            background: var(--cyber-card);
+            border: 1px solid rgba(0, 243, 255, 0.2);
+            border-left: 4px solid var(--cyber-cyan);
+            border-radius: 4px;
+            padding: 20px 24px;
+            position: relative;
+            clip-path: polygon(0 0, 100% 0, 100% calc(100% - 12px), calc(100% - 12px) 100%, 0 100%);
+            transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .cyber-card:hover {
+            border-color: var(--cyber-pink);
+            border-left-color: var(--cyber-pink);
+            box-shadow: 0 0 25px rgba(255, 0, 127, 0.25), inset 0 0 15px rgba(255, 0, 127, 0.1);
+            transform: translateX(4px);
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 12px;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .cyber-rank {
+            font-family: 'Orbitron', monospace;
+            font-weight: 900;
+            color: var(--cyber-pink);
+            font-size: 20px;
+            text-shadow: 0 0 8px var(--cyber-pink);
+            margin-right: 10px;
+        }
+
+        .cyber-title {
+            color: var(--cyber-cyan);
+            font-size: 22px;
+            font-weight: 700;
+            text-decoration: none;
+            letter-spacing: 0.5px;
+            flex-grow: 1;
+            text-shadow: 0 0 5px rgba(0, 243, 255, 0.3);
+            transition: color 0.2s;
+        }
+
+        .cyber-title:hover {
+            color: #ffffff;
+            text-shadow: 0 0 10px var(--cyber-cyan);
+        }
+
+        .cyber-badges {
+            display: flex;
+            gap: 10px;
+        }
+
+        .cyber-badge {
+            background: rgba(15, 23, 42, 0.8);
+            border: 1px solid var(--cyber-border);
+            padding: 4px 12px;
+            border-radius: 2px;
+            font-family: 'Orbitron', monospace;
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+        .lang-badge {
+            color: var(--cyber-cyan);
+            border-color: rgba(0, 243, 255, 0.3);
+        }
+
+        .star-badge {
+            color: var(--cyber-yellow);
+            border-color: rgba(255, 230, 0, 0.3);
+            text-shadow: 0 0 5px rgba(255, 230, 0, 0.3);
+        }
+
+        .cyber-summary {
+            color: var(--cyber-text);
+            font-size: 16px;
+            font-weight: 600;
+            margin: 0 0 14px 0;
+            line-height: 1.6;
+        }
+
+        .card-footer {
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        .cyber-btn {
+            font-family: 'Orbitron', monospace;
+            color: var(--cyber-pink);
+            font-size: 11px;
+            font-weight: 700;
+            text-decoration: none;
+            padding: 6px 14px;
+            border: 1px solid var(--cyber-pink);
+            border-radius: 2px;
+            letter-spacing: 1.5px;
+            background: rgba(255, 0, 127, 0.05);
+            transition: all 0.2s;
+        }
+
+        .cyber-btn:hover {
+            background: var(--cyber-pink);
+            color: #ffffff;
+            box-shadow: 0 0 15px var(--cyber-pink);
+        }
+
+        .cyber-footer {
+            margin-top: 45px;
+            background: var(--cyber-card);
+            border: 1px solid var(--cyber-pink);
+            border-radius: 4px;
+            padding: 25px;
+            position: relative;
+            box-shadow: 0 0 20px rgba(255, 0, 127, 0.15);
+        }
+
+        .cyber-footer h2 {
+            font-family: 'Orbitron', sans-serif;
+            color: var(--cyber-yellow);
+            font-size: 20px;
+            margin-top: 0;
+            letter-spacing: 1px;
+            text-shadow: 0 0 8px var(--cyber-yellow);
+        }
+
+        .cyber-footer p {
+            font-size: 16px;
+            font-weight: 600;
+            line-height: 1.7;
+            margin-bottom: 10px;
+        }
+
+        .cyber-footer code {
+            color: var(--cyber-cyan);
+            background: rgba(0, 243, 255, 0.1);
+            padding: 2px 6px;
+            border-radius: 2px;
+            font-family: monospace;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="cyber-header">
+            <h1>GITHUB TRENDING <span>// TOP 15</span></h1>
+            <p>MASTER JK EXCLUSIVE // 2026-07-31 // CYBERNETIC FEED</p>
+        </div>
+        <div class="grid">
+            
+        <div class="cyber-card">
+            <div class="card-header">
+                <span class="cyber-rank">#01</span>
+                <a href="https://github.com/huggingface/speech-to-speech" target="_blank" class="cyber-title">huggingface/speech-to-speech</a>
+                <div class="cyber-badges">
+                    <span class="cyber-badge lang-badge">N/A</span>
+                    <span class="cyber-badge star-badge">★ 0</span>
+                </div>
+            </div>
+            <div class="card-body">
+                <p class="cyber-summary">本地开源端到端语音对话 Agent，支持纯语音实时进出</p>
+            </div>
+            <div class="card-footer">
+                <a href="https://github.com/huggingface/speech-to-speech" target="_blank" class="cyber-btn">[ ACCESS_REPOSITORY ↗ ]</a>
+            </div>
+        </div>
+        
+        <div class="cyber-card">
+            <div class="card-header">
+                <span class="cyber-rank">#02</span>
+                <a href="https://github.com/microsoft/AI-For-Beginners" target="_blank" class="cyber-title">microsoft/AI-For-Beginners</a>
+                <div class="cyber-badges">
+                    <span class="cyber-badge lang-badge">N/A</span>
+                    <span class="cyber-badge star-badge">★ 0</span>
+                </div>
+            </div>
+            <div class="card-body">
+                <p class="cyber-summary">微软官方 12 周 AI 入门课程，涵盖经典 ML 与大模型基础</p>
+            </div>
+            <div class="card-footer">
+                <a href="https://github.com/microsoft/AI-For-Beginners" target="_blank" class="cyber-btn">[ ACCESS_REPOSITORY ↗ ]</a>
+            </div>
+        </div>
+        
+        <div class="cyber-card">
+            <div class="card-header">
+                <span class="cyber-rank">#03</span>
+                <a href="https://github.com/paperswithbacktest/awesome-systematic-trading" target="_blank" class="cyber-title">paperswithbacktest/awesome-systematic-trading</a>
+                <div class="cyber-badges">
+                    <span class="cyber-badge lang-badge">N/A</span>
+                    <span class="cyber-badge star-badge">★ 0</span>
+                </div>
+            </div>
+            <div class="card-body">
+                <p class="cyber-summary">量化交易精选资源图谱，含回测框架与高频策略库</p>
+            </div>
+            <div class="card-footer">
+                <a href="https://github.com/paperswithbacktest/awesome-systematic-trading" target="_blank" class="cyber-btn">[ ACCESS_REPOSITORY ↗ ]</a>
+            </div>
+        </div>
+        
+        <div class="cyber-card">
+            <div class="card-header">
+                <span class="cyber-rank">#04</span>
+                <a href="https://github.com/different-ai/openwork" target="_blank" class="cyber-title">different-ai/openwork</a>
+                <div class="cyber-badges">
+                    <span class="cyber-badge lang-badge">N/A</span>
+                    <span class="cyber-badge star-badge">★ 0</span>
+                </div>
+            </div>
+            <div class="card-body">
+                <p class="cyber-summary">Claude Cowork 开源桌面替代品，多 Agent 团队协作工作台</p>
+            </div>
+            <div class="card-footer">
+                <a href="https://github.com/different-ai/openwork" target="_blank" class="cyber-btn">[ ACCESS_REPOSITORY ↗ ]</a>
+            </div>
+        </div>
+        
+        <div class="cyber-card">
+            <div class="card-header">
+                <span class="cyber-rank">#05</span>
+                <a href="https://github.com/WhiskeySockets/Baileys" target="_blank" class="cyber-title">WhiskeySockets/Baileys</a>
+                <div class="cyber-badges">
+                    <span class="cyber-badge lang-badge">N/A</span>
+                    <span class="cyber-badge star-badge">★ 0</span>
+                </div>
+            </div>
+            <div class="card-body">
+                <p class="cyber-summary">WhatsApp Web 纯 Socket 级 API，免浏览器低资源建 Bot</p>
+            </div>
+            <div class="card-footer">
+                <a href="https://github.com/WhiskeySockets/Baileys" target="_blank" class="cyber-btn">[ ACCESS_REPOSITORY ↗ ]</a>
+            </div>
+        </div>
+        
+        <div class="cyber-card">
+            <div class="card-header">
+                <span class="cyber-rank">#06</span>
+                <a href="https://github.com/pascalorg/editor" target="_blank" class="cyber-title">pascalorg/editor</a>
+                <div class="cyber-badges">
+                    <span class="cyber-badge lang-badge">N/A</span>
+                    <span class="cyber-badge star-badge">★ 0</span>
+                </div>
+            </div>
+            <div class="card-body">
+                <p class="cyber-summary">在线 3D 建筑与空间项目协同设计编辑器</p>
+            </div>
+            <div class="card-footer">
+                <a href="https://github.com/pascalorg/editor" target="_blank" class="cyber-btn">[ ACCESS_REPOSITORY ↗ ]</a>
+            </div>
+        </div>
+        
+        <div class="cyber-card">
+            <div class="card-header">
+                <span class="cyber-rank">#07</span>
+                <a href="https://github.com/mvanhorn/last30days-skill" target="_blank" class="cyber-title">mvanhorn/last30days-skill</a>
+                <div class="cyber-badges">
+                    <span class="cyber-badge lang-badge">N/A</span>
+                    <span class="cyber-badge star-badge">★ 0</span>
+                </div>
+            </div>
+            <div class="card-body">
+                <p class="cyber-summary">AI Agent 专属技能，跨全网自动追查主题近 30 天最新动态</p>
+            </div>
+            <div class="card-footer">
+                <a href="https://github.com/mvanhorn/last30days-skill" target="_blank" class="cyber-btn">[ ACCESS_REPOSITORY ↗ ]</a>
+            </div>
+        </div>
+        
+        <div class="cyber-card">
+            <div class="card-header">
+                <span class="cyber-rank">#08</span>
+                <a href="https://github.com/dotnet/aspnetcore" target="_blank" class="cyber-title">dotnet/aspnetcore</a>
+                <div class="cyber-badges">
+                    <span class="cyber-badge lang-badge">N/A</span>
+                    <span class="cyber-badge star-badge">★ 0</span>
+                </div>
+            </div>
+            <div class="card-body">
+                <p class="cyber-summary">微软官方跨平台高性能 Web 框架 ASP.NET Core</p>
+            </div>
+            <div class="card-footer">
+                <a href="https://github.com/dotnet/aspnetcore" target="_blank" class="cyber-btn">[ ACCESS_REPOSITORY ↗ ]</a>
+            </div>
+        </div>
+        
+        <div class="cyber-card">
+            <div class="card-header">
+                <span class="cyber-rank">#09</span>
+                <a href="https://github.com/microsoft/PowerToys" target="_blank" class="cyber-title">microsoft/PowerToys</a>
+                <div class="cyber-badges">
+                    <span class="cyber-badge lang-badge">N/A</span>
+                    <span class="cyber-badge star-badge">★ 0</span>
+                </div>
+            </div>
+            <div class="card-body">
+                <p class="cyber-summary">微软官方 Windows 系统效率增强工具箱</p>
+            </div>
+            <div class="card-footer">
+                <a href="https://github.com/microsoft/PowerToys" target="_blank" class="cyber-btn">[ ACCESS_REPOSITORY ↗ ]</a>
+            </div>
+        </div>
+        
+        <div class="cyber-card">
+            <div class="card-header">
+                <span class="cyber-rank">#10</span>
+                <a href="https://github.com/ansible/ansible" target="_blank" class="cyber-title">ansible/ansible</a>
+                <div class="cyber-badges">
+                    <span class="cyber-badge lang-badge">N/A</span>
+                    <span class="cyber-badge star-badge">★ 0</span>
+                </div>
+            </div>
+            <div class="card-body">
+                <p class="cyber-summary">极简 IT 自动化运维、配置管理与批量部署平台</p>
+            </div>
+            <div class="card-footer">
+                <a href="https://github.com/ansible/ansible" target="_blank" class="cyber-btn">[ ACCESS_REPOSITORY ↗ ]</a>
+            </div>
+        </div>
+        
+        <div class="cyber-card">
+            <div class="card-header">
+                <span class="cyber-rank">#11</span>
+                <a href="https://github.com/ChromeDevTools/chrome-devtools-mcp" target="_blank" class="cyber-title">ChromeDevTools/chrome-devtools-mcp</a>
+                <div class="cyber-badges">
+                    <span class="cyber-badge lang-badge">N/A</span>
+                    <span class="cyber-badge star-badge">★ 0</span>
+                </div>
+            </div>
+            <div class="card-body">
+                <p class="cyber-summary">Chrome 官方 MCP 服务器，赋能 Agent 浏览器深度调试</p>
+            </div>
+            <div class="card-footer">
+                <a href="https://github.com/ChromeDevTools/chrome-devtools-mcp" target="_blank" class="cyber-btn">[ ACCESS_REPOSITORY ↗ ]</a>
+            </div>
+        </div>
+        
+        <div class="cyber-card">
+            <div class="card-header">
+                <span class="cyber-rank">#12</span>
+                <a href="https://github.com/jenkinsci/jenkins" target="_blank" class="cyber-title">jenkinsci/jenkins</a>
+                <div class="cyber-badges">
+                    <span class="cyber-badge lang-badge">N/A</span>
+                    <span class="cyber-badge star-badge">★ 0</span>
+                </div>
+            </div>
+            <div class="card-body">
+                <p class="cyber-summary">老牌开源 CI/CD 自动化构建与持续集成服务器</p>
+            </div>
+            <div class="card-footer">
+                <a href="https://github.com/jenkinsci/jenkins" target="_blank" class="cyber-btn">[ ACCESS_REPOSITORY ↗ ]</a>
+            </div>
+        </div>
+        
+        <div class="cyber-card">
+            <div class="card-header">
+                <span class="cyber-rank">#13</span>
+                <a href="https://github.com/agavra/tuicr" target="_blank" class="cyber-title">agavra/tuicr</a>
+                <div class="cyber-badges">
+                    <span class="cyber-badge lang-badge">N/A</span>
+                    <span class="cyber-badge star-badge">★ 0</span>
+                </div>
+            </div>
+            <div class="card-body">
+                <p class="cyber-summary">纯终端 Code Review TUI 工具，完美支持 Vim 键位</p>
+            </div>
+            <div class="card-footer">
+                <a href="https://github.com/agavra/tuicr" target="_blank" class="cyber-btn">[ ACCESS_REPOSITORY ↗ ]</a>
+            </div>
+        </div>
+        
+        <div class="cyber-card">
+            <div class="card-header">
+                <span class="cyber-rank">#14</span>
+                <a href="https://github.com/affaan-m/ECC" target="_blank" class="cyber-title">affaan-m/ECC</a>
+                <div class="cyber-badges">
+                    <span class="cyber-badge lang-badge">N/A</span>
+                    <span class="cyber-badge star-badge">★ 0</span>
+                </div>
+            </div>
+            <div class="card-body">
+                <p class="cyber-summary">Agent harness 性能评估与控制系统</p>
+            </div>
+            <div class="card-footer">
+                <a href="https://github.com/affaan-m/ECC" target="_blank" class="cyber-btn">[ ACCESS_REPOSITORY ↗ ]</a>
+            </div>
+        </div>
+        
+        <div class="cyber-card">
+            <div class="card-header">
+                <span class="cyber-rank">#15</span>
+                <a href="https://github.com/MoonshotAI/Kimi-K3" target="_blank" class="cyber-title">MoonshotAI/Kimi-K3</a>
+                <div class="cyber-badges">
+                    <span class="cyber-badge lang-badge">N/A</span>
+                    <span class="cyber-badge star-badge">★ 0</span>
+                </div>
+            </div>
+            <div class="card-body">
+                <p class="cyber-summary">Moonshot AI 官方开源 Kimi-K3 前沿推理与运行引擎</p>
+            </div>
+            <div class="card-footer">
+                <a href="https://github.com/MoonshotAI/Kimi-K3" target="_blank" class="cyber-btn">[ ACCESS_REPOSITORY ↗ ]</a>
+            </div>
+        </div>
+        
+        </div>
+        <div class="cyber-footer">
+            <h2>⚡ SYSTEM_INSIGHTS // 深度技术解读</h2>
+            <p><strong>🤖 AI Agent 核心架构：</strong> <code>speech-to-speech</code> (端到端语音 Agent)、<code>last30days-skill</code> (全网主题追查)、<code>chrome-devtools-mcp</code> (Chrome 调试 MCP)、<code>Kimi-K3</code> (前沿大模型推理库)。</p>
+            <p><strong>💡 落地部署优先级：</strong> 优先吸收 <code>last30days-skill</code> 自动化调研能力，部署测试 <code>chrome-devtools-mcp</code> 提升网页控制与抓取效率。</p>
+        </div>
+    </div>
+</body>
+</html>
