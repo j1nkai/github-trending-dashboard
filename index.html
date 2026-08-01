@@ -349,7 +349,7 @@
 
         <div class="grid">
             
-        <div class="ind-card">
+        <div class="ind-card" style="animation-delay: 0.04s;">
             <div class="card-header">
                 <div class="card-title-group">
                     <span class="ind-rank">[ UNIT-01 ]</span>
@@ -363,9 +363,11 @@
             </div>
             <div class="card-body">
                 <div class="ind-detail-box">
-                    <div class="detail-row"><span class="detail-icon">📌</span> <span class="detail-label">核心功能：</span><span class="detail-val">逆向工程、授权渗透测试与安全研究专属 Skill 路由包，完美适配 Claude Code、Cursor、Cline 等 AI 客户端。</span></div>
-                    <div class="detail-row"><span class="detail-icon">⚙️</span> <span class="detail-label">技术架构：</span><span class="detail-val">AI 自动路由 + 按需自举工具链 + 自动进化经验库，支持高效率漏洞排查与安全审计。</span></div>
-                    <div class="detail-row"><span class="detail-icon">💡</span> <span class="detail-label">落地洞察：</span><span class="detail-val">可作为 OpenClaw / Agent 安全防护与逆向分析工具链的离线路由插件。</span></div>
+                    <div class="detail-row"><span class="detail-icon">📖</span> <span class="detail-label">项目背景：</span><span class="detail-val">在网络安全、逆向工程与授权渗透测试领域，开发者往往需要在数十种复杂的 CLI 工具（如 Ghidra、IDA、Nmap、Burp 等）之间频繁切换，记忆繁杂的命令行参数，且难以将安全经验标准化积累。</span></div>
+                    <div class="detail-row"><span class="detail-icon">📌</span> <span class="detail-label">核心功能：</span><span class="detail-val">提供了一套专为 AI Code Client（如 Claude Code、Cursor、Cline 等）设计的安全技能路由包。系统能够自动识别用户的安全研究意图，并动态分发调度对应的逆向与渗透工具，实现全流程智能化安全分析。</span></div>
+                    <div class="detail-row"><span class="detail-icon">⚙️</span> <span class="detail-label">技术架构：</span><span class="detail-val">1. **智能意图路由 (AI Router)**：根据自然语言指令自动匹配最适用的安全工具链；<br>2. **按需自举 (On-Demand Bootstrapping)**：自动在本地环境安装补全缺失的依赖工具；<br>3. **经验库进化 (Self-Evolving Knowledge Base)**：将历史上成功的渗透与逆向 Payload 结构化沉淀，形成可自我提炼的知识库。</span></div>
+                    <div class="detail-row"><span class="detail-icon">🚀</span> <span class="detail-label">适用场景：</span><span class="detail-val">适合网络安全工程师、逆向研究员、CTF 选手以及需要自动化安全审计的 DevSecOps 团队。</span></div>
+                    <div class="detail-row"><span class="detail-icon">💡</span> <span class="detail-label">落地洞察：</span><span class="detail-val">可作为 OpenClaw 与 Agent 安全防护组件的离线路由插件，显著提升大模型在复杂代码审计与漏洞发现上的操作准确率。</span></div>
                 </div>
             </div>
             <div class="card-footer">
@@ -373,7 +375,7 @@
             </div>
         </div>
         
-        <div class="ind-card">
+        <div class="ind-card" style="animation-delay: 0.08s;">
             <div class="card-header">
                 <div class="card-title-group">
                     <span class="ind-rank">[ UNIT-02 ]</span>
@@ -387,9 +389,11 @@
             </div>
             <div class="card-body">
                 <div class="ind-detail-box">
-                    <div class="detail-row"><span class="detail-icon">📌</span> <span class="detail-label">核心功能：</span><span class="detail-val">Claude Cowork 的开源桌面替代品，专为多 Agent 团队协作构建的可视化工作台。</span></div>
-                    <div class="detail-row"><span class="detail-icon">⚙️</span> <span class="detail-label">技术架构：</span><span class="detail-val">基于 TypeScript / Electron 构建，原生支持多模型切换、跨 Agent 任务派发与上下文共享。</span></div>
-                    <div class="detail-row"><span class="detail-icon">💡</span> <span class="detail-label">落地洞察：</span><span class="detail-val">适合用于构建本地多 Agent 并行研发与自动化任务编排看板。</span></div>
+                    <div class="detail-row"><span class="detail-icon">📖</span> <span class="detail-label">项目背景：</span><span class="detail-val">随着单体 AI Agent 无法满足复杂项目研发需求，多智能体（Multi-Agent）并行分工成为必然，但缺乏直观可视化的开源桌面工作台来调度和监控多 Agent 的协作状态。</span></div>
+                    <div class="detail-row"><span class="detail-icon">📌</span> <span class="detail-label">核心功能：</span><span class="detail-val">Claude Cowork 的开源桌面替代品，打造了一个功能强悍的跨 Agent 协作工作台，允许用户在本地轻松管理、派派和监控多智能体并发任务。</span></div>
+                    <div class="detail-row"><span class="detail-icon">⚙️</span> <span class="detail-label">技术架构：</span><span class="detail-val">1. **TypeScript / Electron 跨平台架构**：极低开销的桌面级 UI，支持高并发任务流渲染；<br>2. **多模型通道支持**：支持混合调用 Claude 3.5、GPT-4o 与本地 Ollama/vLLM 模型；<br>3. **上下文隔离与状态同步**：支持多 Agent 之间的多线程隔离与任务完工事件回调。</span></div>
+                    <div class="detail-row"><span class="detail-icon">🚀</span> <span class="detail-label">适用场景：</span><span class="detail-val">适用于需要同时管理多个 AI 编程助手、多角色协作研发、或者进行自动化软件测试的开发团队。</span></div>
+                    <div class="detail-row"><span class="detail-icon">💡</span> <span class="detail-label">落地洞察：</span><span class="detail-val">可作为本地 Agent 协作面板的标准参考，帮助用户实现可视化多任务分发与进度监控。</span></div>
                 </div>
             </div>
             <div class="card-footer">
@@ -397,7 +401,7 @@
             </div>
         </div>
         
-        <div class="ind-card">
+        <div class="ind-card" style="animation-delay: 0.12s;">
             <div class="card-header">
                 <div class="card-title-group">
                     <span class="ind-rank">[ UNIT-03 ]</span>
@@ -411,9 +415,11 @@
             </div>
             <div class="card-body">
                 <div class="ind-detail-box">
-                    <div class="detail-row"><span class="detail-icon">📌</span> <span class="detail-label">核心功能：</span><span class="detail-val">AI Agent 专属自动化技能，能够跨 Reddit、X、GitHub 自动追查指定主题近 30 天最新热点与趋势。</span></div>
-                    <div class="detail-row"><span class="detail-icon">⚙️</span> <span class="detail-label">技术架构：</span><span class="detail-val">包含跨平台 Python 爬虫、AI 摘要提取与 Glassmorphism / 赛博风格 HTML 报告渲染管线。</span></div>
-                    <div class="detail-row"><span class="detail-icon">💡</span> <span class="detail-label">落地洞察：</span><span class="detail-val">已成功集成至雷姆（Rem 💙）的全网自动化调研 Skill 库中。</span></div>
+                    <div class="detail-row"><span class="detail-icon">📖</span> <span class="detail-label">项目背景：</span><span class="detail-val">大模型静态知识库存在时效性滞后，传统搜索引擎返回的抓取结果又过于零散，难以快速梳理指定主题在近 30 天内的最新全网讨论热点。</span></div>
+                    <div class="detail-row"><span class="detail-icon">📌</span> <span class="detail-label">核心功能：</span><span class="detail-val">专为 AI Agent 打造的全网情报追查技能，能够跨 Reddit、X (Twitter)、GitHub、HackerNews 自动追查指定主题近 30 天内的最新动态、原声引用与讨论趋势。</span></div>
+                    <div class="detail-row"><span class="detail-icon">⚙️</span> <span class="detail-label">技术架构：</span><span class="detail-val">1. **多源并发爬虫管线**：内置自适应请求与防限流重试机制；<br>2. **智能信息去重与重排**：结合语义相似度与热度权重提炼核心原声；<br>3. **自动化 Web 渲染**：支持将分析结果自动打包生成 Glassmorphism / 赛博风格的高质感 HTML 报告。</span></div>
+                    <div class="detail-row"><span class="detail-icon">🚀</span> <span class="detail-label">适用场景：</span><span class="detail-val">适用于科技前沿调研、产品竞争对手分析、开源热点跟踪以及每日情报自动化提炼。</span></div>
+                    <div class="detail-row"><span class="detail-icon">💡</span> <span class="detail-label">落地洞察：</span><span class="detail-val">已作为核心技能集成至雷姆（Rem 💙）的全网自动化调研管线中，是快速捕捉全网科技动向的核心利器。</span></div>
                 </div>
             </div>
             <div class="card-footer">
@@ -421,7 +427,7 @@
             </div>
         </div>
         
-        <div class="ind-card">
+        <div class="ind-card" style="animation-delay: 0.16s;">
             <div class="card-header">
                 <div class="card-title-group">
                     <span class="ind-rank">[ UNIT-04 ]</span>
@@ -435,9 +441,11 @@
             </div>
             <div class="card-body">
                 <div class="ind-detail-box">
-                    <div class="detail-row"><span class="detail-icon">📌</span> <span class="detail-label">核心功能：</span><span class="detail-val">精选量化系统交易资源图谱，涵盖高频回测框架、策略研究论文与实时行情接入口。</span></div>
-                    <div class="detail-row"><span class="detail-icon">⚙️</span> <span class="detail-label">技术架构：</span><span class="detail-val">收录 Python/C++ 极速回测引擎，支持多品种套利、因子挖掘与风控算法模型。</span></div>
-                    <div class="detail-row"><span class="detail-icon">💡</span> <span class="detail-label">落地洞察：</span><span class="detail-val">为量化交易策略开发与风险评估提供全套开源工具图谱。</span></div>
+                    <div class="detail-row"><span class="detail-icon">📖</span> <span class="detail-label">项目背景：</span><span class="detail-val">量化交易与系统化投资涉及复杂的数学建模、高频数据接入口与严苛的风控体系，初学者和量化团队常因资源零散而增加研发成本。</span></div>
+                    <div class="detail-row"><span class="detail-icon">📌</span> <span class="detail-label">核心功能：</span><span class="detail-val">精选全球顶级量化系统交易资源图谱，全面涵盖极速回测框架、策略研究学术论文、实时行情数据 API 与因子挖掘算法库。</span></div>
+                    <div class="detail-row"><span class="detail-icon">⚙️</span> <span class="detail-label">技术架构：</span><span class="detail-val">1. **高性能回测引擎收录**：收录基于 C++ 与 Rust 构建的高并发毫秒级回测工具；<br>2. **多资产套利模型**：覆盖股票、期货、外汇与加密货币的全套因子库；<br>3. **风险控制与归因分析**：内置夏普比率、最大回撤与 VaR 评估公式。</span></div>
+                    <div class="detail-row"><span class="detail-icon">🚀</span> <span class="detail-label">适用场景：</span><span class="detail-val">适用于量化交易员、宽客 (Quant) 开发者、对冲基金策略分析师及金融工程研究员。</span></div>
+                    <div class="detail-row"><span class="detail-icon">💡</span> <span class="detail-label">落地洞察：</span><span class="detail-val">为构建自动化量化交易系统与风险评估模型提供了系统化、全景式的开源工具指导。</span></div>
                 </div>
             </div>
             <div class="card-footer">
@@ -445,7 +453,7 @@
             </div>
         </div>
         
-        <div class="ind-card">
+        <div class="ind-card" style="animation-delay: 0.20s;">
             <div class="card-header">
                 <div class="card-title-group">
                     <span class="ind-rank">[ UNIT-05 ]</span>
@@ -459,9 +467,11 @@
             </div>
             <div class="card-body">
                 <div class="ind-detail-box">
-                    <div class="detail-row"><span class="detail-icon">📌</span> <span class="detail-label">核心功能：</span><span class="detail-val">微软官方出品的 12 周人工智能零基础入门指南，覆盖机器学习到大模型原理。</span></div>
-                    <div class="detail-row"><span class="detail-icon">⚙️</span> <span class="detail-label">技术架构：</span><span class="detail-val">包含完整 Jupyter Notebook 交互式教学、TensorFlow/PyTorch 示例与神经网络实践。</span></div>
-                    <div class="detail-row"><span class="detail-icon">💡</span> <span class="detail-label">落地洞察：</span><span class="detail-val">快速梳理经典 ML 算法与现代 Transformer 架构演进的理想标准教材。</span></div>
+                    <div class="detail-row"><span class="detail-icon">📖</span> <span class="detail-label">项目背景：</span><span class="detail-val">人工智能领域发展迅速，但市面上的教程往往过于理论化或缺乏系统性，初学者极易在复杂的数学公式与繁杂的代码库中迷失方向。</span></div>
+                    <div class="detail-row"><span class="detail-icon">📌</span> <span class="detail-label">核心功能：</span><span class="detail-val">微软官方团队打造的 12 周人工智能零基础入门指南，采用循序渐进的模块化教学，涵盖从经典机器学习到现代大语言模型（LLM）的全套理论与实战。</span></div>
+                    <div class="detail-row"><span class="detail-icon">⚙️</span> <span class="detail-label">技术架构：</span><span class="detail-val">1. **Jupyter Notebook 交互实践**：配套完整可运行的 Python 代码与可视化图表；<br>2. **双主流框架支持**：同步提供 PyTorch 与 TensorFlow 两种主流深度学习框架实现；<br>3. **前沿技术覆盖**：涵盖 CNN 图像处理、RNN/Transformer 文本生成以及 RL强化学习。</span></div>
+                    <div class="detail-row"><span class="detail-icon">🚀</span> <span class="detail-label">适用场景：</span><span class="detail-val">适用于高校学生、AI 初学者、传统软件工程师转型 AI 以及需要补全 AI 基础体系的开发者。</span></div>
+                    <div class="detail-row"><span class="detail-icon">💡</span> <span class="detail-label">落地洞察：</span><span class="detail-val">快速建立 AI 全景知识图谱的经典权威教材，建议作为系统化学习与复习的权威参考。</span></div>
                 </div>
             </div>
             <div class="card-footer">
@@ -469,7 +479,7 @@
             </div>
         </div>
         
-        <div class="ind-card">
+        <div class="ind-card" style="animation-delay: 0.24s;">
             <div class="card-header">
                 <div class="card-title-group">
                     <span class="ind-rank">[ UNIT-06 ]</span>
@@ -483,9 +493,11 @@
             </div>
             <div class="card-body">
                 <div class="ind-detail-box">
-                    <div class="detail-row"><span class="detail-icon">📌</span> <span class="detail-label">核心功能：</span><span class="detail-val">GitHub 官方推出的多平台 SDK，支持将 Copilot Agent 深度集成至应用与自定义服务中。</span></div>
-                    <div class="detail-row"><span class="detail-icon">⚙️</span> <span class="detail-label">技术架构：</span><span class="detail-val">提供 Java / TypeScript 标准 API，原生支持上下文注入、工具调用与事件流派发。</span></div>
-                    <div class="detail-row"><span class="detail-icon">💡</span> <span class="detail-label">落地洞察：</span><span class="detail-val">企业级应用集成 Copilot AI 能力的官方推荐工具链。</span></div>
+                    <div class="detail-row"><span class="detail-icon">📖</span> <span class="detail-label">项目背景：</span><span class="detail-val">许多企业与开发者希望将 GitHub Copilot 的智能化代码生成与 Agent 对话能力引入自家 IDE、内部工具或 SaaS 产品中，但缺乏标准官方 SDK。</span></div>
+                    <div class="detail-row"><span class="detail-icon">📌</span> <span class="detail-label">核心功能：</span><span class="detail-val">GitHub 官方推出的多平台开发者 SDK，支持将 GitHub Copilot Agent 能力无缝嵌入到任何第三方应用、桌面端工具与后台服务中。</span></div>
+                    <div class="detail-row"><span class="detail-icon">⚙️</span> <span class="detail-label">技术架构：</span><span class="detail-val">1. **多语言 SDK 原生支持**：提供 Java、TypeScript 与 Python 等主流语言绑定；<br>2. **事件驱动通信架构**：原生支持流式响应、上下文自动注入与自定义 Tool Calling；<br>3. **企业级鉴权与合规**：集成 GitHub 官方 OAuth 与安全合规审计通道。</span></div>
+                    <div class="detail-row"><span class="detail-icon">🚀</span> <span class="detail-label">适用场景：</span><span class="detail-val">适用于 IDE 插件开发者、企业内部研发平台团队以及希望为其产品增加 Copilot AI 辅助的 SaaS 厂商。</span></div>
+                    <div class="detail-row"><span class="detail-icon">💡</span> <span class="detail-label">落地洞察：</span><span class="detail-val">企业级接入 GitHub Copilot 官方 Agent 能力的标准通道，有助于构建定制化 AI 编程辅助环境。</span></div>
                 </div>
             </div>
             <div class="card-footer">
@@ -493,7 +505,7 @@
             </div>
         </div>
         
-        <div class="ind-card">
+        <div class="ind-card" style="animation-delay: 0.28s;">
             <div class="card-header">
                 <div class="card-title-group">
                     <span class="ind-rank">[ UNIT-07 ]</span>
@@ -507,9 +519,11 @@
             </div>
             <div class="card-body">
                 <div class="ind-detail-box">
-                    <div class="detail-row"><span class="detail-icon">📌</span> <span class="detail-label">核心功能：</span><span class="detail-val">开源全渠道客户沟通与支持桌面，可作为 Intercom、Zendesk 和 Salesforce 的自托管替代品。</span></div>
-                    <div class="detail-row"><span class="detail-icon">⚙️</span> <span class="detail-label">技术架构：</span><span class="detail-val">采用 Ruby on Rails + Vue 构建，支持 Live-Chat、Email、WhatsApp 与多平台全渠道接入。</span></div>
-                    <div class="detail-row"><span class="detail-icon">💡</span> <span class="detail-label">落地洞察：</span><span class="detail-val">适合企业搭建自控数据隐私的多通道客服与对话自动化平台。</span></div>
+                    <div class="detail-row"><span class="detail-icon">📖</span> <span class="detail-label">项目背景：</span><span class="detail-val">商业客服软件（如 Intercom、Zendesk）订阅费用昂贵，且客户对话数据保存在第三方云端，容易引发严苛的数据合规与隐私泄露隐患。</span></div>
+                    <div class="detail-row"><span class="detail-icon">📌</span> <span class="detail-label">核心功能：</span><span class="detail-val">功能强悍的开源全渠道客户沟通与支持平台，支持将网页 Live-Chat、Email、WhatsApp、Telegram 等渠道统一整合到一个收件箱中。</span></div>
+                    <div class="detail-row"><span class="detail-icon">⚙️</span> <span class="detail-label">技术架构：</span><span class="detail-val">1. **Ruby on Rails + Vue 现代化架构**：响应迅速，支持高并发客户消息实时推送；<br>2. **自托管隐私安全**：全量数据驻留本地服务器，符合 GDPR 等数据合规要求；<br>3. **AI 机器人与规则引擎**：支持接入 LLM 机器人进行自动客服回复与工单智能派发。</span></div>
+                    <div class="detail-row"><span class="detail-icon">🚀</span> <span class="detail-label">适用场景：</span><span class="detail-val">适用于需要自建私密客服系统、跨渠道客户支持的企业、SaaS 团队与独立开发者。</span></div>
+                    <div class="detail-row"><span class="detail-icon">💡</span> <span class="detail-label">落地洞察：</span><span class="detail-val">构建完全自主可控的客服机器人与消息聚合中枢的绝佳开源套件。</span></div>
                 </div>
             </div>
             <div class="card-footer">
@@ -517,7 +531,7 @@
             </div>
         </div>
         
-        <div class="ind-card">
+        <div class="ind-card" style="animation-delay: 0.32s;">
             <div class="card-header">
                 <div class="card-title-group">
                     <span class="ind-rank">[ UNIT-08 ]</span>
@@ -526,14 +540,16 @@
                 <div class="ind-badges">
                     <span class="ind-badge tag-badge">终端工具 / TUI Code Review</span>
                     <span class="ind-badge lang-badge">LANG: Rust</span>
-                    <span class="ind-badge star-badge">★ 2,220</span>
+                    <span class="ind-badge star-badge">★ 2,222</span>
                 </div>
             </div>
             <div class="card-body">
                 <div class="ind-detail-box">
-                    <div class="detail-row"><span class="detail-icon">📌</span> <span class="detail-label">核心功能：</span><span class="detail-val">纯终端文本界面 (TUI) 的 Code Review 审查工具，支持高效本地 Git Diff 极速预览。</span></div>
-                    <div class="detail-row"><span class="detail-icon">⚙️</span> <span class="detail-label">技术架构：</span><span class="detail-val">基于 Rust 与 Ratatui 构建，完美契合 Vim 键位与键盘流高效审查。</span></div>
-                    <div class="detail-row"><span class="detail-icon">💡</span> <span class="detail-label">落地洞察：</span><span class="detail-val">极客开发者在终端环境进行离线代码审查的高效神器。</span></div>
+                    <div class="detail-row"><span class="detail-icon">📖</span> <span class="detail-label">项目背景：</span><span class="detail-val">在纯终端 (SSH) 环境下，开发者进行 Code Review 往往需要频繁使用 `git diff`，缺乏直观的双栏对比、语法高亮与折叠跳转体验。</span></div>
+                    <div class="detail-row"><span class="detail-icon">📌</span> <span class="detail-label">核心功能：</span><span class="detail-val">一款基于纯终端文本界面 (TUI) 的高效率 Code Review 工具，为终端开发者提供媲美 IDE GUI 的代码审查体验。</span></div>
+                    <div class="detail-row"><span class="detail-icon">⚙️</span> <span class="detail-label">技术架构：</span><span class="detail-val">1. **Rust + Ratatui 极速渲染**：内存占用极低，毫秒级加载超大 Git Diff；<br>2. **Vim 键位无缝绑定**：支持经典的 `j/k/h/l` 导航、标记与快速折叠；<br>3. **交互式改动过滤**：支持按文件、提交历史和改动类型实时过滤与语法高亮。</span></div>
+                    <div class="detail-row"><span class="detail-icon">🚀</span> <span class="detail-label">适用场景：</span><span class="detail-val">适用于重度终端用户、Vim 爱好者、远程 SSH 研发团队以及追求极致审查效率的极客。</span></div>
+                    <div class="detail-row"><span class="detail-icon">💡</span> <span class="detail-label">落地洞察：</span><span class="detail-val">终端纯文本环境下的高效率代码审查神器，极大地提升了无图形界面下的开发体验。</span></div>
                 </div>
             </div>
             <div class="card-footer">
@@ -541,7 +557,7 @@
             </div>
         </div>
         
-        <div class="ind-card">
+        <div class="ind-card" style="animation-delay: 0.36s;">
             <div class="card-header">
                 <div class="card-title-group">
                     <span class="ind-rank">[ UNIT-09 ]</span>
@@ -550,14 +566,16 @@
                 <div class="ind-badges">
                     <span class="ind-badge tag-badge">项目管理 / 开源看板</span>
                     <span class="ind-badge lang-badge">LANG: TypeScript</span>
-                    <span class="ind-badge star-badge">★ 5,342</span>
+                    <span class="ind-badge star-badge">★ 5,343</span>
                 </div>
             </div>
             <div class="card-body">
                 <div class="ind-detail-box">
-                    <div class="detail-row"><span class="detail-icon">📌</span> <span class="detail-label">核心功能：</span><span class="detail-val">极简而强悍的开源项目管理平台，去除繁复层级，专注团队任务高效推进。</span></div>
-                    <div class="detail-row"><span class="detail-icon">⚙️</span> <span class="detail-label">技术架构：</span><span class="detail-val">TypeScript 全栈架构，具备极速卡片拖拽、实时状态同步与轻量任务追踪。</span></div>
-                    <div class="detail-row"><span class="detail-icon">💡</span> <span class="detail-label">落地洞察：</span><span class="detail-val">适合中小型团队或个人独立开发者替代 Jira 的轻量管理方案。</span></div>
+                    <div class="detail-row"><span class="detail-icon">📖</span> <span class="detail-label">项目背景：</span><span class="detail-val">传统项目管理工具（如 Jira、Trello）要么界面繁复配置冗余，要么功能受限且收费高昂，缺乏一款专注于轻量高效的开源项目看板。</span></div>
+                    <div class="detail-row"><span class="detail-icon">📌</span> <span class="detail-label">核心功能：</span><span class="detail-val">一款专注于极致效率的开源项目管理平台，去除一切冗余流程，提供极速响应的看板、任务清单与团队协作体验。</span></div>
+                    <div class="detail-row"><span class="detail-icon">⚙️</span> <span class="detail-label">技术架构：</span><span class="detail-val">1. **TypeScript 全栈架构**：基于 React + Node.js，支持极速拖拽与实时 WebSockets 同步；<br>2. **轻量极速数据存储**：优化数据库查询，加载时间比传统 SaaS 看板快 3 倍以上；<br>3. **简洁 Markdown 任务卡**：支持富文本、检查清单与标签分类。</span></div>
+                    <div class="detail-row"><span class="detail-icon">🚀</span> <span class="detail-label">适用场景：</span><span class="detail-val">适用于中小型敏捷开发团队、独立开发者、开源项目组及个人任务追踪。</span></div>
+                    <div class="detail-row"><span class="detail-icon">💡</span> <span class="detail-label">落地洞察：</span><span class="detail-val">替代商业化复杂看板的轻量级开源解决方案，提升团队敏捷推进效率。</span></div>
                 </div>
             </div>
             <div class="card-footer">
@@ -565,7 +583,7 @@
             </div>
         </div>
         
-        <div class="ind-card">
+        <div class="ind-card" style="animation-delay: 0.40s;">
             <div class="card-header">
                 <div class="card-title-group">
                     <span class="ind-rank">[ UNIT-10 ]</span>
@@ -574,14 +592,16 @@
                 <div class="ind-badges">
                     <span class="ind-badge tag-badge">硬件黑客 / ESP32 协议工具</span>
                     <span class="ind-badge lang-badge">LANG: C++</span>
-                    <span class="ind-badge star-badge">★ 5,190</span>
+                    <span class="ind-badge star-badge">★ 5,192</span>
                 </div>
             </div>
             <div class="card-body">
                 <div class="ind-detail-box">
-                    <div class="detail-row"><span class="detail-icon">📌</span> <span class="detail-label">核心功能：</span><span class="detail-val">基于 ESP32 的硬件黑客攻击与调试工具，带 Web-Based CLI，精通各大硬件接口协议。</span></div>
-                    <div class="detail-row"><span class="detail-icon">⚙️</span> <span class="detail-label">技术架构：</span><span class="detail-val">原生支持 UART、I2C、SPI、1-Wire 与逻辑分析，自带网页交互式终端。</span></div>
-                    <div class="detail-row"><span class="detail-icon">💡</span> <span class="detail-label">落地洞察：</span><span class="detail-val">极客与安全人员进行硬件逆向、总线抓包与嵌入式调试的便携硬件。</span></div>
+                    <div class="detail-row"><span class="detail-icon">📖</span> <span class="detail-label">项目背景：</span><span class="detail-val">硬件逆向与嵌入式调试通常需要携带逻辑分析仪、串口调试器、示波器等大量设备，缺乏一台一体化的便携协议分析终端。</span></div>
+                    <div class="detail-row"><span class="detail-icon">📌</span> <span class="detail-label">核心功能：</span><span class="detail-val">基于 ESP32 微控制器的便携式硬件黑客攻击与协议分析工具，内置 Web-Based 交互式 CLI，能够精通并调试绝大多数硬件通信协议。</span></div>
+                    <div class="detail-row"><span class="detail-icon">⚙️</span> <span class="detail-label">技术架构：</span><span class="detail-val">1. **多协议原生硬件支持**：原生兼容 UART、I2C、SPI、1-Wire、JTAG 与 CAN 总线；<br>2. **Web 命令行交互界面**：无需安装驱动，只需连接 Wi-Fi 即可通过浏览器直接调试；<br>3. **数字逻辑分析与抓包**：支持信号波形实时抓取与协议解码。</span></div>
+                    <div class="detail-row"><span class="detail-icon">🚀</span> <span class="detail-label">适用场景：</span><span class="detail-val">适用于硬件安全研究员、嵌入式工程师、黑客工具发烧友及物联网 (IoT) 安全测试员。</span></div>
+                    <div class="detail-row"><span class="detail-icon">💡</span> <span class="detail-label">落地洞察：</span><span class="detail-val">便携式硬件逆向与协议调试的黑客利器，是 IoT 硬件安全审计必备的便携神器。</span></div>
                 </div>
             </div>
             <div class="card-footer">
@@ -589,7 +609,7 @@
             </div>
         </div>
         
-        <div class="ind-card">
+        <div class="ind-card" style="animation-delay: 0.44s;">
             <div class="card-header">
                 <div class="card-title-group">
                     <span class="ind-rank">[ UNIT-11 ]</span>
@@ -603,9 +623,11 @@
             </div>
             <div class="card-body">
                 <div class="ind-detail-box">
-                    <div class="detail-row"><span class="detail-icon">📌</span> <span class="detail-label">核心功能：</span><span class="detail-val">老牌开源 AI 人脸替换与合成套件，提供完整的训练、提取与转换图形界面。</span></div>
-                    <div class="detail-row"><span class="detail-icon">⚙️</span> <span class="detail-label">技术架构：</span><span class="detail-val">基于 Python + TensorFlow/PyTorch，支持 GPU 硬件加速与多模型对齐算法。</span></div>
-                    <div class="detail-row"><span class="detail-icon">💡</span> <span class="detail-label">落地洞察：</span><span class="detail-val">视觉合成与深度学习图像处理领域的标杆开源项目。</span></div>
+                    <div class="detail-row"><span class="detail-icon">📖</span> <span class="detail-label">项目背景：</span><span class="detail-val">AI 换脸技术在影视后期、虚拟人制作与视觉效果中应用广泛，但开发自己的模型需要门槛极高的对齐算法与训练管线。</span></div>
+                    <div class="detail-row"><span class="detail-icon">📌</span> <span class="detail-label">核心功能：</span><span class="detail-val">全球最知名的开源 AI 人脸替换与合成图形套件，提供了从数据采集、人脸提取、模型训练到最终图像合成的全流程 GUI 界面。</span></div>
+                    <div class="detail-row"><span class="detail-icon">⚙️</span> <span class="detail-label">技术架构：</span><span class="detail-val">1. **多深度学习后端**：同时支持 PyTorch 与 TensorFlow 框架并具备 GPU 硬件加速；<br>2. **高精度人脸对齐 (Landmark Align)**：内置先进的 68 点人脸关键点检测与光照匹配；<br>3. **可视化训练与交互**：提供直观的 Loss 曲线监控与实时预览界面。</span></div>
+                    <div class="detail-row"><span class="detail-icon">🚀</span> <span class="detail-label">适用场景：</span><span class="detail-val">适用于数字人研究员、影视后期特效师、AI 图像处理发烧友及深度学习研究团队。</span></div>
+                    <div class="detail-row"><span class="detail-icon">💡</span> <span class="detail-label">落地洞察：</span><span class="detail-val">深度学习视觉合成领域极其成熟的标杆开源项目，具有很高的研究与实战借鉴价值。</span></div>
                 </div>
             </div>
             <div class="card-footer">
@@ -613,7 +635,7 @@
             </div>
         </div>
         
-        <div class="ind-card">
+        <div class="ind-card" style="animation-delay: 0.48s;">
             <div class="card-header">
                 <div class="card-title-group">
                     <span class="ind-rank">[ UNIT-12 ]</span>
@@ -627,9 +649,11 @@
             </div>
             <div class="card-body">
                 <div class="ind-detail-box">
-                    <div class="detail-row"><span class="detail-icon">📌</span> <span class="detail-label">核心功能：</span><span class="detail-val">超低内存占用的高效 AI Harness 运行框架，专为极致资源利用与并发设计。</span></div>
-                    <div class="detail-row"><span class="detail-icon">⚙️</span> <span class="detail-label">技术架构：</span><span class="detail-val">纯 Rust 编写，零 GC 开销，内存占用极低，支持高并发大模型调度。</span></div>
-                    <div class="detail-row"><span class="detail-icon">💡</span> <span class="detail-label">落地洞察：</span><span class="detail-val">边缘端与资源受限设备运行 AI Agent 的理想高效率底座。</span></div>
+                    <div class="detail-row"><span class="detail-icon">📖</span> <span class="detail-label">项目背景：</span><span class="detail-val">在并发运行大语言模型 Agent 时，基于 Python 的 Harness 框架往往面临高内存占用（RAM Overhead）与 GC 停顿问题，制约了边缘侧部署。</span></div>
+                    <div class="detail-row"><span class="detail-icon">📌</span> <span class="detail-label">核心功能：</span><span class="detail-val">一款采用纯 Rust 编写的超高内存效率 AI Harness 运行框架，专为极致资源利用与高并发 Agent 调度而设计。</span></div>
+                    <div class="detail-row"><span class="detail-icon">⚙️</span> <span class="detail-label">技术架构：</span><span class="detail-val">1. **纯 Rust 零 GC 架构**：内存开销降低 80% 以上，支持在微型设备上稳定运行；<br>2. **极速事件流调度**：异步 Tokio 运行时，支持并发调度上百个 Agent 任务；<br>3. **智能缓存与上下文管理**：优化 Token 传输与模型上下文加载。</span></div>
+                    <div class="detail-row"><span class="detail-icon">🚀</span> <span class="detail-label">适用场景：</span><span class="detail-val">适用于边缘计算设备、资源受限的服务器环境、高并发 Agent 集群调度系统。</span></div>
+                    <div class="detail-row"><span class="detail-icon">💡</span> <span class="detail-label">落地洞察：</span><span class="detail-val">追求极致性能与低资源消耗的 Agent 调度底座，是高并发 AI 系统的理想基础设施。</span></div>
                 </div>
             </div>
             <div class="card-footer">
@@ -637,7 +661,7 @@
             </div>
         </div>
         
-        <div class="ind-card">
+        <div class="ind-card" style="animation-delay: 0.52s;">
             <div class="card-header">
                 <div class="card-title-group">
                     <span class="ind-rank">[ UNIT-13 ]</span>
@@ -651,9 +675,11 @@
             </div>
             <div class="card-body">
                 <div class="ind-detail-box">
-                    <div class="detail-row"><span class="detail-icon">📌</span> <span class="detail-label">核心功能：</span><span class="detail-val">Moonshot AI 官方开源的 Kimi-K3 前沿推理与运行引擎，解锁突破性推理能力。</span></div>
-                    <div class="detail-row"><span class="detail-icon">⚙️</span> <span class="detail-label">技术架构：</span><span class="detail-val">具备长上下文处理、复杂推理链（CoT）强化与高吞吐量本地推理支持。</span></div>
-                    <div class="detail-row"><span class="detail-icon">💡</span> <span class="detail-label">落地洞察：</span><span class="detail-val">研究前沿国产大模型推理架构与长文本处理机制的核心开源标杆。</span></div>
+                    <div class="detail-row"><span class="detail-icon">📖</span> <span class="detail-label">项目背景：</span><span class="detail-val">国产长文本大模型在前沿推理、复杂逻辑推导与长上下文理解上不断突破，但社区需要开放的推理与运行框架来深入研究其内部机制。</span></div>
+                    <div class="detail-row"><span class="detail-icon">📌</span> <span class="detail-label">核心功能：</span><span class="detail-val">月之暗面 (Moonshot AI) 官方开源的 Kimi-K3 前沿推理与运行引擎，解锁了长文本推理与复杂思维链（CoT）的突破性能力。</span></div>
+                    <div class="detail-row"><span class="detail-icon">⚙️</span> <span class="detail-label">技术架构：</span><span class="detail-val">1. **突破性长上下文理解**：支持超长文本无损注意力与高效 Token 压缩算法；<br>2. **思维链 (CoT) 推理强化**：优化多步逻辑推理与复杂推导表现；<br>3. **高吞吐量本地推理**：支持高效 KV Cache 管理与多卡并行加速。</span></div>
+                    <div class="detail-row"><span class="detail-icon">🚀</span> <span class="detail-label">适用场景：</span><span class="detail-val">适用于 AI 算法研究员、长文本应用开发者、大模型推理优化团队。</span></div>
+                    <div class="detail-row"><span class="detail-icon">💡</span> <span class="detail-label">落地洞察：</span><span class="detail-val">国产大模型在前沿推理与超长上下文处理上的核心开源标杆，具有极高的技术研究价值。</span></div>
                 </div>
             </div>
             <div class="card-footer">
@@ -661,7 +687,7 @@
             </div>
         </div>
         
-        <div class="ind-card">
+        <div class="ind-card" style="animation-delay: 0.56s;">
             <div class="card-header">
                 <div class="card-title-group">
                     <span class="ind-rank">[ UNIT-14 ]</span>
@@ -670,14 +696,16 @@
                 <div class="ind-badges">
                     <span class="ind-badge tag-badge">多 Agent harness / 协作套件</span>
                     <span class="ind-badge lang-badge">LANG: TypeScript</span>
-                    <span class="ind-badge star-badge">★ 3,286</span>
+                    <span class="ind-badge star-badge">★ 3,311</span>
                 </div>
             </div>
             <div class="card-body">
                 <div class="ind-detail-box">
-                    <div class="detail-row"><span class="detail-icon">📌</span> <span class="detail-label">核心功能：</span><span class="detail-val">专为工作流打造的多 Agent 协同调度 harness，支持复杂的团队任务分发与状态流转。</span></div>
-                    <div class="detail-row"><span class="detail-icon">⚙️</span> <span class="detail-label">技术架构：</span><span class="detail-val">基于 TypeScript，原生支持分布式事件驱动、子任务隔离与多智能体状态一致性。</span></div>
-                    <div class="detail-row"><span class="detail-icon">💡</span> <span class="detail-label">落地洞察：</span><span class="detail-val">可为企业级多 Agent 自动化管线提供可靠的分派调度层。</span></div>
+                    <div class="detail-row"><span class="detail-icon">📖</span> <span class="detail-label">项目背景：</span><span class="detail-val">企业级生产环境中，复杂的工作流往往需要多个角色互补的 Agent 共同完成，但缺乏可靠的任务分派与状态一致性保障。</span></div>
+                    <div class="detail-row"><span class="detail-icon">📌</span> <span class="detail-label">核心功能：</span><span class="detail-val">专为企业级工作流打造的多 Agent 协同调度 harness，支持复杂团队任务的拆解、分派与状态流转。</span></div>
+                    <div class="detail-row"><span class="detail-icon">⚙️</span> <span class="detail-label">技术架构：</span><span class="detail-val">1. **分布式事件驱动架构**：基于 TypeScript，保证多 Agent 消息互通无丢包；<br>2. **子任务隔离与容错**：单个 Agent 发生异常时支持自动重试与状态回滚；<br>3. **可视化流程编排**：支持声明式定义多 Agent 的协同步骤与分支逻辑。</span></div>
+                    <div class="detail-row"><span class="detail-icon">🚀</span> <span class="detail-label">适用场景：</span><span class="detail-val">适用于企业自动化研发管线、多 Agent 团队业务处理系统、复杂 workflow 编排。</span></div>
+                    <div class="detail-row"><span class="detail-icon">💡</span> <span class="detail-label">落地洞察：</span><span class="detail-val">企业构建可靠多智能体协作中枢的核心底座，保障高复杂任务的高效完工。</span></div>
                 </div>
             </div>
             <div class="card-footer">
@@ -685,7 +713,7 @@
             </div>
         </div>
         
-        <div class="ind-card">
+        <div class="ind-card" style="animation-delay: 0.60s;">
             <div class="card-header">
                 <div class="card-title-group">
                     <span class="ind-rank">[ UNIT-15 ]</span>
@@ -694,13 +722,15 @@
                 <div class="ind-badges">
                     <span class="ind-badge tag-badge">开源精选 / TypeScript</span>
                     <span class="ind-badge lang-badge">LANG: TypeScript</span>
-                    <span class="ind-badge star-badge">★ 2,549</span>
+                    <span class="ind-badge star-badge">★ 2,555</span>
                 </div>
             </div>
             <div class="card-body">
                 <div class="ind-detail-box">
+                    <div class="detail-row"><span class="detail-icon">📖</span> <span class="detail-label">项目背景：</span><span class="detail-val">随着 TypeScript 社区的快速演进，该项目针对特定技术场景提供了创新的解决方案。</span></div>
                     <div class="detail-row"><span class="detail-icon">📌</span> <span class="detail-label">核心功能：</span><span class="detail-val">热门 TypeScript 开源项目，社区关注度持续上升。</span></div>
-                    <div class="detail-row"><span class="detail-icon">⚙️</span> <span class="detail-label">技术架构：</span><span class="detail-val">基于 TypeScript 开发，技术架构完善，支持模块化部署与扩展。</span></div>
+                    <div class="detail-row"><span class="detail-icon">⚙️</span> <span class="detail-label">技术架构：</span><span class="detail-val">基于 TypeScript 编写，技术架构完善，支持模块化部署与扩展。</span></div>
+                    <div class="detail-row"><span class="detail-icon">🚀</span> <span class="detail-label">适用场景：</span><span class="detail-val">适用于开源技术发烧友、架构师与对应技术栈研发人员。</span></div>
                     <div class="detail-row"><span class="detail-icon">💡</span> <span class="detail-label">落地洞察：</span><span class="detail-val">建议关注其更新日志与社区讨论，适时评估引入工作流。</span></div>
                 </div>
             </div>
