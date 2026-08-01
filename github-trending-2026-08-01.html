@@ -6,22 +6,24 @@
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
-    <title>🌸 日々トレンド // GitHub Daily Trending Top 15 (2026-08-01)</title>
+    <title>JAPANESE INDUSTRIAL // GitHub Daily Trending Top 15 (2026-08-01)</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Rajdhani:wght@600;700&family=Fira+Code:wght@400;600&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Noto+Sans+JP:wght@400;500;700;900&family=Rajdhani:wght@600;700&display=swap');
 
         :root {
-            --bg-main: #f8f9fa;
-            --bg-card: #ffffff;
-            --text-main: #1e293b;
-            --text-muted: #64748b;
-            --border-color: #e2e8f0;
+            --bg-dark: #111215;          /* Raw dark concrete / Charcoal */
+            --panel-dark: #181a1f;       /* Dark slate panel */
+            --card-dark: #1e2128;        /* Industrial card background */
+            --border-color: #2e333d;     /* Muted steel border */
+            --border-hover: #f97316;     /* Industrial Orange accent */
             
-            --jp-red: #d9383a;      /* 日式朱赤 / Crimson */
-            --jp-indigo: #2563eb;   /* 胜色 / Indigo */
-            --jp-gold: #d97706;     /* 琥珀 / Amber */
-            --jp-sakura: #f472b6;   /* 樱色 / Sakura */
-            --jp-tag-bg: #f1f5f9;
+            --text-primary: #e2e8f0;     /* Crisp light text */
+            --text-secondary: #8a94a6;   /* Muted steel gray */
+            
+            --ind-orange: #f97316;       /* Industrial Orange / 朱橙 */
+            --ind-blue: #38bdf8;         /* Steel Blue / 钢蓝 */
+            --ind-yellow: #facc15;       /* Caution Yellow / 警示黄 */
+            --ind-gray: #333a45;         /* Dark Slate Gray */
         }
 
         * {
@@ -31,125 +33,107 @@
         }
 
         body {
-            background-color: var(--bg-main);
+            background-color: var(--bg-dark);
             background-image: 
-                radial-gradient(circle at 10% 10%, rgba(217, 56, 58, 0.03) 0%, transparent 50%),
-                radial-gradient(circle at 90% 90%, rgba(37, 99, 235, 0.03) 0%, transparent 50%);
-            color: var(--text-main);
-            font-family: 'Noto Sans JP', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang SC", "Hiragino Sans GB", sans-serif;
+                linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+            background-size: 24px 24px;
+            color: var(--text-primary);
+            font-family: 'Noto Sans JP', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
             padding: 40px 20px;
             display: flex;
             justify-content: center;
             min-height: 100vh;
-            line-height: 1.7;
+            line-height: 1.6;
         }
 
         .container {
-            max-width: 900px;
+            max-width: 920px;
             width: 100%;
         }
 
-        /* Nav Pills */
-        .jp-nav {
+        /* Nav Bar */
+        .ind-nav {
             display: flex;
-            gap: 12px;
-            justify-content: center;
-            flex-wrap: wrap;
-            margin-bottom: 30px;
+            gap: 10px;
+            justify-content: flex-start;
+            margin-bottom: 25px;
+            font-family: 'Space Mono', monospace;
         }
 
-        .jp-nav-btn {
-            background: #ffffff;
+        .ind-nav-btn {
+            background: var(--panel-dark);
             border: 1px solid var(--border-color);
-            color: var(--text-muted);
-            padding: 8px 18px;
-            border-radius: 20px;
-            text-decoration: none;
-            font-size: 13px;
-            font-weight: 500;
-            transition: all 0.2s ease;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
-        }
-
-        .jp-nav-btn:hover, .jp-nav-btn.active {
-            border-color: var(--jp-red);
-            color: var(--jp-red);
-            background: #fff5f5;
-            box-shadow: 0 4px 12px rgba(217, 56, 58, 0.08);
-        }
-
-        /* Header */
-        .jp-header {
-            background: #ffffff;
-            border: 1px solid var(--border-color);
-            border-radius: 16px;
-            padding: 35px 30px;
-            margin-bottom: 30px;
-            text-align: center;
-            position: relative;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
-            overflow: hidden;
-        }
-
-        .jp-header::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 4px;
-            background: linear-gradient(90deg, var(--jp-red), var(--jp-sakura), var(--jp-indigo));
-        }
-
-        .jp-stamp {
-            display: inline-block;
-            font-family: 'Rajdhani', sans-serif;
+            color: var(--text-secondary);
+            padding: 8px 16px;
             font-size: 12px;
             font-weight: 700;
-            letter-spacing: 2px;
-            color: var(--jp-red);
-            background: #fef2f2;
-            border: 1px solid #fecdd3;
-            padding: 3px 12px;
-            border-radius: 12px;
-            margin-bottom: 12px;
+            text-decoration: none;
+            letter-spacing: 0.5px;
+            transition: all 0.2s ease;
+        }
+
+        .ind-nav-btn:hover, .ind-nav-btn.active {
+            border-color: var(--ind-orange);
+            color: var(--ind-orange);
+            background: rgba(249, 115, 22, 0.08);
+        }
+
+        /* Header Panel */
+        .ind-header {
+            background: var(--panel-dark);
+            border: 1px solid var(--border-color);
+            border-left: 5px solid var(--ind-orange);
+            padding: 30px;
+            margin-bottom: 30px;
+            position: relative;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        .ind-stamp {
+            font-family: 'Space Mono', monospace;
+            font-size: 11px;
+            color: var(--ind-orange);
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .ind-header h1 {
+            font-family: 'Space Mono', 'Noto Sans JP', sans-serif;
+            font-size: 26px;
+            font-weight: 700;
+            color: #ffffff;
+            letter-spacing: -0.5px;
+            margin-bottom: 8px;
             text-transform: uppercase;
         }
 
-        .jp-header h1 {
-            font-size: 26px;
-            font-weight: 700;
-            color: var(--text-main);
-            letter-spacing: -0.5px;
-            margin-bottom: 8px;
+        .ind-header p {
+            color: var(--text-secondary);
+            font-size: 13px;
+            font-family: 'Space Mono', monospace;
         }
 
-        .jp-header p {
-            color: var(--text-muted);
-            font-size: 14px;
-        }
-
-        /* Cards List */
+        /* Grid & Cards */
         .grid {
             display: grid;
-            grid-template-columns: 1fr;
-            gap: 18px;
+            gap: 16px;
         }
 
-        .jp-card {
-            background: var(--bg-card);
+        .ind-card {
+            background: var(--card-dark);
             border: 1px solid var(--border-color);
-            border-radius: 14px;
-            padding: 22px 26px;
-            transition: all 0.25s ease;
+            padding: 20px 24px;
             position: relative;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.02);
+            transition: all 0.2s ease;
         }
 
-        .jp-card:hover {
-            border-color: #cbd5e1;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.06);
-            transform: translateY(-2px);
+        .ind-card:hover {
+            border-color: var(--border-hover);
+            transform: translateX(4px);
+            box-shadow: 0 4px 20px rgba(249, 115, 22, 0.12);
         }
 
         .card-header {
@@ -161,63 +145,62 @@
             gap: 10px;
         }
 
-        .jp-rank {
-            font-family: 'Rajdhani', sans-serif;
+        .ind-rank {
+            font-family: 'Space Mono', monospace;
             font-weight: 700;
-            color: var(--jp-red);
-            font-size: 18px;
-            background: #fff5f5;
-            border: 1px solid #fecdd3;
-            padding: 2px 10px;
-            border-radius: 8px;
+            color: var(--ind-orange);
+            font-size: 15px;
+            background: rgba(249, 115, 22, 0.1);
+            border: 1px solid rgba(249, 115, 22, 0.3);
+            padding: 2px 8px;
         }
 
-        .jp-title {
-            color: var(--text-main);
+        .ind-title {
+            color: #ffffff;
             font-size: 18px;
             font-weight: 700;
             text-decoration: none;
             flex-grow: 1;
-            margin-left: 8px;
+            margin-left: 10px;
+            font-family: 'Space Mono', 'Noto Sans JP', sans-serif;
             transition: color 0.2s;
         }
 
-        .jp-title:hover {
-            color: var(--jp-red);
+        .ind-title:hover {
+            color: var(--ind-orange);
         }
 
-        .jp-badges {
+        .ind-badges {
             display: flex;
             gap: 8px;
         }
 
-        .jp-badge {
-            background: var(--jp-tag-bg);
+        .ind-badge {
+            background: var(--ind-gray);
             border: 1px solid var(--border-color);
-            color: var(--text-muted);
-            padding: 3px 10px;
-            border-radius: 6px;
-            font-size: 12px;
-            font-weight: 500;
-            font-family: 'Fira Code', monospace;
+            color: var(--text-secondary);
+            padding: 2px 8px;
+            font-size: 11px;
+            font-family: 'Space Mono', monospace;
+            font-weight: 700;
         }
 
         .star-badge {
-            color: var(--jp-gold);
-            background: #fffbe3;
-            border-color: #fde68a;
+            color: var(--ind-yellow);
+            border-color: rgba(250, 204, 21, 0.3);
+            background: rgba(250, 204, 21, 0.05);
         }
 
         .lang-badge {
-            color: var(--jp-indigo);
-            background: #eff6ff;
-            border-color: #bfdbfe;
+            color: var(--ind-blue);
+            border-color: rgba(56, 189, 248, 0.3);
+            background: rgba(56, 189, 248, 0.05);
         }
 
-        .jp-summary {
-            color: #334155;
+        .ind-summary {
+            color: var(--text-primary);
             font-size: 14px;
-            margin: 0 0 14px 0;
+            margin-bottom: 14px;
             line-height: 1.6;
         }
 
@@ -226,342 +209,341 @@
             justify-content: flex-end;
         }
 
-        .jp-btn {
-            color: var(--jp-red);
-            font-size: 12px;
-            font-weight: 600;
+        .ind-btn {
+            font-family: 'Space Mono', monospace;
+            color: var(--ind-blue);
+            font-size: 11px;
+            font-weight: 700;
             text-decoration: none;
-            padding: 5px 14px;
-            border: 1px solid #fecdd3;
-            border-radius: 8px;
-            background: #fff5f5;
+            padding: 5px 12px;
+            border: 1px solid rgba(56, 189, 248, 0.4);
+            background: rgba(56, 189, 248, 0.05);
             transition: all 0.2s;
         }
 
-        .jp-btn:hover {
-            background: var(--jp-red);
-            color: #ffffff;
-            border-color: var(--jp-red);
+        .ind-btn:hover {
+            background: var(--ind-blue);
+            color: #000000;
+            border-color: var(--ind-blue);
         }
 
-        /* Footer Insight */
-        .jp-footer {
-            margin-top: 40px;
-            background: #ffffff;
+        /* Footer Insights */
+        .ind-footer {
+            margin-top: 35px;
+            background: var(--panel-dark);
             border: 1px solid var(--border-color);
-            border-radius: 14px;
-            padding: 25px 30px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+            border-left: 5px solid var(--ind-blue);
+            padding: 24px;
         }
 
-        .jp-footer h2 {
-            font-size: 16px;
-            color: var(--jp-red);
-            margin-bottom: 12px;
-            font-weight: 700;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .jp-footer p {
+        .ind-footer h2 {
+            font-family: 'Space Mono', monospace;
             font-size: 14px;
-            color: #475569;
+            color: var(--ind-blue);
+            margin-bottom: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .ind-footer p {
+            font-size: 13px;
+            color: var(--text-secondary);
             margin-bottom: 8px;
         }
 
-        .jp-footer code {
-            color: var(--jp-indigo);
-            background: #eff6ff;
+        .ind-footer code {
+            color: var(--ind-orange);
+            background: rgba(249, 115, 22, 0.1);
             padding: 2px 6px;
-            border-radius: 4px;
-            font-family: 'Fira Code', monospace;
+            font-family: 'Space Mono', monospace;
             font-size: 12px;
+            border: 1px solid rgba(249, 115, 22, 0.2);
         }
 
         footer {
-            text-align: center;
             margin-top: 40px;
-            font-size: 12px;
-            color: var(--text-muted);
-            letter-spacing: 0.5px;
+            text-align: center;
+            font-family: 'Space Mono', monospace;
+            font-size: 11px;
+            color: var(--text-secondary);
+            letter-spacing: 1px;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <div class="jp-nav">
-            <a href="index.html" class="jp-nav-btn active">🔥 GitHub Trending Top 15</a>
-            <a href="last30days-latest.html" class="jp-nav-btn">🌐 Last30Days AI 情报简报</a>
+        <div class="ind-nav">
+            <a href="index.html" class="ind-nav-btn active">[TRENDING_TOP15]</a>
+            <a href="last30days-latest.html" class="ind-nav-btn">[LAST30DAYS_REPORT]</a>
         </div>
 
-        <div class="jp-header">
-            <span class="jp-stamp">🌸 DAILY TRENDING // 日々トレンド</span>
-            <h1>GitHub 急上昇オープンソース TOP 15</h1>
-            <p>MASTER JK EXCLUSIVE // 2026-08-01 // 清新日式极简仪表盘</p>
+        <div class="ind-header">
+            <span class="ind-stamp">// SPEC: JAPANESE_INDUSTRIAL_UI_V3</span>
+            <h1>GITHUB TRENDING TOP 15 // 急上昇</h1>
+            <p>MASTER JK EXCLUSIVE // 2026-08-01 // RAW CONCRETE & STEEL FEED</p>
         </div>
 
         <div class="grid">
             
-        <div class="jp-card">
+        <div class="ind-card">
             <div class="card-header">
-                <span class="jp-rank">#01</span>
-                <a href="https://github.com/zhaoxuya520/reverse-skill" target="_blank" class="jp-title">zhaoxuya520/reverse-skill</a>
-                <div class="jp-badges">
-                    <span class="jp-badge lang-badge">PowerShell</span>
-                    <span class="jp-badge star-badge">★ 11.2k</span>
+                <span class="ind-rank">[01]</span>
+                <a href="https://github.com/zhaoxuya520/reverse-skill" target="_blank" class="ind-title">zhaoxuya520/reverse-skill</a>
+                <div class="ind-badges">
+                    <span class="ind-badge lang-badge">PowerShell</span>
+                    <span class="ind-badge star-badge">★ 11.2k</span>
                 </div>
             </div>
             <div class="card-body">
-                <p class="jp-summary">Reverse Engineering / Authorized Penetration Testing / Security Research Skill Router Pack AI-powered routing + On-demand toolchain bootstrapping + Self-evolving knowledge base  Supports Claude Code, Kiro, Cursor, Cline, and other AI coding clients 逆向/渗透/安全技能路由包 - AI 自动路由 + 按需自举工具链 + 自动进化经验库 | 支持 Claude Code / Kiro / Cursor / Cline 等代码 AI 客户端</p>
+                <p class="ind-summary">Reverse Engineering / Authorized Penetration Testing / Security Research Skill Router Pack AI-powered routing + On-demand toolchain bootstrapping + Self-evolving knowledge base  Supports Claude Code, Kiro, Cursor, Cline, and other AI coding clients 逆向/渗透/安全技能路由包 - AI 自动路由 + 按需自举工具链 + 自动进化经验库 | 支持 Claude Code / Kiro / Cursor / Cline 等代码 AI 客户端</p>
             </div>
             <div class="card-footer">
-                <a href="https://github.com/zhaoxuya520/reverse-skill" target="_blank" class="jp-btn">访问仓库 ↗</a>
+                <a href="https://github.com/zhaoxuya520/reverse-skill" target="_blank" class="ind-btn">ACCESS_REPO ↗</a>
             </div>
         </div>
         
-        <div class="jp-card">
+        <div class="ind-card">
             <div class="card-header">
-                <span class="jp-rank">#02</span>
-                <a href="https://github.com/different-ai/openwork" target="_blank" class="jp-title">different-ai/openwork</a>
-                <div class="jp-badges">
-                    <span class="jp-badge lang-badge">TypeScript</span>
-                    <span class="jp-badge star-badge">★ 19.7k</span>
+                <span class="ind-rank">[02]</span>
+                <a href="https://github.com/different-ai/openwork" target="_blank" class="ind-title">different-ai/openwork</a>
+                <div class="ind-badges">
+                    <span class="ind-badge lang-badge">TypeScript</span>
+                    <span class="ind-badge star-badge">★ 19.7k</span>
                 </div>
             </div>
             <div class="card-body">
-                <p class="jp-summary">Claude Cowork 开源桌面替代品，多 Agent 团队协作工作台</p>
+                <p class="ind-summary">Claude Cowork 开源桌面替代品，多 Agent 团队协作工作台</p>
             </div>
             <div class="card-footer">
-                <a href="https://github.com/different-ai/openwork" target="_blank" class="jp-btn">访问仓库 ↗</a>
+                <a href="https://github.com/different-ai/openwork" target="_blank" class="ind-btn">ACCESS_REPO ↗</a>
             </div>
         </div>
         
-        <div class="jp-card">
+        <div class="ind-card">
             <div class="card-header">
-                <span class="jp-rank">#03</span>
-                <a href="https://github.com/mvanhorn/last30days-skill" target="_blank" class="jp-title">mvanhorn/last30days-skill</a>
-                <div class="jp-badges">
-                    <span class="jp-badge lang-badge">Python</span>
-                    <span class="jp-badge star-badge">★ 56.4k</span>
+                <span class="ind-rank">[03]</span>
+                <a href="https://github.com/mvanhorn/last30days-skill" target="_blank" class="ind-title">mvanhorn/last30days-skill</a>
+                <div class="ind-badges">
+                    <span class="ind-badge lang-badge">Python</span>
+                    <span class="ind-badge star-badge">★ 56.5k</span>
                 </div>
             </div>
             <div class="card-body">
-                <p class="jp-summary">AI Agent 专属技能，跨全网自动追查主题近 30 天最新动态</p>
+                <p class="ind-summary">AI Agent 专属技能，跨全网自动追查主题近 30 天最新动态</p>
             </div>
             <div class="card-footer">
-                <a href="https://github.com/mvanhorn/last30days-skill" target="_blank" class="jp-btn">访问仓库 ↗</a>
+                <a href="https://github.com/mvanhorn/last30days-skill" target="_blank" class="ind-btn">ACCESS_REPO ↗</a>
             </div>
         </div>
         
-        <div class="jp-card">
+        <div class="ind-card">
             <div class="card-header">
-                <span class="jp-rank">#04</span>
-                <a href="https://github.com/paperswithbacktest/awesome-systematic-trading" target="_blank" class="jp-title">paperswithbacktest/awesome-systematic-trading</a>
-                <div class="jp-badges">
-                    <span class="jp-badge lang-badge">Python</span>
-                    <span class="jp-badge star-badge">★ 11.9k</span>
+                <span class="ind-rank">[04]</span>
+                <a href="https://github.com/paperswithbacktest/awesome-systematic-trading" target="_blank" class="ind-title">paperswithbacktest/awesome-systematic-trading</a>
+                <div class="ind-badges">
+                    <span class="ind-badge lang-badge">Python</span>
+                    <span class="ind-badge star-badge">★ 11.9k</span>
                 </div>
             </div>
             <div class="card-body">
-                <p class="jp-summary">量化交易精选资源图谱，含回测框架与高频策略库</p>
+                <p class="ind-summary">量化交易精选资源图谱，含回测框架与高频策略库</p>
             </div>
             <div class="card-footer">
-                <a href="https://github.com/paperswithbacktest/awesome-systematic-trading" target="_blank" class="jp-btn">访问仓库 ↗</a>
+                <a href="https://github.com/paperswithbacktest/awesome-systematic-trading" target="_blank" class="ind-btn">ACCESS_REPO ↗</a>
             </div>
         </div>
         
-        <div class="jp-card">
+        <div class="ind-card">
             <div class="card-header">
-                <span class="jp-rank">#05</span>
-                <a href="https://github.com/microsoft/AI-For-Beginners" target="_blank" class="jp-title">microsoft/AI-For-Beginners</a>
-                <div class="jp-badges">
-                    <span class="jp-badge lang-badge">Jupyter Notebook</span>
-                    <span class="jp-badge star-badge">★ 55.6k</span>
+                <span class="ind-rank">[05]</span>
+                <a href="https://github.com/microsoft/AI-For-Beginners" target="_blank" class="ind-title">microsoft/AI-For-Beginners</a>
+                <div class="ind-badges">
+                    <span class="ind-badge lang-badge">Jupyter Notebook</span>
+                    <span class="ind-badge star-badge">★ 55.6k</span>
                 </div>
             </div>
             <div class="card-body">
-                <p class="jp-summary">微软官方 12 周 AI 入门课程，涵盖经典 ML 与大模型基础</p>
+                <p class="ind-summary">微软官方 12 周 AI 入门课程，涵盖经典 ML 与大模型基础</p>
             </div>
             <div class="card-footer">
-                <a href="https://github.com/microsoft/AI-For-Beginners" target="_blank" class="jp-btn">访问仓库 ↗</a>
+                <a href="https://github.com/microsoft/AI-For-Beginners" target="_blank" class="ind-btn">ACCESS_REPO ↗</a>
             </div>
         </div>
         
-        <div class="jp-card">
+        <div class="ind-card">
             <div class="card-header">
-                <span class="jp-rank">#06</span>
-                <a href="https://github.com/github/copilot-sdk" target="_blank" class="jp-title">github/copilot-sdk</a>
-                <div class="jp-badges">
-                    <span class="jp-badge lang-badge">Java</span>
-                    <span class="jp-badge star-badge">★ 10.2k</span>
+                <span class="ind-rank">[06]</span>
+                <a href="https://github.com/github/copilot-sdk" target="_blank" class="ind-title">github/copilot-sdk</a>
+                <div class="ind-badges">
+                    <span class="ind-badge lang-badge">Java</span>
+                    <span class="ind-badge star-badge">★ 10.2k</span>
                 </div>
             </div>
             <div class="card-body">
-                <p class="jp-summary">Multi-platform SDK for integrating GitHub Copilot Agent into apps and services</p>
+                <p class="ind-summary">Multi-platform SDK for integrating GitHub Copilot Agent into apps and services</p>
             </div>
             <div class="card-footer">
-                <a href="https://github.com/github/copilot-sdk" target="_blank" class="jp-btn">访问仓库 ↗</a>
+                <a href="https://github.com/github/copilot-sdk" target="_blank" class="ind-btn">ACCESS_REPO ↗</a>
             </div>
         </div>
         
-        <div class="jp-card">
+        <div class="ind-card">
             <div class="card-header">
-                <span class="jp-rank">#07</span>
-                <a href="https://github.com/chatwoot/chatwoot" target="_blank" class="jp-title">chatwoot/chatwoot</a>
-                <div class="jp-badges">
-                    <span class="jp-badge lang-badge">Ruby</span>
-                    <span class="jp-badge star-badge">★ 35.3k</span>
+                <span class="ind-rank">[07]</span>
+                <a href="https://github.com/chatwoot/chatwoot" target="_blank" class="ind-title">chatwoot/chatwoot</a>
+                <div class="ind-badges">
+                    <span class="ind-badge lang-badge">Ruby</span>
+                    <span class="ind-badge star-badge">★ 35.3k</span>
                 </div>
             </div>
             <div class="card-body">
-                <p class="jp-summary">Open-source live-chat, email support, omni-channel desk. An alternative to Intercom, Zendesk, Salesforce Service Cloud etc. 🔥💬</p>
+                <p class="ind-summary">Open-source live-chat, email support, omni-channel desk. An alternative to Intercom, Zendesk, Salesforce Service Cloud etc. 🔥💬</p>
             </div>
             <div class="card-footer">
-                <a href="https://github.com/chatwoot/chatwoot" target="_blank" class="jp-btn">访问仓库 ↗</a>
+                <a href="https://github.com/chatwoot/chatwoot" target="_blank" class="ind-btn">ACCESS_REPO ↗</a>
             </div>
         </div>
         
-        <div class="jp-card">
+        <div class="ind-card">
             <div class="card-header">
-                <span class="jp-rank">#08</span>
-                <a href="https://github.com/agavra/tuicr" target="_blank" class="jp-title">agavra/tuicr</a>
-                <div class="jp-badges">
-                    <span class="jp-badge lang-badge">Rust</span>
-                    <span class="jp-badge star-badge">★ 2,219</span>
+                <span class="ind-rank">[08]</span>
+                <a href="https://github.com/agavra/tuicr" target="_blank" class="ind-title">agavra/tuicr</a>
+                <div class="ind-badges">
+                    <span class="ind-badge lang-badge">Rust</span>
+                    <span class="ind-badge star-badge">★ 2,220</span>
                 </div>
             </div>
             <div class="card-body">
-                <p class="jp-summary">纯终端 Code Review TUI 工具，完美支持 Vim 键位</p>
+                <p class="ind-summary">纯终端 Code Review TUI 工具，完美支持 Vim 键位</p>
             </div>
             <div class="card-footer">
-                <a href="https://github.com/agavra/tuicr" target="_blank" class="jp-btn">访问仓库 ↗</a>
+                <a href="https://github.com/agavra/tuicr" target="_blank" class="ind-btn">ACCESS_REPO ↗</a>
             </div>
         </div>
         
-        <div class="jp-card">
+        <div class="ind-card">
             <div class="card-header">
-                <span class="jp-rank">#09</span>
-                <a href="https://github.com/usekaneo/kaneo" target="_blank" class="jp-title">usekaneo/kaneo</a>
-                <div class="jp-badges">
-                    <span class="jp-badge lang-badge">TypeScript</span>
-                    <span class="jp-badge star-badge">★ 5,338</span>
+                <span class="ind-rank">[09]</span>
+                <a href="https://github.com/usekaneo/kaneo" target="_blank" class="ind-title">usekaneo/kaneo</a>
+                <div class="ind-badges">
+                    <span class="ind-badge lang-badge">TypeScript</span>
+                    <span class="ind-badge star-badge">★ 5,339</span>
                 </div>
             </div>
             <div class="card-body">
-                <p class="jp-summary">🎯 All you need. Nothing you don't. Open source project management that works for you, not against you.</p>
+                <p class="ind-summary">🎯 All you need. Nothing you don't. Open source project management that works for you, not against you.</p>
             </div>
             <div class="card-footer">
-                <a href="https://github.com/usekaneo/kaneo" target="_blank" class="jp-btn">访问仓库 ↗</a>
+                <a href="https://github.com/usekaneo/kaneo" target="_blank" class="ind-btn">ACCESS_REPO ↗</a>
             </div>
         </div>
         
-        <div class="jp-card">
+        <div class="ind-card">
             <div class="card-header">
-                <span class="jp-rank">#10</span>
-                <a href="https://github.com/geo-tp/ESP32-Bit-Pirate" target="_blank" class="jp-title">geo-tp/ESP32-Bit-Pirate</a>
-                <div class="jp-badges">
-                    <span class="jp-badge lang-badge">C++</span>
-                    <span class="jp-badge star-badge">★ 5,186</span>
+                <span class="ind-rank">[10]</span>
+                <a href="https://github.com/geo-tp/ESP32-Bit-Pirate" target="_blank" class="ind-title">geo-tp/ESP32-Bit-Pirate</a>
+                <div class="ind-badges">
+                    <span class="ind-badge lang-badge">C++</span>
+                    <span class="ind-badge star-badge">★ 5,187</span>
                 </div>
             </div>
             <div class="card-body">
-                <p class="jp-summary">A Hardware Hacking Tool with Web-Based CLI That Speaks Every Protocol </p>
+                <p class="ind-summary">A Hardware Hacking Tool with Web-Based CLI That Speaks Every Protocol </p>
             </div>
             <div class="card-footer">
-                <a href="https://github.com/geo-tp/ESP32-Bit-Pirate" target="_blank" class="jp-btn">访问仓库 ↗</a>
+                <a href="https://github.com/geo-tp/ESP32-Bit-Pirate" target="_blank" class="ind-btn">ACCESS_REPO ↗</a>
             </div>
         </div>
         
-        <div class="jp-card">
+        <div class="ind-card">
             <div class="card-header">
-                <span class="jp-rank">#11</span>
-                <a href="https://github.com/deepfakes/faceswap" target="_blank" class="jp-title">deepfakes/faceswap</a>
-                <div class="jp-badges">
-                    <span class="jp-badge lang-badge">Python</span>
-                    <span class="jp-badge star-badge">★ 57.1k</span>
+                <span class="ind-rank">[11]</span>
+                <a href="https://github.com/deepfakes/faceswap" target="_blank" class="ind-title">deepfakes/faceswap</a>
+                <div class="ind-badges">
+                    <span class="ind-badge lang-badge">Python</span>
+                    <span class="ind-badge star-badge">★ 57.1k</span>
                 </div>
             </div>
             <div class="card-body">
-                <p class="jp-summary">Deepfakes Software For All</p>
+                <p class="ind-summary">Deepfakes Software For All</p>
             </div>
             <div class="card-footer">
-                <a href="https://github.com/deepfakes/faceswap" target="_blank" class="jp-btn">访问仓库 ↗</a>
+                <a href="https://github.com/deepfakes/faceswap" target="_blank" class="ind-btn">ACCESS_REPO ↗</a>
             </div>
         </div>
         
-        <div class="jp-card">
+        <div class="ind-card">
             <div class="card-header">
-                <span class="jp-rank">#12</span>
-                <a href="https://github.com/1jehuang/jcode" target="_blank" class="jp-title">1jehuang/jcode</a>
-                <div class="jp-badges">
-                    <span class="jp-badge lang-badge">Rust</span>
-                    <span class="jp-badge star-badge">★ 14.8k</span>
+                <span class="ind-rank">[12]</span>
+                <a href="https://github.com/1jehuang/jcode" target="_blank" class="ind-title">1jehuang/jcode</a>
+                <div class="ind-badges">
+                    <span class="ind-badge lang-badge">Rust</span>
+                    <span class="ind-badge star-badge">★ 14.8k</span>
                 </div>
             </div>
             <div class="card-body">
-                <p class="jp-summary">The most RAM efficient harness</p>
+                <p class="ind-summary">The most RAM efficient harness</p>
             </div>
             <div class="card-footer">
-                <a href="https://github.com/1jehuang/jcode" target="_blank" class="jp-btn">访问仓库 ↗</a>
+                <a href="https://github.com/1jehuang/jcode" target="_blank" class="ind-btn">ACCESS_REPO ↗</a>
             </div>
         </div>
         
-        <div class="jp-card">
+        <div class="ind-card">
             <div class="card-header">
-                <span class="jp-rank">#13</span>
-                <a href="https://github.com/MoonshotAI/Kimi-K3" target="_blank" class="jp-title">MoonshotAI/Kimi-K3</a>
-                <div class="jp-badges">
-                    <span class="jp-badge lang-badge">Open Source</span>
-                    <span class="jp-badge star-badge">★ 7,760</span>
+                <span class="ind-rank">[13]</span>
+                <a href="https://github.com/MoonshotAI/Kimi-K3" target="_blank" class="ind-title">MoonshotAI/Kimi-K3</a>
+                <div class="ind-badges">
+                    <span class="ind-badge lang-badge">Open Source</span>
+                    <span class="ind-badge star-badge">★ 7,760</span>
                 </div>
             </div>
             <div class="card-body">
-                <p class="jp-summary">Moonshot AI 官方开源 Kimi-K3 前沿推理与运行引擎</p>
+                <p class="ind-summary">Moonshot AI 官方开源 Kimi-K3 前沿推理与运行引擎</p>
             </div>
             <div class="card-footer">
-                <a href="https://github.com/MoonshotAI/Kimi-K3" target="_blank" class="jp-btn">访问仓库 ↗</a>
+                <a href="https://github.com/MoonshotAI/Kimi-K3" target="_blank" class="ind-btn">ACCESS_REPO ↗</a>
             </div>
         </div>
         
-        <div class="jp-card">
+        <div class="ind-card">
             <div class="card-header">
-                <span class="jp-rank">#14</span>
-                <a href="https://github.com/yc-software/qm" target="_blank" class="jp-title">yc-software/qm</a>
-                <div class="jp-badges">
-                    <span class="jp-badge lang-badge">TypeScript</span>
-                    <span class="jp-badge star-badge">★ 3,255</span>
+                <span class="ind-rank">[14]</span>
+                <a href="https://github.com/yc-software/qm" target="_blank" class="ind-title">yc-software/qm</a>
+                <div class="ind-badges">
+                    <span class="ind-badge lang-badge">TypeScript</span>
+                    <span class="ind-badge star-badge">★ 3,262</span>
                 </div>
             </div>
             <div class="card-body">
-                <p class="jp-summary">Multiplayer agent harness for work</p>
+                <p class="ind-summary">Multiplayer agent harness for work</p>
             </div>
             <div class="card-footer">
-                <a href="https://github.com/yc-software/qm" target="_blank" class="jp-btn">访问仓库 ↗</a>
+                <a href="https://github.com/yc-software/qm" target="_blank" class="ind-btn">ACCESS_REPO ↗</a>
             </div>
         </div>
         
-        <div class="jp-card">
+        <div class="ind-card">
             <div class="card-header">
-                <span class="jp-rank">#15</span>
-                <a href="https://github.com/bashalarmistalt/decimen-optical-transfer" target="_blank" class="jp-title">bashalarmistalt/decimen-optical-transfer</a>
-                <div class="jp-badges">
-                    <span class="jp-badge lang-badge">TypeScript</span>
-                    <span class="jp-badge star-badge">★ 2,531</span>
+                <span class="ind-rank">[15]</span>
+                <a href="https://github.com/bashalarmistalt/decimen-optical-transfer" target="_blank" class="ind-title">bashalarmistalt/decimen-optical-transfer</a>
+                <div class="ind-badges">
+                    <span class="ind-badge lang-badge">TypeScript</span>
+                    <span class="ind-badge star-badge">★ 2,536</span>
                 </div>
             </div>
             <div class="card-body">
-                <p class="jp-summary">开源热门项目</p>
+                <p class="ind-summary">开源热门项目</p>
             </div>
             <div class="card-footer">
-                <a href="https://github.com/bashalarmistalt/decimen-optical-transfer" target="_blank" class="jp-btn">访问仓库 ↗</a>
+                <a href="https://github.com/bashalarmistalt/decimen-optical-transfer" target="_blank" class="ind-btn">ACCESS_REPO ↗</a>
             </div>
         </div>
         
         </div>
 
-        <div class="jp-footer">
-            <h2>🍃 技术洞察 // SYSTEM INSIGHTS</h2>
+        <div class="ind-footer">
+            <h2>// SYSTEM_INSIGHTS_DEEP_ANALYSIS</h2>
             <p><strong>🤖 AI Agent 架构取向：</strong> 聚焦端到端语音 <code>speech-to-speech</code>、全网主题追查 <code>last30days-skill</code> 与 Chrome 调试标准 <code>chrome-devtools-mcp</code>。</p>
             <p><strong>💡 落地推进优先项：</strong> 优先吸收 <code>last30days-skill</code> 自动化调研管线，部署测试 <code>chrome-devtools-mcp</code> 强化网页交互抓取表现。</p>
         </div>
