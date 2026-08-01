@@ -6,24 +6,22 @@
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
-    <title>JAPANESE INDUSTRIAL // GitHub Daily Trending Top 15 (2026-08-01)</title>
+    <title>HEAVY INDUSTRIAL // GitHub Daily Trending Top 15 (2026-08-01)</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Noto+Sans+JP:wght@400;500;700;900&family=Rajdhani:wght@600;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Noto+Sans+JP:wght@500;700;900&family=Fira+Code:wght@500;700&display=swap');
 
         :root {
-            --bg-dark: #111215;          /* Raw dark concrete / Charcoal */
-            --panel-dark: #181a1f;       /* Dark slate panel */
-            --card-dark: #1e2128;        /* Industrial card background */
-            --border-color: #2e333d;     /* Muted steel border */
-            --border-hover: #f97316;     /* Industrial Orange accent */
+            --bg-carbon: #0c0e12;        /* Dark carbon steel / 重碳黑 */
+            --panel-slate: #141720;      /* Heavy metal panel / 铸铁灰 */
+            --card-slate: #1a1e28;       /* Card background / 工业钢板 */
+            --border-steel: #2e3545;     /* Steel border */
             
-            --text-primary: #e2e8f0;     /* Crisp light text */
-            --text-secondary: #8a94a6;   /* Muted steel gray */
-            
-            --ind-orange: #f97316;       /* Industrial Orange / 朱橙 */
-            --ind-blue: #38bdf8;         /* Steel Blue / 钢蓝 */
-            --ind-yellow: #facc15;       /* Caution Yellow / 警示黄 */
-            --ind-gray: #333a45;         /* Dark Slate Gray */
+            --hazard-orange: #ff5500;    /* Safety Orange / 工业橙 */
+            --hazard-yellow: #facc15;    /* Caution Yellow / 警示黄 */
+            --steel-blue: #38bdf8;       /* Titanium Blue / 钛蓝 */
+            --steel-cyan: #06b6d4;       /* High-vis Cyan */
+            --text-main: #e2e8f0;        /* Bright steel text */
+            --text-sub: #94a3b8;         /* Muted steel text */
         }
 
         * {
@@ -33,12 +31,11 @@
         }
 
         body {
-            background-color: var(--bg-dark);
+            background-color: var(--bg-carbon);
             background-image: 
-                linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
-            background-size: 24px 24px;
-            color: var(--text-primary);
+                repeating-linear-gradient(0deg, transparent, transparent 23px, rgba(255, 255, 255, 0.02) 24px),
+                repeating-linear-gradient(90deg, transparent, transparent 23px, rgba(255, 255, 255, 0.02) 24px);
+            color: var(--text-main);
             font-family: 'Noto Sans JP', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
             padding: 40px 20px;
             display: flex;
@@ -48,24 +45,37 @@
         }
 
         .container {
-            max-width: 920px;
+            max-width: 960px;
             width: 100%;
+        }
+
+        /* Industrial Hazard Bar Top */
+        .hazard-bar {
+            height: 8px;
+            background: repeating-linear-gradient(
+                -45deg,
+                var(--hazard-orange),
+                var(--hazard-orange) 12px,
+                #111319 12px,
+                #111319 24px
+            );
+            border-radius: 2px 2px 0 0;
         }
 
         /* Nav Bar */
         .ind-nav {
             display: flex;
-            gap: 10px;
+            gap: 12px;
             justify-content: flex-start;
             margin-bottom: 25px;
             font-family: 'Space Mono', monospace;
         }
 
         .ind-nav-btn {
-            background: var(--panel-dark);
-            border: 1px solid var(--border-color);
-            color: var(--text-secondary);
-            padding: 8px 16px;
+            background: var(--panel-slate);
+            border: 1px solid var(--border-steel);
+            color: var(--text-sub);
+            padding: 9px 18px;
             font-size: 12px;
             font-weight: 700;
             text-decoration: none;
@@ -74,36 +84,40 @@
         }
 
         .ind-nav-btn:hover, .ind-nav-btn.active {
-            border-color: var(--ind-orange);
-            color: var(--ind-orange);
-            background: rgba(249, 115, 22, 0.08);
+            border-color: var(--hazard-orange);
+            color: var(--hazard-orange);
+            background: rgba(255, 85, 0, 0.08);
+            box-shadow: 0 0 15px rgba(255, 85, 0, 0.15);
         }
 
-        /* Header Panel */
+        /* Header Frame */
         .ind-header {
-            background: var(--panel-dark);
-            border: 1px solid var(--border-color);
-            border-left: 5px solid var(--ind-orange);
+            background: var(--panel-slate);
+            border: 2px solid var(--border-steel);
+            border-left: 8px solid var(--hazard-orange);
             padding: 30px;
             margin-bottom: 30px;
             position: relative;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
         }
 
         .ind-stamp {
             font-family: 'Space Mono', monospace;
             font-size: 11px;
-            color: var(--ind-orange);
-            letter-spacing: 1.5px;
+            color: var(--hazard-orange);
+            letter-spacing: 2px;
             text-transform: uppercase;
-            margin-bottom: 10px;
-            display: block;
+            margin-bottom: 8px;
+            display: inline-block;
+            background: rgba(255, 85, 0, 0.12);
+            border: 1px solid rgba(255, 85, 0, 0.3);
+            padding: 2px 8px;
         }
 
         .ind-header h1 {
             font-family: 'Space Mono', 'Noto Sans JP', sans-serif;
-            font-size: 26px;
-            font-weight: 700;
+            font-size: 28px;
+            font-weight: 900;
             color: #ffffff;
             letter-spacing: -0.5px;
             margin-bottom: 8px;
@@ -111,7 +125,7 @@
         }
 
         .ind-header p {
-            color: var(--text-secondary);
+            color: var(--text-sub);
             font-size: 13px;
             font-family: 'Space Mono', monospace;
         }
@@ -119,424 +133,579 @@
         /* Grid & Cards */
         .grid {
             display: grid;
-            gap: 16px;
+            gap: 20px;
         }
 
         .ind-card {
-            background: var(--card-dark);
-            border: 1px solid var(--border-color);
-            padding: 20px 24px;
+            background: var(--card-slate);
+            border: 1px solid var(--border-steel);
+            border-left: 5px solid var(--hazard-orange);
+            padding: 22px 26px;
             position: relative;
             transition: all 0.2s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
         }
 
         .ind-card:hover {
-            border-color: var(--border-hover);
+            border-color: var(--steel-blue);
+            border-left-color: var(--steel-blue);
             transform: translateX(4px);
-            box-shadow: 0 4px 20px rgba(249, 115, 22, 0.12);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.6), inset 0 0 15px rgba(56, 189, 248, 0.05);
         }
 
         .card-header {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            margin-bottom: 12px;
+            margin-bottom: 16px;
             flex-wrap: wrap;
-            gap: 10px;
+            gap: 12px;
+            border-bottom: 1px dashed var(--border-steel);
+            padding-bottom: 12px;
+        }
+
+        .card-title-group {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-grow: 1;
         }
 
         .ind-rank {
             font-family: 'Space Mono', monospace;
             font-weight: 700;
-            color: var(--ind-orange);
-            font-size: 15px;
-            background: rgba(249, 115, 22, 0.1);
-            border: 1px solid rgba(249, 115, 22, 0.3);
-            padding: 2px 8px;
+            color: var(--hazard-orange);
+            font-size: 14px;
+            background: rgba(255, 85, 0, 0.12);
+            border: 1px solid rgba(255, 85, 0, 0.3);
+            padding: 3px 10px;
+            letter-spacing: 1px;
         }
 
         .ind-title {
             color: #ffffff;
-            font-size: 18px;
+            font-size: 19px;
             font-weight: 700;
             text-decoration: none;
-            flex-grow: 1;
-            margin-left: 10px;
             font-family: 'Space Mono', 'Noto Sans JP', sans-serif;
             transition: color 0.2s;
         }
 
         .ind-title:hover {
-            color: var(--ind-orange);
+            color: var(--steel-blue);
         }
 
         .ind-badges {
             display: flex;
             gap: 8px;
+            flex-wrap: wrap;
         }
 
         .ind-badge {
-            background: var(--ind-gray);
-            border: 1px solid var(--border-color);
-            color: var(--text-secondary);
-            padding: 2px 8px;
+            background: #11131a;
+            border: 1px solid var(--border-steel);
+            color: var(--text-sub);
+            padding: 3px 10px;
             font-size: 11px;
             font-family: 'Space Mono', monospace;
             font-weight: 700;
         }
 
+        .tag-badge {
+            color: var(--hazard-orange);
+            border-color: rgba(255, 85, 0, 0.3);
+            background: rgba(255, 85, 0, 0.05);
+        }
+
         .star-badge {
-            color: var(--ind-yellow);
+            color: var(--hazard-yellow);
             border-color: rgba(250, 204, 21, 0.3);
             background: rgba(250, 204, 21, 0.05);
         }
 
         .lang-badge {
-            color: var(--ind-blue);
+            color: var(--steel-blue);
             border-color: rgba(56, 189, 248, 0.3);
             background: rgba(56, 189, 248, 0.05);
         }
 
-        .ind-summary {
-            color: var(--text-primary);
+        /* Detail Box Inside Card */
+        .ind-detail-box {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-bottom: 16px;
+        }
+
+        .detail-row {
+            display: flex;
+            align-items: flex-start;
             font-size: 14px;
-            margin-bottom: 14px;
             line-height: 1.6;
+        }
+
+        .detail-icon {
+            margin-right: 6px;
+            flex-shrink: 0;
+        }
+
+        .detail-label {
+            font-weight: 700;
+            color: var(--steel-blue);
+            flex-shrink: 0;
+            font-family: 'Noto Sans JP', sans-serif;
+        }
+
+        .detail-val {
+            color: var(--text-main);
         }
 
         .card-footer {
             display: flex;
             justify-content: flex-end;
+            padding-top: 10px;
+            border-top: 1px solid rgba(255, 255, 255, 0.04);
         }
 
         .ind-btn {
             font-family: 'Space Mono', monospace;
-            color: var(--ind-blue);
+            color: var(--hazard-orange);
             font-size: 11px;
             font-weight: 700;
             text-decoration: none;
-            padding: 5px 12px;
-            border: 1px solid rgba(56, 189, 248, 0.4);
-            background: rgba(56, 189, 248, 0.05);
+            padding: 6px 16px;
+            border: 1px solid var(--hazard-orange);
+            background: rgba(255, 85, 0, 0.05);
             transition: all 0.2s;
+            letter-spacing: 1px;
         }
 
         .ind-btn:hover {
-            background: var(--ind-blue);
+            background: var(--hazard-orange);
             color: #000000;
-            border-color: var(--ind-blue);
+            box-shadow: 0 0 15px rgba(255, 85, 0, 0.4);
         }
 
-        /* Footer Insights */
+        /* Footer Technical Summary */
         .ind-footer {
-            margin-top: 35px;
-            background: var(--panel-dark);
-            border: 1px solid var(--border-color);
-            border-left: 5px solid var(--ind-blue);
-            padding: 24px;
+            margin-top: 40px;
+            background: var(--panel-slate);
+            border: 2px solid var(--border-steel);
+            border-left: 8px solid var(--steel-blue);
+            padding: 26px 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
         }
 
         .ind-footer h2 {
             font-family: 'Space Mono', monospace;
-            font-size: 14px;
-            color: var(--ind-blue);
-            margin-bottom: 12px;
+            font-size: 15px;
+            color: var(--steel-blue);
+            margin-bottom: 14px;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 1.5px;
         }
 
         .ind-footer p {
-            font-size: 13px;
-            color: var(--text-secondary);
-            margin-bottom: 8px;
+            font-size: 14px;
+            color: var(--text-sub);
+            margin-bottom: 10px;
+            line-height: 1.7;
         }
 
         .ind-footer code {
-            color: var(--ind-orange);
-            background: rgba(249, 115, 22, 0.1);
-            padding: 2px 6px;
-            font-family: 'Space Mono', monospace;
+            color: var(--hazard-orange);
+            background: rgba(255, 85, 0, 0.12);
+            padding: 2px 8px;
+            font-family: 'Fira Code', monospace;
             font-size: 12px;
-            border: 1px solid rgba(249, 115, 22, 0.2);
+            border: 1px solid rgba(255, 85, 0, 0.25);
         }
 
         footer {
-            margin-top: 40px;
+            margin-top: 45px;
             text-align: center;
             font-family: 'Space Mono', monospace;
             font-size: 11px;
-            color: var(--text-secondary);
-            letter-spacing: 1px;
+            color: var(--text-sub);
+            letter-spacing: 1.5px;
+            padding-bottom: 20px;
         }
     </style>
 </head>
 <body>
     <div class="container">
+        <div class="hazard-bar"></div>
+        
         <div class="ind-nav">
-            <a href="index.html" class="ind-nav-btn active">[TRENDING_TOP15]</a>
-            <a href="last30days-latest.html" class="ind-nav-btn">[LAST30DAYS_REPORT]</a>
+            <a href="index.html" class="ind-nav-btn active">[ GITHUB_TRENDING_TOP15 ]</a>
+            <a href="last30days-latest.html" class="ind-nav-btn">[ LAST30DAYS_AI_REPORT ]</a>
         </div>
 
         <div class="ind-header">
-            <span class="ind-stamp">// SPEC: JAPANESE_INDUSTRIAL_UI_V3</span>
-            <h1>GITHUB TRENDING TOP 15 // 急上昇</h1>
-            <p>MASTER JK EXCLUSIVE // 2026-08-01 // RAW CONCRETE & STEEL FEED</p>
+            <span class="ind-stamp">// SPEC: JAPANESE_HEAVY_INDUSTRIAL_V3</span>
+            <h1>GITHUB TRENDING TOP 15 // 重工业深度精选</h1>
+            <p>MASTER JK EXCLUSIVE // 2026-08-01 // HEAVY METAL & INDUSTRIAL DASHBOARD</p>
         </div>
 
         <div class="grid">
             
         <div class="ind-card">
             <div class="card-header">
-                <span class="ind-rank">[01]</span>
-                <a href="https://github.com/zhaoxuya520/reverse-skill" target="_blank" class="ind-title">zhaoxuya520/reverse-skill</a>
+                <div class="card-title-group">
+                    <span class="ind-rank">[ UNIT-01 ]</span>
+                    <a href="https://github.com/zhaoxuya520/reverse-skill" target="_blank" class="ind-title">zhaoxuya520/reverse-skill</a>
+                </div>
                 <div class="ind-badges">
-                    <span class="ind-badge lang-badge">PowerShell</span>
+                    <span class="ind-badge tag-badge">安全渗透 / AI 自动路由</span>
+                    <span class="ind-badge lang-badge">LANG: PowerShell</span>
                     <span class="ind-badge star-badge">★ 11.2k</span>
                 </div>
             </div>
             <div class="card-body">
-                <p class="ind-summary">Reverse Engineering / Authorized Penetration Testing / Security Research Skill Router Pack AI-powered routing + On-demand toolchain bootstrapping + Self-evolving knowledge base  Supports Claude Code, Kiro, Cursor, Cline, and other AI coding clients 逆向/渗透/安全技能路由包 - AI 自动路由 + 按需自举工具链 + 自动进化经验库 | 支持 Claude Code / Kiro / Cursor / Cline 等代码 AI 客户端</p>
+                <div class="ind-detail-box">
+                    <div class="detail-row"><span class="detail-icon">📌</span> <span class="detail-label">核心功能：</span><span class="detail-val">逆向工程、授权渗透测试与安全研究专属 Skill 路由包，完美适配 Claude Code、Cursor、Cline 等 AI 客户端。</span></div>
+                    <div class="detail-row"><span class="detail-icon">⚙️</span> <span class="detail-label">技术架构：</span><span class="detail-val">AI 自动路由 + 按需自举工具链 + 自动进化经验库，支持高效率漏洞排查与安全审计。</span></div>
+                    <div class="detail-row"><span class="detail-icon">💡</span> <span class="detail-label">落地洞察：</span><span class="detail-val">可作为 OpenClaw / Agent 安全防护与逆向分析工具链的离线路由插件。</span></div>
+                </div>
             </div>
             <div class="card-footer">
-                <a href="https://github.com/zhaoxuya520/reverse-skill" target="_blank" class="ind-btn">ACCESS_REPO ↗</a>
+                <a href="https://github.com/zhaoxuya520/reverse-skill" target="_blank" class="ind-btn">[ EXECUTE_ACCESS // 访问仓库 ↗ ]</a>
             </div>
         </div>
         
         <div class="ind-card">
             <div class="card-header">
-                <span class="ind-rank">[02]</span>
-                <a href="https://github.com/different-ai/openwork" target="_blank" class="ind-title">different-ai/openwork</a>
+                <div class="card-title-group">
+                    <span class="ind-rank">[ UNIT-02 ]</span>
+                    <a href="https://github.com/different-ai/openwork" target="_blank" class="ind-title">different-ai/openwork</a>
+                </div>
                 <div class="ind-badges">
-                    <span class="ind-badge lang-badge">TypeScript</span>
-                    <span class="ind-badge star-badge">★ 19.7k</span>
+                    <span class="ind-badge tag-badge">多 Agent 协同 / 桌面工作台</span>
+                    <span class="ind-badge lang-badge">LANG: TypeScript</span>
+                    <span class="ind-badge star-badge">★ 19.8k</span>
                 </div>
             </div>
             <div class="card-body">
-                <p class="ind-summary">Claude Cowork 开源桌面替代品，多 Agent 团队协作工作台</p>
+                <div class="ind-detail-box">
+                    <div class="detail-row"><span class="detail-icon">📌</span> <span class="detail-label">核心功能：</span><span class="detail-val">Claude Cowork 的开源桌面替代品，专为多 Agent 团队协作构建的可视化工作台。</span></div>
+                    <div class="detail-row"><span class="detail-icon">⚙️</span> <span class="detail-label">技术架构：</span><span class="detail-val">基于 TypeScript / Electron 构建，原生支持多模型切换、跨 Agent 任务派发与上下文共享。</span></div>
+                    <div class="detail-row"><span class="detail-icon">💡</span> <span class="detail-label">落地洞察：</span><span class="detail-val">适合用于构建本地多 Agent 并行研发与自动化任务编排看板。</span></div>
+                </div>
             </div>
             <div class="card-footer">
-                <a href="https://github.com/different-ai/openwork" target="_blank" class="ind-btn">ACCESS_REPO ↗</a>
+                <a href="https://github.com/different-ai/openwork" target="_blank" class="ind-btn">[ EXECUTE_ACCESS // 访问仓库 ↗ ]</a>
             </div>
         </div>
         
         <div class="ind-card">
             <div class="card-header">
-                <span class="ind-rank">[03]</span>
-                <a href="https://github.com/mvanhorn/last30days-skill" target="_blank" class="ind-title">mvanhorn/last30days-skill</a>
+                <div class="card-title-group">
+                    <span class="ind-rank">[ UNIT-03 ]</span>
+                    <a href="https://github.com/mvanhorn/last30days-skill" target="_blank" class="ind-title">mvanhorn/last30days-skill</a>
+                </div>
                 <div class="ind-badges">
-                    <span class="ind-badge lang-badge">Python</span>
+                    <span class="ind-badge tag-badge">全网情报追查 / Agent 技能</span>
+                    <span class="ind-badge lang-badge">LANG: Python</span>
                     <span class="ind-badge star-badge">★ 56.5k</span>
                 </div>
             </div>
             <div class="card-body">
-                <p class="ind-summary">AI Agent 专属技能，跨全网自动追查主题近 30 天最新动态</p>
+                <div class="ind-detail-box">
+                    <div class="detail-row"><span class="detail-icon">📌</span> <span class="detail-label">核心功能：</span><span class="detail-val">AI Agent 专属自动化技能，能够跨 Reddit、X、GitHub 自动追查指定主题近 30 天最新热点与趋势。</span></div>
+                    <div class="detail-row"><span class="detail-icon">⚙️</span> <span class="detail-label">技术架构：</span><span class="detail-val">包含跨平台 Python 爬虫、AI 摘要提取与 Glassmorphism / 赛博风格 HTML 报告渲染管线。</span></div>
+                    <div class="detail-row"><span class="detail-icon">💡</span> <span class="detail-label">落地洞察：</span><span class="detail-val">已成功集成至雷姆（Rem 💙）的全网自动化调研 Skill 库中。</span></div>
+                </div>
             </div>
             <div class="card-footer">
-                <a href="https://github.com/mvanhorn/last30days-skill" target="_blank" class="ind-btn">ACCESS_REPO ↗</a>
+                <a href="https://github.com/mvanhorn/last30days-skill" target="_blank" class="ind-btn">[ EXECUTE_ACCESS // 访问仓库 ↗ ]</a>
             </div>
         </div>
         
         <div class="ind-card">
             <div class="card-header">
-                <span class="ind-rank">[04]</span>
-                <a href="https://github.com/paperswithbacktest/awesome-systematic-trading" target="_blank" class="ind-title">paperswithbacktest/awesome-systematic-trading</a>
+                <div class="card-title-group">
+                    <span class="ind-rank">[ UNIT-04 ]</span>
+                    <a href="https://github.com/paperswithbacktest/awesome-systematic-trading" target="_blank" class="ind-title">paperswithbacktest/awesome-systematic-trading</a>
+                </div>
                 <div class="ind-badges">
-                    <span class="ind-badge lang-badge">Python</span>
+                    <span class="ind-badge tag-badge">量化交易 / 高频回测</span>
+                    <span class="ind-badge lang-badge">LANG: Python</span>
                     <span class="ind-badge star-badge">★ 11.9k</span>
                 </div>
             </div>
             <div class="card-body">
-                <p class="ind-summary">量化交易精选资源图谱，含回测框架与高频策略库</p>
+                <div class="ind-detail-box">
+                    <div class="detail-row"><span class="detail-icon">📌</span> <span class="detail-label">核心功能：</span><span class="detail-val">精选量化系统交易资源图谱，涵盖高频回测框架、策略研究论文与实时行情接入口。</span></div>
+                    <div class="detail-row"><span class="detail-icon">⚙️</span> <span class="detail-label">技术架构：</span><span class="detail-val">收录 Python/C++ 极速回测引擎，支持多品种套利、因子挖掘与风控算法模型。</span></div>
+                    <div class="detail-row"><span class="detail-icon">💡</span> <span class="detail-label">落地洞察：</span><span class="detail-val">为量化交易策略开发与风险评估提供全套开源工具图谱。</span></div>
+                </div>
             </div>
             <div class="card-footer">
-                <a href="https://github.com/paperswithbacktest/awesome-systematic-trading" target="_blank" class="ind-btn">ACCESS_REPO ↗</a>
+                <a href="https://github.com/paperswithbacktest/awesome-systematic-trading" target="_blank" class="ind-btn">[ EXECUTE_ACCESS // 访问仓库 ↗ ]</a>
             </div>
         </div>
         
         <div class="ind-card">
             <div class="card-header">
-                <span class="ind-rank">[05]</span>
-                <a href="https://github.com/microsoft/AI-For-Beginners" target="_blank" class="ind-title">microsoft/AI-For-Beginners</a>
+                <div class="card-title-group">
+                    <span class="ind-rank">[ UNIT-05 ]</span>
+                    <a href="https://github.com/microsoft/AI-For-Beginners" target="_blank" class="ind-title">microsoft/AI-For-Beginners</a>
+                </div>
                 <div class="ind-badges">
-                    <span class="ind-badge lang-badge">Jupyter Notebook</span>
+                    <span class="ind-badge tag-badge">微软官方 / 12周 AI 课程</span>
+                    <span class="ind-badge lang-badge">LANG: Jupyter Notebook</span>
                     <span class="ind-badge star-badge">★ 55.6k</span>
                 </div>
             </div>
             <div class="card-body">
-                <p class="ind-summary">微软官方 12 周 AI 入门课程，涵盖经典 ML 与大模型基础</p>
+                <div class="ind-detail-box">
+                    <div class="detail-row"><span class="detail-icon">📌</span> <span class="detail-label">核心功能：</span><span class="detail-val">微软官方出品的 12 周人工智能零基础入门指南，覆盖机器学习到大模型原理。</span></div>
+                    <div class="detail-row"><span class="detail-icon">⚙️</span> <span class="detail-label">技术架构：</span><span class="detail-val">包含完整 Jupyter Notebook 交互式教学、TensorFlow/PyTorch 示例与神经网络实践。</span></div>
+                    <div class="detail-row"><span class="detail-icon">💡</span> <span class="detail-label">落地洞察：</span><span class="detail-val">快速梳理经典 ML 算法与现代 Transformer 架构演进的理想标准教材。</span></div>
+                </div>
             </div>
             <div class="card-footer">
-                <a href="https://github.com/microsoft/AI-For-Beginners" target="_blank" class="ind-btn">ACCESS_REPO ↗</a>
+                <a href="https://github.com/microsoft/AI-For-Beginners" target="_blank" class="ind-btn">[ EXECUTE_ACCESS // 访问仓库 ↗ ]</a>
             </div>
         </div>
         
         <div class="ind-card">
             <div class="card-header">
-                <span class="ind-rank">[06]</span>
-                <a href="https://github.com/github/copilot-sdk" target="_blank" class="ind-title">github/copilot-sdk</a>
+                <div class="card-title-group">
+                    <span class="ind-rank">[ UNIT-06 ]</span>
+                    <a href="https://github.com/github/copilot-sdk" target="_blank" class="ind-title">github/copilot-sdk</a>
+                </div>
                 <div class="ind-badges">
-                    <span class="ind-badge lang-badge">Java</span>
+                    <span class="ind-badge tag-badge">官方 SDK / Copilot 扩展</span>
+                    <span class="ind-badge lang-badge">LANG: Java</span>
                     <span class="ind-badge star-badge">★ 10.2k</span>
                 </div>
             </div>
             <div class="card-body">
-                <p class="ind-summary">Multi-platform SDK for integrating GitHub Copilot Agent into apps and services</p>
+                <div class="ind-detail-box">
+                    <div class="detail-row"><span class="detail-icon">📌</span> <span class="detail-label">核心功能：</span><span class="detail-val">GitHub 官方推出的多平台 SDK，支持将 Copilot Agent 深度集成至应用与自定义服务中。</span></div>
+                    <div class="detail-row"><span class="detail-icon">⚙️</span> <span class="detail-label">技术架构：</span><span class="detail-val">提供 Java / TypeScript 标准 API，原生支持上下文注入、工具调用与事件流派发。</span></div>
+                    <div class="detail-row"><span class="detail-icon">💡</span> <span class="detail-label">落地洞察：</span><span class="detail-val">企业级应用集成 Copilot AI 能力的官方推荐工具链。</span></div>
+                </div>
             </div>
             <div class="card-footer">
-                <a href="https://github.com/github/copilot-sdk" target="_blank" class="ind-btn">ACCESS_REPO ↗</a>
+                <a href="https://github.com/github/copilot-sdk" target="_blank" class="ind-btn">[ EXECUTE_ACCESS // 访问仓库 ↗ ]</a>
             </div>
         </div>
         
         <div class="ind-card">
             <div class="card-header">
-                <span class="ind-rank">[07]</span>
-                <a href="https://github.com/chatwoot/chatwoot" target="_blank" class="ind-title">chatwoot/chatwoot</a>
+                <div class="card-title-group">
+                    <span class="ind-rank">[ UNIT-07 ]</span>
+                    <a href="https://github.com/chatwoot/chatwoot" target="_blank" class="ind-title">chatwoot/chatwoot</a>
+                </div>
                 <div class="ind-badges">
-                    <span class="ind-badge lang-badge">Ruby</span>
+                    <span class="ind-badge tag-badge">全渠道客服 / 开源桌面</span>
+                    <span class="ind-badge lang-badge">LANG: Ruby</span>
                     <span class="ind-badge star-badge">★ 35.3k</span>
                 </div>
             </div>
             <div class="card-body">
-                <p class="ind-summary">Open-source live-chat, email support, omni-channel desk. An alternative to Intercom, Zendesk, Salesforce Service Cloud etc. 🔥💬</p>
+                <div class="ind-detail-box">
+                    <div class="detail-row"><span class="detail-icon">📌</span> <span class="detail-label">核心功能：</span><span class="detail-val">开源全渠道客户沟通与支持桌面，可作为 Intercom、Zendesk 和 Salesforce 的自托管替代品。</span></div>
+                    <div class="detail-row"><span class="detail-icon">⚙️</span> <span class="detail-label">技术架构：</span><span class="detail-val">采用 Ruby on Rails + Vue 构建，支持 Live-Chat、Email、WhatsApp 与多平台全渠道接入。</span></div>
+                    <div class="detail-row"><span class="detail-icon">💡</span> <span class="detail-label">落地洞察：</span><span class="detail-val">适合企业搭建自控数据隐私的多通道客服与对话自动化平台。</span></div>
+                </div>
             </div>
             <div class="card-footer">
-                <a href="https://github.com/chatwoot/chatwoot" target="_blank" class="ind-btn">ACCESS_REPO ↗</a>
+                <a href="https://github.com/chatwoot/chatwoot" target="_blank" class="ind-btn">[ EXECUTE_ACCESS // 访问仓库 ↗ ]</a>
             </div>
         </div>
         
         <div class="ind-card">
             <div class="card-header">
-                <span class="ind-rank">[08]</span>
-                <a href="https://github.com/agavra/tuicr" target="_blank" class="ind-title">agavra/tuicr</a>
+                <div class="card-title-group">
+                    <span class="ind-rank">[ UNIT-08 ]</span>
+                    <a href="https://github.com/agavra/tuicr" target="_blank" class="ind-title">agavra/tuicr</a>
+                </div>
                 <div class="ind-badges">
-                    <span class="ind-badge lang-badge">Rust</span>
+                    <span class="ind-badge tag-badge">终端工具 / TUI Code Review</span>
+                    <span class="ind-badge lang-badge">LANG: Rust</span>
                     <span class="ind-badge star-badge">★ 2,220</span>
                 </div>
             </div>
             <div class="card-body">
-                <p class="ind-summary">纯终端 Code Review TUI 工具，完美支持 Vim 键位</p>
+                <div class="ind-detail-box">
+                    <div class="detail-row"><span class="detail-icon">📌</span> <span class="detail-label">核心功能：</span><span class="detail-val">纯终端文本界面 (TUI) 的 Code Review 审查工具，支持高效本地 Git Diff 极速预览。</span></div>
+                    <div class="detail-row"><span class="detail-icon">⚙️</span> <span class="detail-label">技术架构：</span><span class="detail-val">基于 Rust 与 Ratatui 构建，完美契合 Vim 键位与键盘流高效审查。</span></div>
+                    <div class="detail-row"><span class="detail-icon">💡</span> <span class="detail-label">落地洞察：</span><span class="detail-val">极客开发者在终端环境进行离线代码审查的高效神器。</span></div>
+                </div>
             </div>
             <div class="card-footer">
-                <a href="https://github.com/agavra/tuicr" target="_blank" class="ind-btn">ACCESS_REPO ↗</a>
+                <a href="https://github.com/agavra/tuicr" target="_blank" class="ind-btn">[ EXECUTE_ACCESS // 访问仓库 ↗ ]</a>
             </div>
         </div>
         
         <div class="ind-card">
             <div class="card-header">
-                <span class="ind-rank">[09]</span>
-                <a href="https://github.com/usekaneo/kaneo" target="_blank" class="ind-title">usekaneo/kaneo</a>
+                <div class="card-title-group">
+                    <span class="ind-rank">[ UNIT-09 ]</span>
+                    <a href="https://github.com/usekaneo/kaneo" target="_blank" class="ind-title">usekaneo/kaneo</a>
+                </div>
                 <div class="ind-badges">
-                    <span class="ind-badge lang-badge">TypeScript</span>
-                    <span class="ind-badge star-badge">★ 5,339</span>
+                    <span class="ind-badge tag-badge">项目管理 / 开源看板</span>
+                    <span class="ind-badge lang-badge">LANG: TypeScript</span>
+                    <span class="ind-badge star-badge">★ 5,342</span>
                 </div>
             </div>
             <div class="card-body">
-                <p class="ind-summary">🎯 All you need. Nothing you don't. Open source project management that works for you, not against you.</p>
+                <div class="ind-detail-box">
+                    <div class="detail-row"><span class="detail-icon">📌</span> <span class="detail-label">核心功能：</span><span class="detail-val">极简而强悍的开源项目管理平台，去除繁复层级，专注团队任务高效推进。</span></div>
+                    <div class="detail-row"><span class="detail-icon">⚙️</span> <span class="detail-label">技术架构：</span><span class="detail-val">TypeScript 全栈架构，具备极速卡片拖拽、实时状态同步与轻量任务追踪。</span></div>
+                    <div class="detail-row"><span class="detail-icon">💡</span> <span class="detail-label">落地洞察：</span><span class="detail-val">适合中小型团队或个人独立开发者替代 Jira 的轻量管理方案。</span></div>
+                </div>
             </div>
             <div class="card-footer">
-                <a href="https://github.com/usekaneo/kaneo" target="_blank" class="ind-btn">ACCESS_REPO ↗</a>
+                <a href="https://github.com/usekaneo/kaneo" target="_blank" class="ind-btn">[ EXECUTE_ACCESS // 访问仓库 ↗ ]</a>
             </div>
         </div>
         
         <div class="ind-card">
             <div class="card-header">
-                <span class="ind-rank">[10]</span>
-                <a href="https://github.com/geo-tp/ESP32-Bit-Pirate" target="_blank" class="ind-title">geo-tp/ESP32-Bit-Pirate</a>
+                <div class="card-title-group">
+                    <span class="ind-rank">[ UNIT-10 ]</span>
+                    <a href="https://github.com/geo-tp/ESP32-Bit-Pirate" target="_blank" class="ind-title">geo-tp/ESP32-Bit-Pirate</a>
+                </div>
                 <div class="ind-badges">
-                    <span class="ind-badge lang-badge">C++</span>
-                    <span class="ind-badge star-badge">★ 5,187</span>
+                    <span class="ind-badge tag-badge">硬件黑客 / ESP32 协议工具</span>
+                    <span class="ind-badge lang-badge">LANG: C++</span>
+                    <span class="ind-badge star-badge">★ 5,190</span>
                 </div>
             </div>
             <div class="card-body">
-                <p class="ind-summary">A Hardware Hacking Tool with Web-Based CLI That Speaks Every Protocol </p>
+                <div class="ind-detail-box">
+                    <div class="detail-row"><span class="detail-icon">📌</span> <span class="detail-label">核心功能：</span><span class="detail-val">基于 ESP32 的硬件黑客攻击与调试工具，带 Web-Based CLI，精通各大硬件接口协议。</span></div>
+                    <div class="detail-row"><span class="detail-icon">⚙️</span> <span class="detail-label">技术架构：</span><span class="detail-val">原生支持 UART、I2C、SPI、1-Wire 与逻辑分析，自带网页交互式终端。</span></div>
+                    <div class="detail-row"><span class="detail-icon">💡</span> <span class="detail-label">落地洞察：</span><span class="detail-val">极客与安全人员进行硬件逆向、总线抓包与嵌入式调试的便携硬件。</span></div>
+                </div>
             </div>
             <div class="card-footer">
-                <a href="https://github.com/geo-tp/ESP32-Bit-Pirate" target="_blank" class="ind-btn">ACCESS_REPO ↗</a>
+                <a href="https://github.com/geo-tp/ESP32-Bit-Pirate" target="_blank" class="ind-btn">[ EXECUTE_ACCESS // 访问仓库 ↗ ]</a>
             </div>
         </div>
         
         <div class="ind-card">
             <div class="card-header">
-                <span class="ind-rank">[11]</span>
-                <a href="https://github.com/deepfakes/faceswap" target="_blank" class="ind-title">deepfakes/faceswap</a>
+                <div class="card-title-group">
+                    <span class="ind-rank">[ UNIT-11 ]</span>
+                    <a href="https://github.com/deepfakes/faceswap" target="_blank" class="ind-title">deepfakes/faceswap</a>
+                </div>
                 <div class="ind-badges">
-                    <span class="ind-badge lang-badge">Python</span>
+                    <span class="ind-badge tag-badge">深度学习 / AI 人脸替换</span>
+                    <span class="ind-badge lang-badge">LANG: Python</span>
                     <span class="ind-badge star-badge">★ 57.1k</span>
                 </div>
             </div>
             <div class="card-body">
-                <p class="ind-summary">Deepfakes Software For All</p>
+                <div class="ind-detail-box">
+                    <div class="detail-row"><span class="detail-icon">📌</span> <span class="detail-label">核心功能：</span><span class="detail-val">老牌开源 AI 人脸替换与合成套件，提供完整的训练、提取与转换图形界面。</span></div>
+                    <div class="detail-row"><span class="detail-icon">⚙️</span> <span class="detail-label">技术架构：</span><span class="detail-val">基于 Python + TensorFlow/PyTorch，支持 GPU 硬件加速与多模型对齐算法。</span></div>
+                    <div class="detail-row"><span class="detail-icon">💡</span> <span class="detail-label">落地洞察：</span><span class="detail-val">视觉合成与深度学习图像处理领域的标杆开源项目。</span></div>
+                </div>
             </div>
             <div class="card-footer">
-                <a href="https://github.com/deepfakes/faceswap" target="_blank" class="ind-btn">ACCESS_REPO ↗</a>
+                <a href="https://github.com/deepfakes/faceswap" target="_blank" class="ind-btn">[ EXECUTE_ACCESS // 访问仓库 ↗ ]</a>
             </div>
         </div>
         
         <div class="ind-card">
             <div class="card-header">
-                <span class="ind-rank">[12]</span>
-                <a href="https://github.com/1jehuang/jcode" target="_blank" class="ind-title">1jehuang/jcode</a>
+                <div class="card-title-group">
+                    <span class="ind-rank">[ UNIT-12 ]</span>
+                    <a href="https://github.com/1jehuang/jcode" target="_blank" class="ind-title">1jehuang/jcode</a>
+                </div>
                 <div class="ind-badges">
-                    <span class="ind-badge lang-badge">Rust</span>
+                    <span class="ind-badge tag-badge">Rust / 高性能 AI Harness</span>
+                    <span class="ind-badge lang-badge">LANG: Rust</span>
                     <span class="ind-badge star-badge">★ 14.8k</span>
                 </div>
             </div>
             <div class="card-body">
-                <p class="ind-summary">The most RAM efficient harness</p>
+                <div class="ind-detail-box">
+                    <div class="detail-row"><span class="detail-icon">📌</span> <span class="detail-label">核心功能：</span><span class="detail-val">超低内存占用的高效 AI Harness 运行框架，专为极致资源利用与并发设计。</span></div>
+                    <div class="detail-row"><span class="detail-icon">⚙️</span> <span class="detail-label">技术架构：</span><span class="detail-val">纯 Rust 编写，零 GC 开销，内存占用极低，支持高并发大模型调度。</span></div>
+                    <div class="detail-row"><span class="detail-icon">💡</span> <span class="detail-label">落地洞察：</span><span class="detail-val">边缘端与资源受限设备运行 AI Agent 的理想高效率底座。</span></div>
+                </div>
             </div>
             <div class="card-footer">
-                <a href="https://github.com/1jehuang/jcode" target="_blank" class="ind-btn">ACCESS_REPO ↗</a>
+                <a href="https://github.com/1jehuang/jcode" target="_blank" class="ind-btn">[ EXECUTE_ACCESS // 访问仓库 ↗ ]</a>
             </div>
         </div>
         
         <div class="ind-card">
             <div class="card-header">
-                <span class="ind-rank">[13]</span>
-                <a href="https://github.com/MoonshotAI/Kimi-K3" target="_blank" class="ind-title">MoonshotAI/Kimi-K3</a>
+                <div class="card-title-group">
+                    <span class="ind-rank">[ UNIT-13 ]</span>
+                    <a href="https://github.com/MoonshotAI/Kimi-K3" target="_blank" class="ind-title">MoonshotAI/Kimi-K3</a>
+                </div>
                 <div class="ind-badges">
-                    <span class="ind-badge lang-badge">Open Source</span>
-                    <span class="ind-badge star-badge">★ 7,760</span>
+                    <span class="ind-badge tag-badge">月之暗面 / Kimi-K3 开源引擎</span>
+                    <span class="ind-badge lang-badge">LANG: Open Source</span>
+                    <span class="ind-badge star-badge">★ 7,762</span>
                 </div>
             </div>
             <div class="card-body">
-                <p class="ind-summary">Moonshot AI 官方开源 Kimi-K3 前沿推理与运行引擎</p>
+                <div class="ind-detail-box">
+                    <div class="detail-row"><span class="detail-icon">📌</span> <span class="detail-label">核心功能：</span><span class="detail-val">Moonshot AI 官方开源的 Kimi-K3 前沿推理与运行引擎，解锁突破性推理能力。</span></div>
+                    <div class="detail-row"><span class="detail-icon">⚙️</span> <span class="detail-label">技术架构：</span><span class="detail-val">具备长上下文处理、复杂推理链（CoT）强化与高吞吐量本地推理支持。</span></div>
+                    <div class="detail-row"><span class="detail-icon">💡</span> <span class="detail-label">落地洞察：</span><span class="detail-val">研究前沿国产大模型推理架构与长文本处理机制的核心开源标杆。</span></div>
+                </div>
             </div>
             <div class="card-footer">
-                <a href="https://github.com/MoonshotAI/Kimi-K3" target="_blank" class="ind-btn">ACCESS_REPO ↗</a>
+                <a href="https://github.com/MoonshotAI/Kimi-K3" target="_blank" class="ind-btn">[ EXECUTE_ACCESS // 访问仓库 ↗ ]</a>
             </div>
         </div>
         
         <div class="ind-card">
             <div class="card-header">
-                <span class="ind-rank">[14]</span>
-                <a href="https://github.com/yc-software/qm" target="_blank" class="ind-title">yc-software/qm</a>
+                <div class="card-title-group">
+                    <span class="ind-rank">[ UNIT-14 ]</span>
+                    <a href="https://github.com/yc-software/qm" target="_blank" class="ind-title">yc-software/qm</a>
+                </div>
                 <div class="ind-badges">
-                    <span class="ind-badge lang-badge">TypeScript</span>
-                    <span class="ind-badge star-badge">★ 3,262</span>
+                    <span class="ind-badge tag-badge">多 Agent harness / 协作套件</span>
+                    <span class="ind-badge lang-badge">LANG: TypeScript</span>
+                    <span class="ind-badge star-badge">★ 3,286</span>
                 </div>
             </div>
             <div class="card-body">
-                <p class="ind-summary">Multiplayer agent harness for work</p>
+                <div class="ind-detail-box">
+                    <div class="detail-row"><span class="detail-icon">📌</span> <span class="detail-label">核心功能：</span><span class="detail-val">专为工作流打造的多 Agent 协同调度 harness，支持复杂的团队任务分发与状态流转。</span></div>
+                    <div class="detail-row"><span class="detail-icon">⚙️</span> <span class="detail-label">技术架构：</span><span class="detail-val">基于 TypeScript，原生支持分布式事件驱动、子任务隔离与多智能体状态一致性。</span></div>
+                    <div class="detail-row"><span class="detail-icon">💡</span> <span class="detail-label">落地洞察：</span><span class="detail-val">可为企业级多 Agent 自动化管线提供可靠的分派调度层。</span></div>
+                </div>
             </div>
             <div class="card-footer">
-                <a href="https://github.com/yc-software/qm" target="_blank" class="ind-btn">ACCESS_REPO ↗</a>
+                <a href="https://github.com/yc-software/qm" target="_blank" class="ind-btn">[ EXECUTE_ACCESS // 访问仓库 ↗ ]</a>
             </div>
         </div>
         
         <div class="ind-card">
             <div class="card-header">
-                <span class="ind-rank">[15]</span>
-                <a href="https://github.com/bashalarmistalt/decimen-optical-transfer" target="_blank" class="ind-title">bashalarmistalt/decimen-optical-transfer</a>
+                <div class="card-title-group">
+                    <span class="ind-rank">[ UNIT-15 ]</span>
+                    <a href="https://github.com/bashalarmistalt/decimen-optical-transfer" target="_blank" class="ind-title">bashalarmistalt/decimen-optical-transfer</a>
+                </div>
                 <div class="ind-badges">
-                    <span class="ind-badge lang-badge">TypeScript</span>
-                    <span class="ind-badge star-badge">★ 2,536</span>
+                    <span class="ind-badge tag-badge">开源精选 / TypeScript</span>
+                    <span class="ind-badge lang-badge">LANG: TypeScript</span>
+                    <span class="ind-badge star-badge">★ 2,549</span>
                 </div>
             </div>
             <div class="card-body">
-                <p class="ind-summary">开源热门项目</p>
+                <div class="ind-detail-box">
+                    <div class="detail-row"><span class="detail-icon">📌</span> <span class="detail-label">核心功能：</span><span class="detail-val">热门 TypeScript 开源项目，社区关注度持续上升。</span></div>
+                    <div class="detail-row"><span class="detail-icon">⚙️</span> <span class="detail-label">技术架构：</span><span class="detail-val">基于 TypeScript 开发，技术架构完善，支持模块化部署与扩展。</span></div>
+                    <div class="detail-row"><span class="detail-icon">💡</span> <span class="detail-label">落地洞察：</span><span class="detail-val">建议关注其更新日志与社区讨论，适时评估引入工作流。</span></div>
+                </div>
             </div>
             <div class="card-footer">
-                <a href="https://github.com/bashalarmistalt/decimen-optical-transfer" target="_blank" class="ind-btn">ACCESS_REPO ↗</a>
+                <a href="https://github.com/bashalarmistalt/decimen-optical-transfer" target="_blank" class="ind-btn">[ EXECUTE_ACCESS // 访问仓库 ↗ ]</a>
             </div>
         </div>
         
