@@ -8,40 +8,41 @@
     <meta http-equiv="Expires" content="0">
     <title>HEAVY INDUSTRIAL // GitHub Daily Trending Top 15 (2026-08-04)</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Noto+Sans+JP:wght@500;700;900&family=Fira+Code:wght@500;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Noto+Sans+JP:wght@500;700&display=swap');
 
         :root {
-            --bg-carbon: #0c0e12;        /* Dark carbon steel / 重碳黑 */
-            --panel-slate: #141720;      /* Heavy metal panel / 铸铁灰 */
-            --card-slate: #1a1e28;       /* Card background / 工业钢板 */
-            --border-steel: #2e3545;     /* Steel border */
+            --bg-carbon: #090a0f;
+            --panel-slate: #111319;
+            --card-slate: #161922;
+            --border-steel: #242936;
+            --border-highlight: #333b4e;
             
-            --hazard-orange: #ff5500;    /* Safety Orange / 工业橙 */
-            --hazard-yellow: #facc15;    /* Caution Yellow / 警示黄 */
-            --steel-blue: #38bdf8;       /* Titanium Blue / 钛蓝 */
-            --steel-cyan: #06b6d4;       /* High-vis Cyan */
-            --text-main: #e2e8f0;        /* Bright steel text */
-            --text-sub: #94a3b8;         /* Muted steel text */
+            --hazard-orange: #ea580c;
+            --hazard-yellow: #eab308;
+            --steel-blue: #0284c7;
+            --steel-cyan: #06b6d4;
+            --text-main: #f1f5f9;
+            --text-sub: #94a3b8;
+            --text-muted: #64748b;
         }
 
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
+            transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         body {
             background-color: var(--bg-carbon);
-            background-image: 
-                repeating-linear-gradient(0deg, transparent, transparent 23px, rgba(255, 255, 255, 0.02) 24px),
-                repeating-linear-gradient(90deg, transparent, transparent 23px, rgba(255, 255, 255, 0.02) 24px);
             color: var(--text-main);
-            font-family: 'Noto Sans JP', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            font-family: 'Plus Jakarta Sans', 'Noto Sans JP', -apple-system, BlinkMacSystemFont, sans-serif;
             padding: 40px 20px;
             display: flex;
             justify-content: center;
             min-height: 100vh;
             line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
         }
 
         .container {
@@ -49,146 +50,136 @@
             width: 100%;
         }
 
-        /* Industrial Hazard Bar Top */
         .hazard-bar {
-            height: 8px;
-            background: repeating-linear-gradient(
-                -45deg,
-                var(--hazard-orange),
-                var(--hazard-orange) 12px,
-                #111319 12px,
-                #111319 24px
-            );
+            height: 4px;
+            background: linear-gradient(90deg, var(--hazard-orange), var(--steel-blue));
             border-radius: 2px 2px 0 0;
         }
 
         /* Nav Bar */
         .ind-nav {
             display: flex;
-            gap: 12px;
+            gap: 10px;
             justify-content: flex-start;
-            margin-bottom: 25px;
-            font-family: 'Space Mono', monospace;
+            margin-bottom: 20px;
+            font-family: 'JetBrains Mono', monospace;
         }
 
         .ind-nav-btn {
             background: var(--panel-slate);
             border: 1px solid var(--border-steel);
             color: var(--text-sub);
-            padding: 9px 18px;
-            font-size: 12px;
-            font-weight: 700;
+            padding: 8px 16px;
+            font-size: 11px;
+            font-weight: 600;
             text-decoration: none;
             letter-spacing: 0.5px;
-            transition: all 0.2s ease;
+            border-radius: 6px;
         }
 
         .ind-nav-btn:hover, .ind-nav-btn.active {
             border-color: var(--hazard-orange);
-            color: var(--hazard-orange);
-            background: rgba(255, 85, 0, 0.08);
-            box-shadow: 0 0 15px rgba(255, 85, 0, 0.15);
+            color: #ffffff;
+            background: rgba(234, 88, 12, 0.1);
         }
 
         /* Header Frame */
         .ind-header {
             background: var(--panel-slate);
-            border: 2px solid var(--border-steel);
-            border-left: 8px solid var(--hazard-orange);
-            padding: 30px;
-            margin-bottom: 30px;
+            border: 1px solid var(--border-steel);
+            border-left: 4px solid var(--hazard-orange);
+            border-radius: 12px;
+            padding: 28px 32px;
+            margin-bottom: 24px;
             position: relative;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
         }
 
         .ind-stamp {
-            font-family: 'Space Mono', monospace;
-            font-size: 11px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 10px;
             color: var(--hazard-orange);
-            letter-spacing: 2px;
+            letter-spacing: 1.5px;
             text-transform: uppercase;
             margin-bottom: 8px;
             display: inline-block;
-            background: rgba(255, 85, 0, 0.12);
-            border: 1px solid rgba(255, 85, 0, 0.3);
+            background: rgba(234, 88, 12, 0.08);
+            border: 1px solid rgba(234, 88, 12, 0.25);
             padding: 2px 8px;
+            border-radius: 4px;
         }
 
         .ind-header h1 {
-            font-family: 'Space Mono', 'Noto Sans JP', sans-serif;
-            font-size: 28px;
-            font-weight: 900;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 26px;
+            font-weight: 800;
             color: #ffffff;
-            letter-spacing: -0.5px;
-            margin-bottom: 8px;
-            text-transform: uppercase;
+            letter-spacing: -0.02em;
+            margin-bottom: 6px;
         }
 
         .ind-header p {
             color: var(--text-sub);
-            font-size: 13px;
-            font-family: 'Space Mono', monospace;
+            font-size: 12px;
+            font-family: 'JetBrains Mono', monospace;
         }
 
         /* Grid & Cards */
         .grid {
             display: grid;
-            gap: 20px;
+            gap: 16px;
         }
 
         .ind-card {
             background: var(--card-slate);
             border: 1px solid var(--border-steel);
-            border-left: 5px solid var(--hazard-orange);
-            padding: 22px 26px;
+            border-radius: 10px;
+            padding: 20px 24px;
             position: relative;
-            transition: all 0.2s ease;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
         }
 
         .ind-card:hover {
-            border-color: var(--steel-blue);
-            border-left-color: var(--steel-blue);
-            transform: translateX(4px);
-            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.6), inset 0 0 15px rgba(56, 189, 248, 0.05);
+            border-color: var(--border-highlight);
+            transform: translateY(-2px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.4);
         }
 
         .card-header {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            margin-bottom: 16px;
+            margin-bottom: 14px;
             flex-wrap: wrap;
-            gap: 12px;
-            border-bottom: 1px dashed var(--border-steel);
+            gap: 10px;
+            border-bottom: 1px solid var(--border-steel);
             padding-bottom: 12px;
         }
 
         .card-title-group {
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 10px;
             flex-grow: 1;
         }
 
         .ind-rank {
-            font-family: 'Space Mono', monospace;
+            font-family: 'JetBrains Mono', monospace;
             font-weight: 700;
             color: var(--hazard-orange);
-            font-size: 14px;
-            background: rgba(255, 85, 0, 0.12);
-            border: 1px solid rgba(255, 85, 0, 0.3);
-            padding: 3px 10px;
-            letter-spacing: 1px;
+            font-size: 12px;
+            background: rgba(234, 88, 12, 0.08);
+            border: 1px solid rgba(234, 88, 12, 0.2);
+            padding: 2px 8px;
+            border-radius: 4px;
         }
 
         .ind-title {
             color: #ffffff;
-            font-size: 19px;
+            font-size: 17px;
             font-weight: 700;
             text-decoration: none;
-            font-family: 'Space Mono', 'Noto Sans JP', sans-serif;
-            transition: color 0.2s;
+            font-family: 'Plus Jakarta Sans', sans-serif;
         }
 
         .ind-title:hover {
@@ -197,134 +188,131 @@
 
         .ind-badges {
             display: flex;
-            gap: 8px;
+            gap: 6px;
             flex-wrap: wrap;
         }
 
         .ind-badge {
-            background: #11131a;
+            background: #0f1117;
             border: 1px solid var(--border-steel);
             color: var(--text-sub);
-            padding: 3px 10px;
-            font-size: 11px;
-            font-family: 'Space Mono', monospace;
-            font-weight: 700;
+            padding: 2px 8px;
+            font-size: 10px;
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: 600;
+            border-radius: 4px;
         }
 
         .tag-badge {
             color: var(--hazard-orange);
-            border-color: rgba(255, 85, 0, 0.3);
-            background: rgba(255, 85, 0, 0.05);
+            border-color: rgba(234, 88, 12, 0.25);
+            background: rgba(234, 88, 12, 0.05);
         }
 
         .star-badge {
             color: var(--hazard-yellow);
-            border-color: rgba(250, 204, 21, 0.3);
-            background: rgba(250, 204, 21, 0.05);
+            border-color: rgba(234, 179, 8, 0.25);
+            background: rgba(234, 179, 8, 0.05);
         }
 
         .lang-badge {
             color: var(--steel-blue);
-            border-color: rgba(56, 189, 248, 0.3);
-            background: rgba(56, 189, 248, 0.05);
+            border-color: rgba(2, 132, 199, 0.25);
+            background: rgba(2, 132, 199, 0.05);
         }
 
-        /* Detail Box Inside Card */
         .ind-detail-box {
             display: flex;
             flex-direction: column;
-            gap: 10px;
-            margin-bottom: 16px;
+            gap: 8px;
+            margin-bottom: 14px;
         }
 
         .detail-row {
             display: flex;
             align-items: flex-start;
-            font-size: 14px;
+            font-size: 13px;
             line-height: 1.6;
         }
 
-        .detail-icon {
-            margin-right: 6px;
-            flex-shrink: 0;
-        }
-
         .detail-label {
-            font-weight: 700;
-            color: var(--steel-blue);
+            font-weight: 600;
+            color: var(--text-sub);
             flex-shrink: 0;
-            font-family: 'Noto Sans JP', sans-serif;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 12px;
         }
 
         .detail-val {
             color: var(--text-main);
+            font-size: 13px;
         }
 
         .card-footer {
             display: flex;
             justify-content: flex-end;
             padding-top: 10px;
-            border-top: 1px solid rgba(255, 255, 255, 0.04);
+            border-top: 1px dashed var(--border-steel);
         }
 
         .ind-btn {
-            font-family: 'Space Mono', monospace;
-            color: var(--hazard-orange);
+            font-family: 'JetBrains Mono', monospace;
+            color: var(--text-main);
             font-size: 11px;
-            font-weight: 700;
+            font-weight: 600;
             text-decoration: none;
-            padding: 6px 16px;
-            border: 1px solid var(--hazard-orange);
-            background: rgba(255, 85, 0, 0.05);
-            transition: all 0.2s;
-            letter-spacing: 1px;
+            padding: 5px 14px;
+            border: 1px solid var(--border-steel);
+            background: var(--panel-slate);
+            border-radius: 6px;
         }
 
         .ind-btn:hover {
             background: var(--hazard-orange);
-            color: #000000;
-            box-shadow: 0 0 15px rgba(255, 85, 0, 0.4);
+            border-color: var(--hazard-orange);
+            color: #ffffff;
         }
 
-        /* Footer Technical Summary */
         .ind-footer {
-            margin-top: 40px;
+            margin-top: 36px;
             background: var(--panel-slate);
-            border: 2px solid var(--border-steel);
-            border-left: 8px solid var(--steel-blue);
-            padding: 26px 30px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            border: 1px solid var(--border-steel);
+            border-left: 4px solid var(--steel-blue);
+            border-radius: 12px;
+            padding: 24px 28px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
         }
 
         .ind-footer h2 {
-            font-family: 'Space Mono', monospace;
-            font-size: 15px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 13px;
             color: var(--steel-blue);
-            margin-bottom: 14px;
+            margin-bottom: 12px;
             text-transform: uppercase;
-            letter-spacing: 1.5px;
+            letter-spacing: 1px;
         }
 
         .ind-footer p {
-            font-size: 14px;
+            font-size: 13px;
             color: var(--text-sub);
-            margin-bottom: 10px;
-            line-height: 1.7;
+            margin-bottom: 8px;
+            line-height: 1.6;
         }
 
         .ind-footer code {
             color: var(--hazard-orange);
-            background: rgba(255, 85, 0, 0.12);
-            padding: 2px 8px;
-            font-family: 'Fira Code', monospace;
-            font-size: 12px;
-            border: 1px solid rgba(255, 85, 0, 0.25);
+            background: rgba(234, 88, 12, 0.1);
+            padding: 2px 6px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11px;
+            border: 1px solid rgba(234, 88, 12, 0.2);
+            border-radius: 4px;
         }
 
         footer {
-            margin-top: 45px;
+            margin-top: 40px;
             text-align: center;
-            font-family: 'Space Mono', monospace;
+            font-family: 'JetBrains Mono', monospace;
             font-size: 11px;
             color: var(--text-sub);
             letter-spacing: 1.5px;
@@ -520,7 +508,7 @@
                 <div class="ind-badges">
                     <span class="ind-badge tag-badge">开源精选 / Rust</span>
                     <span class="ind-badge lang-badge">LANG: Rust</span>
-                    <span class="ind-badge star-badge">★ 7,512</span>
+                    <span class="ind-badge star-badge">★ 7,514</span>
                 </div>
             </div>
             <div class="card-body">
@@ -832,7 +820,7 @@
                 <div class="ind-badges">
                     <span class="ind-badge tag-badge">项目管理 / 开源看板</span>
                     <span class="ind-badge lang-badge">LANG: TypeScript</span>
-                    <span class="ind-badge star-badge">★ 6,692</span>
+                    <span class="ind-badge star-badge">★ 6,694</span>
                 </div>
             </div>
             <div class="card-body">
