@@ -3,38 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>GITHUB TRENDING // 战术终端机核分析仪表盘</title>
+    <title>GITHUB TRENDING // 日式高级机核战术终端</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;700;900&family=JetBrains+Mono:ital,wght@0,400;0,700;0,800;1,400&family=Noto+Sans+JP:wght@500;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:ital,wght@0,500;0,700;1,700&family=JetBrains+Mono:wght@400;600;800&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-titanium: #0b0d12;
-            --bg-panel: #121620;
-            --bg-card: #161b26;
-            --bg-card-hover: #1c2230;
-            --border-mech: #2b3345;
-            --border-mech-bright: #3f4b66;
+            --bg-deep: #090b0e;
+            --panel-bg: #11141c;
+            --panel-border: rgba(255, 255, 255, 0.12);
+            --panel-border-bright: #3b82f6;
             
-            --text-pure: #ffffff;
-            --text-titanium: #e2e8f0;
-            --text-muted: #94a3b8;
-            --text-dark-muted: #64748b;
+            --mech-red: #ff2a55;
+            --mech-blue: #00d2ff;
+            --mech-amber: #f59e0b;
+            --mech-green: #10b981;
             
-            --neon-red: #ff2a4b;
-            --neon-red-glow: rgba(255, 42, 75, 0.4);
-            --neon-red-bg: rgba(255, 42, 75, 0.12);
+            --text-primary: #ffffff;
+            --text-secondary: #94a3b8;
+            --text-muted: #64748b;
             
-            --neon-cyan: #00f0ff;
-            --neon-cyan-glow: rgba(0, 240, 255, 0.4);
-            --neon-cyan-bg: rgba(0, 240, 255, 0.1);
-            
-            --neon-amber: #ffb700;
-            --neon-green: #00ff66;
-            
-            --font-tech: 'Chakra Petch', 'JetBrains Mono', -apple-system, sans-serif;
-            --font-mono: 'JetBrains Mono', Consolas, monospace;
-            --font-jp: 'Noto Sans JP', sans-serif;
+            --font-mono: 'JetBrains Mono', monospace;
+            --font-mech: 'Chakra Petch', sans-serif;
         }
 
         * {
@@ -45,1573 +35,392 @@
         }
 
         body {
-            background-color: var(--bg-titanium);
+            background-color: var(--bg-deep);
+            color: var(--text-primary);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Hiragino Sans", sans-serif;
+            min-height: 100vh;
+            padding: 16px 12px 60px;
             background-image: 
-                linear-gradient(rgba(0, 240, 255, 0.03) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(0, 240, 255, 0.03) 1px, transparent 1px),
-                radial-gradient(circle at 50% 0%, rgba(0, 240, 255, 0.08) 0%, transparent 60%);
-            background-size: 30px 30px, 30px 30px, 100% 100%;
-            background-position: -1px -1px;
-            color: var(--text-titanium);
-            font-family: var(--font-tech);
-            line-height: 1.6;
-            padding: 20px 12px 60px;
+                linear-gradient(rgba(0, 210, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 210, 255, 0.03) 1px, transparent 1px);
+            background-size: 32px 32px;
+            position: relative;
             overflow-x: hidden;
         }
 
-        /* Scanline Overlay Effect */
+        /* 动态背景扫描线特效 */
         body::before {
             content: "";
             position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%);
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: linear-gradient(180deg, transparent 50%, rgba(0, 0, 0, 0.25) 51%);
             background-size: 100% 4px;
-            z-index: 999;
             pointer-events: none;
+            z-index: 99;
             opacity: 0.6;
         }
 
-        .terminal-container {
-            max-width: 1000px;
-            margin: 0 auto;
-        }
-
-        /* Tactical Header */
-        .tactical-header {
+        .hud-header {
+            max-width: 900px;
+            margin: 0 auto 24px;
+            background: rgba(17, 20, 28, 0.85);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--panel-border-bright);
+            padding: 20px 16px;
             position: relative;
-            background: var(--bg-panel);
-            border: 2px solid var(--border-mech-bright);
-            clip-path: polygon(0 0, calc(100% - 20px) 0, 100% 20px, 100% 100%, 20px 100%, 0 calc(100% - 20px));
-            padding: 24px 20px;
-            margin-bottom: 28px;
-            box-shadow: 0 0 30px rgba(0, 0, 0, 0.8), inset 0 0 15px rgba(0, 240, 255, 0.05);
+            clip-path: polygon(0 0, 100% 0, 100% calc(100% - 15px), calc(100% - 15px) 100%, 0 100%);
+            box-shadow: 0 0 30px rgba(0, 210, 255, 0.15);
         }
 
-        .tactical-header::before {
-            content: "SYSTEM LOG // TACTICAL OVERVIEW";
-            position: absolute;
-            top: -10px;
-            left: 20px;
-            background: var(--neon-red);
-            color: #000;
-            font-weight: 900;
-            font-size: 10px;
-            letter-spacing: 2px;
-            padding: 2px 8px;
-            clip-path: polygon(0 0, 100% 0, calc(100% - 6px) 100%, 0 100%);
-        }
-
-        .header-top {
+        .hud-meta {
             display: flex;
             justify-content: space-between;
-            align-items: center;
-            border-bottom: 1px solid var(--border-mech);
-            padding-bottom: 12px;
-            margin-bottom: 16px;
-            flex-wrap: wrap;
-            gap: 10px;
-        }
-
-        .sys-title {
-            font-size: 22px;
-            font-weight: 900;
-            color: var(--text-pure);
-            letter-spacing: 1px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .sys-title .neon-badge {
-            background: var(--neon-cyan);
-            color: #000;
-            font-size: 11px;
-            font-weight: 900;
-            padding: 2px 6px;
-            border-radius: 2px;
-            box-shadow: 0 0 10px var(--neon-cyan-glow);
-        }
-
-        .sys-status {
-            display: flex;
-            align-items: center;
-            gap: 16px;
             font-family: var(--font-mono);
-            font-size: 11px;
-            color: var(--neon-cyan);
+            font-size: 0.75rem;
+            color: var(--mech-blue);
+            margin-bottom: 8px;
+            letter-spacing: 1px;
         }
 
-        .status-beacon {
-            display: inline-block;
-            width: 8px;
-            height: 8px;
-            background: var(--neon-green);
-            border-radius: 50%;
-            box-shadow: 0 0 8px var(--neon-green);
-            animation: beacon-pulse 1.5s infinite;
+        .hud-title {
+            font-family: var(--font-mech);
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #fff;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
         }
 
-        @keyframes beacon-pulse {
-            0%, 100% { opacity: 1; transform: scale(1); }
-            50% { opacity: 0.4; transform: scale(0.8); }
+        .hud-title span {
+            color: var(--mech-red);
+            text-shadow: 0 0 10px rgba(255, 42, 85, 0.6);
         }
 
-        .header-sub {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-size: 13px;
-            color: var(--text-muted);
-            flex-wrap: wrap;
-            gap: 8px;
-        }
-
-        /* Card Feed */
-        .card-feed {
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
             display: flex;
             flex-direction: column;
-            gap: 24px;
+            gap: 20px;
         }
 
-        /* Mech Card Structure */
+        /* 高级机甲卡片 */
         .mech-card {
+            background: var(--panel-bg);
+            border: 1px solid var(--panel-border);
+            padding: 20px 16px;
             position: relative;
-            background: var(--bg-card);
-            border: 1px solid var(--border-mech);
-            /* Cut Corners Armor Plate */
-            clip-path: polygon(
-                0 0, 
-                calc(100% - 16px) 0, 
-                100% 16px, 
-                100% 100%, 
-                16px 100%, 
-                0 calc(100% - 16px)
-            );
-            transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
-            padding: 0;
-            overflow: hidden;
+            clip-path: polygon(0 0, calc(100% - 20px) 0, 100% 20px, 100% 100%, 20px 100%, 0 calc(100% - 20px));
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
-        .mech-card::after {
-            content: "";
-            position: absolute;
-            top: 0; left: 0; width: 4px; height: 100%;
-            background: var(--border-mech-bright);
-            transition: background 0.25s;
-        }
-
-        .mech-card:hover, .mech-card:focus-within {
-            border-color: var(--neon-cyan);
-            box-shadow: 0 0 25px rgba(0, 240, 255, 0.25), inset 0 0 15px rgba(0, 240, 255, 0.05);
+        .mech-card:hover {
+            border-color: var(--mech-blue);
+            box-shadow: 0 0 25px rgba(0, 210, 255, 0.2);
             transform: translateY(-2px);
         }
 
-        .mech-card:hover::after {
-            background: var(--neon-cyan);
-            box-shadow: 0 0 10px var(--neon-cyan-glow);
-        }
-
-        /* Card Header Plate */
-        .card-header-plate {
-            background: rgba(18, 22, 32, 0.95);
-            border-bottom: 1px solid var(--border-mech);
-            padding: 16px 20px;
+        .card-header {
             display: flex;
-            flex-direction: column;
-            gap: 12px;
-            position: relative;
-        }
-
-        .plate-top-row {
-            display: flex;
-            align-items: center;
             justify-content: space-between;
-            gap: 12px;
-            flex-wrap: wrap;
+            align-items: flex-start;
+            margin-bottom: 12px;
+            border-bottom: 1px dashed rgba(255, 255, 255, 0.1);
+            padding-bottom: 10px;
         }
 
-        .rank-box {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .rank-num {
-            font-family: var(--font-tech);
-            font-size: 24px;
-            font-weight: 900;
-            color: var(--neon-cyan);
-            text-shadow: 0 0 10px var(--neon-cyan-glow);
-            line-height: 1;
-        }
-
-        .repo-title-link {
-            font-size: 20px;
-            font-weight: 800;
-            color: var(--text-pure);
-            text-decoration: none;
-            word-break: break-all;
-            letter-spacing: 0.5px;
-            transition: color 0.2s;
-        }
-
-        .repo-title-link:hover {
-            color: var(--neon-cyan);
-            text-shadow: 0 0 8px var(--neon-cyan-glow);
-        }
-
-        .category-tag {
-            background: rgba(0, 240, 255, 0.08);
-            border: 1px solid var(--neon-cyan);
-            color: var(--neon-cyan);
-            font-size: 11px;
+        .rank-tag {
+            font-family: var(--font-mech);
+            font-size: 1.5rem;
             font-weight: 700;
-            padding: 3px 8px;
-            letter-spacing: 0.5px;
-            clip-path: polygon(0 0, calc(100% - 6px) 0, 100% 6px, 100% 100%, 6px 100%, 0 calc(100% - 6px));
+            color: var(--mech-red);
+            background: rgba(255, 42, 85, 0.12);
+            border: 1px solid var(--mech-red);
+            padding: 2px 12px;
+            clip-path: polygon(0 0, 100% 0, 100% calc(100% - 6px), calc(100% - 6px) 100%, 0 100%);
         }
 
-        /* HIGH-VISIBILITY EXECUTE BUTTON (PROMINENT TRIGGER) */
-        .execute-btn-trigger {
+        .repo-title {
+            font-family: var(--font-mono);
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #ffffff;
+        }
+
+        .repo-tag {
+            display: inline-block;
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            color: var(--mech-blue);
+            background: rgba(0, 210, 255, 0.1);
+            border: 1px solid rgba(0, 210, 255, 0.3);
+            padding: 2px 8px;
+            margin-top: 4px;
+        }
+
+        .repo-stats {
+            font-family: var(--font-mono);
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            margin-bottom: 16px;
+        }
+
+        .repo-stats span {
+            color: var(--mech-amber);
+            font-weight: 600;
+        }
+
+        .intel-block {
+            background: rgba(0, 0, 0, 0.4);
+            border-left: 3px solid var(--panel-border-bright);
+            padding: 10px 12px;
+            margin-bottom: 10px;
+        }
+
+        .intel-block.highlight {
+            border-left-color: var(--mech-red);
+            background: rgba(255, 42, 85, 0.05);
+        }
+
+        .intel-label {
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            margin-bottom: 4px;
+        }
+
+        .intel-body {
+            font-size: 0.95rem;
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+
+        /* 💥 爆目发光与数码解密特效按键 (EXECUTE ACCESS TRIGGER) */
+        .trigger-wrapper {
+            margin-top: 16px;
+        }
+
+        .access-btn {
             display: flex;
             align-items: center;
-            justify-content: space-between;
+            justify-content: center;
+            gap: 12px;
             width: 100%;
-            background: linear-gradient(135deg, rgba(255, 42, 75, 0.18) 0%, rgba(255, 42, 75, 0.35) 100%);
-            border: 1.5px solid var(--neon-red);
-            color: #ffffff;
-            text-decoration: none;
-            padding: 14px 18px;
-            margin-top: 4px;
-            font-family: var(--font-tech);
-            font-size: 15px;
-            font-weight: 900;
-            letter-spacing: 1.5px;
-            box-shadow: 0 0 20px rgba(255, 42, 75, 0.3), inset 0 0 10px rgba(255, 42, 75, 0.2);
+            padding: 16px 20px;
+            background: linear-gradient(135deg, #ff2a55 0%, #990022 100%);
+            color: #ffffff !important;
+            font-family: var(--font-mech);
+            font-size: 1.05rem;
+            font-weight: 700;
+            text-decoration: none !important;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            border: 1px solid #ff6685;
+            box-shadow: 0 0 25px rgba(255, 42, 85, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.5);
             clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px));
-            transition: all 0.2s ease-in-out;
             position: relative;
             overflow: hidden;
             cursor: pointer;
+            transition: all 0.2s ease;
         }
 
-        .execute-btn-trigger::before {
-            content: "";
+        /* 激光脉冲扫过动画 */
+        .access-btn::after {
+            content: '';
             position: absolute;
-            top: 0; left: -100%; width: 100%; height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
-            transition: left 0.5s;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+            transform: rotate(45deg);
+            animation: pulseSweep 2.5s infinite;
         }
 
-        .execute-btn-trigger:hover, .execute-btn-trigger:active {
-            background: var(--neon-red);
-            color: #000000;
-            box-shadow: 0 0 30px rgba(255, 42, 75, 0.8);
-            transform: scale(1.01);
+        @keyframes pulseSweep {
+            0% { transform: translateX(-100%) rotate(45deg); }
+            20%, 100% { transform: translateX(100%) rotate(45deg); }
         }
 
-        .execute-btn-trigger:hover::before {
-            left: 100%;
+        .access-btn:active, .access-btn:hover {
+            background: linear-gradient(135deg, #ff476e 0%, #cc0033 100%);
+            box-shadow: 0 0 40px rgba(255, 42, 85, 0.9), inset 0 1px 0 rgba(255, 255, 255, 0.8);
+            transform: scale(0.98);
         }
 
-        .execute-btn-left {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .btn-pulse-icon {
-            width: 10px;
-            height: 10px;
-            background: #ffffff;
-            box-shadow: 0 0 8px #ffffff;
-            border-radius: 2px;
-            animation: beacon-pulse 0.8s infinite;
-        }
-
-        .execute-btn-trigger:hover .btn-pulse-icon {
-            background: #000000;
-            box-shadow: 0 0 8px #000000;
-        }
-
-        .btn-text-main {
-            text-transform: uppercase;
-        }
-
-        .btn-jp-badge {
-            font-size: 11px;
-            font-family: var(--font-jp);
+        .btn-glitch {
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
             background: rgba(0, 0, 0, 0.4);
             padding: 2px 8px;
-            border-radius: 2px;
-            border: 1px solid rgba(255, 255, 255, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: var(--mech-blue);
         }
 
-        .execute-btn-trigger:hover .btn-jp-badge {
-            background: #000000;
-            color: var(--neon-red);
-            border-color: #000000;
-        }
-
-        /* Card Body Content */
-        .card-body-content {
-            padding: 18px 20px 22px;
-            display: flex;
-            flex-direction: column;
-            gap: 16px;
-        }
-
-        /* Stats Bar */
-        .stats-hud {
-            display: flex;
-            align-items: center;
-            gap: 16px;
-            background: rgba(10, 13, 20, 0.6);
-            border: 1px dashed var(--border-mech);
-            padding: 10px 14px;
-            font-family: var(--font-mono);
-            font-size: 12px;
-            flex-wrap: wrap;
-        }
-
-        .hud-item {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
-
-        .hud-label {
-            color: var(--text-dark-muted);
-            font-weight: 700;
-        }
-
-        .hud-value {
-            color: var(--text-pure);
-            font-weight: 800;
-        }
-
-        .hud-value.highlight-amber {
-            color: var(--neon-amber);
-            text-shadow: 0 0 6px rgba(255, 183, 0, 0.3);
-        }
-
-        /* Tactical Spec Sheets (Content Blocks) */
-        .spec-block {
-            background: rgba(15, 19, 28, 0.7);
-            border: 1px solid var(--border-mech);
-            border-left: 3px solid var(--border-mech-bright);
-            padding: 12px 16px;
-            clip-path: polygon(0 0, 100% 0, 100% calc(100% - 8px), calc(100% - 8px) 100%, 0 100%);
-        }
-
-        .spec-block.critical {
-            border-left-color: var(--neon-red);
-            background: rgba(255, 42, 75, 0.04);
-        }
-
-        .spec-block.breakthrough {
-            border-left-color: var(--neon-cyan);
-            background: rgba(0, 240, 255, 0.04);
-        }
-
-        .spec-block.insight {
-            border-left-color: var(--neon-green);
-            background: rgba(0, 255, 102, 0.04);
-        }
-
-        .spec-header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-bottom: 6px;
-        }
-
-        .spec-tag {
-            font-family: var(--font-tech);
-            font-size: 11px;
-            font-weight: 900;
-            letter-spacing: 1px;
-            color: var(--text-muted);
-            text-transform: uppercase;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
-
-        .spec-block.critical .spec-tag { color: var(--neon-red); }
-        .spec-block.breakthrough .spec-tag { color: var(--neon-cyan); }
-        .spec-block.insight .spec-tag { color: var(--neon-green); }
-
-        .spec-body {
-            font-size: 14px;
-            color: var(--text-pure);
-            line-height: 1.6;
-            font-weight: 500;
-        }
-
-        .spec-body.quote {
-            font-family: var(--font-mono);
-            color: var(--text-titanium);
-            font-size: 13px;
-        }
-
-        .spec-body-highlight {
-            color: var(--text-pure);
-            font-weight: 700;
-        }
-
-        /* Footer */
-        .tactical-footer {
-            text-align: center;
-            padding: 30px 0 10px;
-            color: var(--text-dark-muted);
-            font-family: var(--font-mono);
-            font-size: 11px;
-            letter-spacing: 1px;
-            border-top: 1px solid var(--border-mech);
-            margin-top: 40px;
-        }
-
-        @media (max-width: 600px) {
-            body {
-                padding: 12px 8px 50px;
-            }
-            .tactical-header {
-                padding: 18px 14px;
-            }
-            .sys-title {
-                font-size: 18px;
-            }
-            .card-header-plate {
-                padding: 14px 14px;
-            }
-            .card-body-content {
-                padding: 14px 14px 18px;
-            }
-            .execute-btn-trigger {
-                padding: 14px 14px;
-                font-size: 14px;
-            }
-            .repo-title-link {
-                font-size: 17px;
-            }
-            .spec-body {
-                font-size: 13.5px;
-            }
+        @media (max-width: 480px) {
+            .hud-title { font-size: 1.3rem; }
+            .access-btn { font-size: 0.95rem; padding: 14px 12px; }
         }
     </style>
 </head>
 <body>
-    <div class="terminal-container">
-        
-        <!-- Tactical Terminal Header -->
-        <header class="tactical-header">
-            <div class="header-top">
-                <div class="sys-title">
-                    ⚡ GITHUB TRENDING <span class="neon-badge">TACTICAL // 15</span>
+
+    <header class="hud-header">
+        <div class="hud-meta">
+            <span>SYS.ID // GITHUB-TRENDING-HUD</span>
+            <span>[ 战术实时在线 ]</span>
+        </div>
+        <h1 class="hud-title"><span>⚡ GITHUB TRENDING</span> TOP 15</h1>
+        <div style="font-size:0.85rem; color:var(--text-secondary); margin-top:6px; font-family:var(--font-mono);">
+            纯中文战术级深度解析 // 双核驱动
+        </div>
+    </header>
+
+    <main class="container">
+
+        <!-- #1 -->
+        <article class="mech-card">
+            <div class="card-header">
+                <div>
+                    <div class="repo-title">lyogavin/airllm</div>
+                    <span class="repo-tag">大语言模型推理 / 显存极限压缩</span>
                 </div>
-                <div class="sys-status">
-                    <span class="status-beacon"></span>
-                    <span>ONLINE // REM & RAM CORE</span>
-                </div>
+                <div class="rank-tag">#01</div>
             </div>
-            <div class="header-sub">
-                <div>[ 深度技术解析 // 纯中文战术情报终端 ]</div>
-                <div style="font-family: var(--font-mono); color: var(--neon-cyan);">UPDATED: 2026-08-04</div>
+            <div class="repo-stats">
+                ⭐ <span>27,107</span> Stars &nbsp;|&nbsp; 🍴 <span>2,973</span> Forks &nbsp;|&nbsp; 🔤 Jupyter Notebook
             </div>
-        </header>
+            <div class="intel-block">
+                <div class="intel-label">📝 官方原简介</div>
+                <div class="intel-body">AirLLM 70B inference with single 4GB GPU</div>
+            </div>
+            <div class="intel-block highlight">
+                <div class="intel-label">🎯 痛点与背景</div>
+                <div class="intel-body">本地推理 70B 级大模型通常需要 140GB+ 显存，消费级 4GB 显卡根本无法调入模型，部署门槛极高。</div>
+            </div>
+            <div class="intel-block">
+                <div class="intel-label">⚡ 核心突破与功能</div>
+                <div class="intel-body">在单张 4GB 显存的普通显卡上直接运行 70B 规模超大语言模型推理，且无需对模型权重进行高损量化。</div>
+            </div>
+            <div class="trigger-wrapper">
+                <a href="https://github.com/lyogavin/airllm" target="_blank" class="access-btn">
+                    <span>⚡ EXECUTE ACCESS // 调阅仓库</span>
+                    <span class="btn-glitch">LINK.01</span>
+                </a>
+            </div>
+        </article>
 
-        <!-- Cards Feed -->
-        <main class="card-feed">
-
-            <!-- MECH CARD #01 -->
-            <article class="mech-card">
-                <div class="card-header-plate">
-                    <div class="plate-top-row">
-                        <div class="rank-box">
-                            <span class="rank-num">#01</span>
-                            <a href="https://github.com/lyogavin/airllm" target="_blank" class="repo-title-link">lyogavin/airllm</a>
-                        </div>
-                        <span class="category-tag">大语言模型推理 / 显存极限压缩</span>
-                    </div>
-
-                    <!-- HIGH VISIBILITY EXECUTE TRIGGER LINK -->
-                    <a href="https://github.com/lyogavin/airllm" target="_blank" class="execute-btn-trigger">
-                        <div class="execute-btn-left">
-                            <span class="btn-pulse-icon"></span>
-                            <span class="btn-text-main">⚡ ACCESS REPOSITORY // 访问仓库</span>
-                        </div>
-                        <span class="btn-jp-badge">[ 外部通信接入 ]</span>
-                    </a>
+        <!-- #2 -->
+        <article class="mech-card">
+            <div class="card-header">
+                <div>
+                    <div class="repo-title">zhaoxuya520/reverse-skill</div>
+                    <span class="repo-tag">网络安全 / AI 逆向自动化</span>
                 </div>
+                <div class="rank-tag">#02</div>
+            </div>
+            <div class="repo-stats">
+                ⭐ <span>158</span> Stars &nbsp;|&nbsp; 🍴 <span>18</span> Forks &nbsp;|&nbsp; 🔤 Python
+            </div>
+            <div class="intel-block">
+                <div class="intel-label">📝 官方原简介</div>
+                <div class="intel-body">AI-assisted reverse engineering & security audit skill package</div>
+            </div>
+            <div class="intel-block highlight">
+                <div class="intel-label">🎯 痛点与背景</div>
+                <div class="intel-body">安全工程师进行逆向工程与渗透测试时，需频繁切换数十种命令行工具，缺乏标准化且智能化的 AI 调度助手。</div>
+            </div>
+            <div class="intel-block">
+                <div class="intel-label">⚡ 核心突破与功能</div>
+                <div class="intel-body">专为 AI 代码客户端打造的自动化安全逆向技能包，实现意图自动识别、工具按需自举与经验库自动进化。</div>
+            </div>
+            <div class="trigger-wrapper">
+                <a href="https://github.com/zhaoxuya520/reverse-skill" target="_blank" class="access-btn">
+                    <span>⚡ EXECUTE ACCESS // 调阅仓库</span>
+                    <span class="btn-glitch">LINK.02</span>
+                </a>
+            </div>
+        </article>
 
-                <div class="card-body-content">
-                    <div class="stats-hud">
-                        <div class="hud-item"><span class="hud-label">STARS:</span><span class="hud-value highlight-amber">⭐ 27,107</span></div>
-                        <div class="hud-item"><span class="hud-label">FORKS:</span><span class="hud-value">🍴 2,973</span></div>
-                        <div class="hud-item"><span class="hud-label">LANG:</span><span class="hud-value">🔤 Jupyter Notebook</span></div>
-                    </div>
-
-                    <div class="spec-block">
-                        <div class="spec-header">
-                            <span class="spec-tag">📝 ORIGINAL DESC // 仓库原简介</span>
-                        </div>
-                        <div class="spec-body quote">AirLLM 70B inference with single 4GB GPU</div>
-                    </div>
-
-                    <div class="spec-block critical">
-                        <div class="spec-header">
-                            <span class="spec-tag">🎯 PAIN POINT & BACKGROUND // 痛点与背景</span>
-                        </div>
-                        <div class="spec-body">本地推理 70B 级别大语言模型通常需要 140GB 以上显存，消费级显卡（4GB/8GB）无法直接载入模型权重，硬件门槛极高。</div>
-                    </div>
-
-                    <div class="spec-block breakthrough">
-                        <div class="spec-header">
-                            <span class="spec-tag">⚡ CORE BREAKTHROUGH // 核心突破与功能</span>
-                        </div>
-                        <div class="spec-body spec-body-highlight">实现在单张 4GB 显存的普通显卡上运行 70B 规模大模型推理，无需对模型权重进行高损量化削减。</div>
-                    </div>
-
-                    <div class="spec-block">
-                        <div class="spec-header">
-                            <span class="spec-tag">🛠️ TECH HIGHLIGHTS // 关键技术亮点</span>
-                        </div>
-                        <div class="spec-body">1. 逐层按需调入内存：将 Transformer 网络层按需切分并流式调入 GPU 显存，显存占用降低 90%；2. 内存与显存张量流式传输：优化传输通道，重叠计算与传输延迟。</div>
-                    </div>
-
-                    <div class="spec-block">
-                        <div class="spec-header">
-                            <span class="spec-tag">👥 USE CASES // 适用场景</span>
-                        </div>
-                        <div class="spec-body">需要在普通个人电脑或消费级显卡上本地运行超大模型推理的开发者与研究人员。</div>
-                    </div>
-
-                    <div class="spec-block insight">
-                        <div class="spec-header">
-                            <span class="spec-tag">💡 ARCHITECTURE INSIGHT // 架构启示</span>
-                        </div>
-                        <div class="spec-body spec-body-highlight">打破硬件壁垒的极限显存优化方案，大幅降低超大模型的本地推理门槛。</div>
-                    </div>
+        <!-- #3 -->
+        <article class="mech-card">
+            <div class="card-header">
+                <div>
+                    <div class="repo-title">firecrawl/pdf-inspector</div>
+                    <span class="repo-tag">Rust 高性能库 / 智能文档解析</span>
                 </div>
-            </article>
+                <div class="rank-tag">#03</div>
+            </div>
+            <div class="repo-stats">⭐ <span>8,241</span> Stars | 🍴 <span>544</span> Forks</div>
+            <div class="intel-block highlight">
+                <div class="intel-label">⚡ 核心突破</div>
+                <div class="intel-body">基于 Rust 的高性能 PDF 结构检查与文本提取库，可毫秒级智能检测扫描件与文本型 PDF 并实现自动化分流。</div>
+            </div>
+            <div class="trigger-wrapper">
+                <a href="https://github.com/firecrawl/pdf-inspector" target="_blank" class="access-btn">
+                    <span>⚡ EXECUTE ACCESS // 调阅仓库</span>
+                    <span class="btn-glitch">LINK.03</span>
+                </a>
+            </div>
+        </article>
 
-            <!-- MECH CARD #02 -->
-            <article class="mech-card">
-                <div class="card-header-plate">
-                    <div class="plate-top-row">
-                        <div class="rank-box">
-                            <span class="rank-num">#02</span>
-                            <a href="https://github.com/zhaoxuya520/reverse-skill" target="_blank" class="repo-title-link">zhaoxuya520/reverse-skill</a>
-                        </div>
-                        <span class="category-tag">网络安全 / AI 逆向自动化</span>
-                    </div>
-
-                    <!-- HIGH VISIBILITY EXECUTE TRIGGER LINK -->
-                    <a href="https://github.com/zhaoxuya520/reverse-skill" target="_blank" class="execute-btn-trigger">
-                        <div class="execute-btn-left">
-                            <span class="btn-pulse-icon"></span>
-                            <span class="btn-text-main">⚡ ACCESS REPOSITORY // 访问仓库</span>
-                        </div>
-                        <span class="btn-jp-badge">[ 外部通信接入 ]</span>
-                    </a>
+        <!-- #4 -->
+        <article class="mech-card">
+            <div class="card-header">
+                <div>
+                    <div class="repo-title">esengine/DeepSeek-Reasonix</div>
+                    <span class="repo-tag">终端编程助手 / DeepSeek 专属优化</span>
                 </div>
+                <div class="rank-tag">#04</div>
+            </div>
+            <div class="repo-stats">⭐ <span>29,932</span> Stars | 🍴 <span>1,920</span> Forks</div>
+            <div class="intel-block highlight">
+                <div class="intel-label">⚡ 核心突破</div>
+                <div class="intel-body">专为 DeepSeek 原生设计的终端 AI 编程助手，围绕前缀缓存稳定性专门构建，支持长期常驻后台高效运行。</div>
+            </div>
+            <div class="trigger-wrapper">
+                <a href="https://github.com/esengine/DeepSeek-Reasonix" target="_blank" class="access-btn">
+                    <span>⚡ EXECUTE ACCESS // 调阅仓库</span>
+                    <span class="btn-glitch">LINK.04</span>
+                </a>
+            </div>
+        </article>
 
-                <div class="card-body-content">
-                    <div class="stats-hud">
-                        <div class="hud-item"><span class="hud-label">STARS:</span><span class="hud-value highlight-amber">⭐ --</span></div>
-                        <div class="hud-item"><span class="hud-label">FORKS:</span><span class="hud-value">🍴 --</span></div>
-                        <div class="hud-item"><span class="hud-label">LANG:</span><span class="hud-value">🔤 Shell / Python</span></div>
-                    </div>
-
-                    <div class="spec-block">
-                        <div class="spec-header">
-                            <span class="spec-tag">📝 ORIGINAL DESC // 仓库原简介</span>
-                        </div>
-                        <div class="spec-body quote">AI-assisted reverse engineering & security audit skill package for OpenClaw / Claude Code</div>
-                    </div>
-
-                    <div class="spec-block critical">
-                        <div class="spec-header">
-                            <span class="spec-tag">🎯 PAIN POINT & BACKGROUND // 痛点与背景</span>
-                        </div>
-                        <div class="spec-body">安全工程师在进行授权渗透测试与逆向工程时，需要频繁切换数十种命令行工具，缺乏标准化、智能化的 AI 调度助手。</div>
-                    </div>
-
-                    <div class="spec-block breakthrough">
-                        <div class="spec-header">
-                            <span class="spec-tag">⚡ CORE BREAKTHROUGH // 核心突破与功能</span>
-                        </div>
-                        <div class="spec-body spec-body-highlight">专为 AI 代码客户端打造的自动化安全逆向技能包，实现意图自动识别、工具按需自举与经验库自动进化。</div>
-                    </div>
-
-                    <div class="spec-block">
-                        <div class="spec-header">
-                            <span class="spec-tag">🛠️ TECH HIGHLIGHTS // 关键技术亮点</span>
-                        </div>
-                        <div class="spec-body">1. 智能意图路由：根据自然语言指令自动匹配最适用的安全逆向工具链；2. 依赖按需自举：自动检测并安装缺失的渗透与逆向依赖；3. 经验库自动进化：自动将成功 Payload 与分析过程沉淀为知识库。</div>
-                    </div>
-
-                    <div class="spec-block">
-                        <div class="spec-header">
-                            <span class="spec-tag">👥 USE CASES // 适用场景</span>
-                        </div>
-                        <div class="spec-body">网络安全研究员、CTF 选手以及需要进行自动化安全审计的开发运维团队。</div>
-                    </div>
-
-                    <div class="spec-block insight">
-                        <div class="spec-header">
-                            <span class="spec-tag">💡 ARCHITECTURE INSIGHT // 架构启示</span>
-                        </div>
-                        <div class="spec-body spec-body-highlight">AI 驱动的自动化安全渗透与逆向分析工具链典范。</div>
-                    </div>
+        <!-- #5 -->
+        <article class="mech-card">
+            <div class="card-header">
+                <div>
+                    <div class="repo-title">TencentCloud/TencentDB-Agent-Memory</div>
+                    <span class="repo-tag">多 Agent 协同 / 团队共享记忆库</span>
                 </div>
-            </article>
-
-            <!-- MECH CARD #03 -->
-            <article class="mech-card">
-                <div class="card-header-plate">
-                    <div class="plate-top-row">
-                        <div class="rank-box">
-                            <span class="rank-num">#03</span>
-                            <a href="https://github.com/firecrawl/pdf-inspector" target="_blank" class="repo-title-link">firecrawl/pdf-inspector</a>
-                        </div>
-                        <span class="category-tag">Rust 高性能库 / 智能文档解析</span>
-                    </div>
-
-                    <!-- HIGH VISIBILITY EXECUTE TRIGGER LINK -->
-                    <a href="https://github.com/firecrawl/pdf-inspector" target="_blank" class="execute-btn-trigger">
-                        <div class="execute-btn-left">
-                            <span class="btn-pulse-icon"></span>
-                            <span class="btn-text-main">⚡ ACCESS REPOSITORY // 访问仓库</span>
-                        </div>
-                        <span class="btn-jp-badge">[ 外部通信接入 ]</span>
-                    </a>
-                </div>
-
-                <div class="card-body-content">
-                    <div class="stats-hud">
-                        <div class="hud-item"><span class="hud-label">STARS:</span><span class="hud-value highlight-amber">⭐ 8,241</span></div>
-                        <div class="hud-item"><span class="hud-label">FORKS:</span><span class="hud-value">🍴 544</span></div>
-                        <div class="hud-item"><span class="hud-label">LANG:</span><span class="hud-value">🔤 Rust</span></div>
-                    </div>
-
-                    <div class="spec-block">
-                        <div class="spec-header">
-                            <span class="spec-tag">📝 ORIGINAL DESC // 仓库原简介</span>
-                        </div>
-                        <div class="spec-body quote">Fast Rust library for PDF inspection, classification, and text extraction. Intelligently detects scanned vs text-based PDFs to enable smart routing decisions.</div>
-                    </div>
-
-                    <div class="spec-block critical">
-                        <div class="spec-header">
-                            <span class="spec-tag">🎯 PAIN POINT & BACKGROUND // 痛点与背景</span>
-                        </div>
-                        <div class="spec-body">海量 PDF 文档解析与知识库预处理时，传统库难以快速区分扫描件与文本件，导致后端路由效率低下、OCR 识别开销巨大。</div>
-                    </div>
-
-                    <div class="spec-block breakthrough">
-                        <div class="spec-header">
-                            <span class="spec-tag">⚡ CORE BREAKTHROUGH // 核心突破与功能</span>
-                        </div>
-                        <div class="spec-body spec-body-highlight">基于 Rust 编写的高性能 PDF 结构检查与文本提取库，毫秒级智能检测扫描件与文本型 PDF，实现自动化分流。</div>
-                    </div>
-
-                    <div class="spec-block">
-                        <div class="spec-header">
-                            <span class="spec-tag">🛠️ TECH HIGHLIGHTS // 关键技术亮点</span>
-                        </div>
-                        <div class="spec-body">1. Rust 零成本抽象：微秒级解析 PDF 内部结构对象流；2. 智能路由机制：精准识别文本与图像层，自动引导至 OCR 或直接文本提取；3. 极低内存占用：适合在大规模海量文档处理管线中并行运行。</div>
-                    </div>
-
-                    <div class="spec-block">
-                        <div class="spec-header">
-                            <span class="spec-tag">👥 USE CASES // 适用场景</span>
-                        </div>
-                        <div class="spec-body">大模型知识库构建、海量 PDF 自动化清洗与文档处理管线研发。</div>
-                    </div>
-
-                    <div class="spec-block insight">
-                        <div class="spec-header">
-                            <span class="spec-tag">💡 ARCHITECTURE INSIGHT // 架构启示</span>
-                        </div>
-                        <div class="spec-body spec-body-highlight">Rust 赋能前置文档分析与分类处理的高性能解决方案。</div>
-                    </div>
-                </div>
-            </article>
-
-            <!-- MECH CARD #04 -->
-            <article class="mech-card">
-                <div class="card-header-plate">
-                    <div class="plate-top-row">
-                        <div class="rank-box">
-                            <span class="rank-num">#04</span>
-                            <a href="https://github.com/esengine/DeepSeek-Reasonix" target="_blank" class="repo-title-link">esengine/DeepSeek-Reasonix</a>
-                        </div>
-                        <span class="category-tag">终端编程助手 / DeepSeek 专属优化</span>
-                    </div>
-
-                    <!-- HIGH VISIBILITY EXECUTE TRIGGER LINK -->
-                    <a href="https://github.com/esengine/DeepSeek-Reasonix" target="_blank" class="execute-btn-trigger">
-                        <div class="execute-btn-left">
-                            <span class="btn-pulse-icon"></span>
-                            <span class="btn-text-main">⚡ ACCESS REPOSITORY // 访问仓库</span>
-                        </div>
-                        <span class="btn-jp-badge">[ 外部通信接入 ]</span>
-                    </a>
-                </div>
-
-                <div class="card-body-content">
-                    <div class="stats-hud">
-                        <div class="hud-item"><span class="hud-label">STARS:</span><span class="hud-value highlight-amber">⭐ 29,932</span></div>
-                        <div class="hud-item"><span class="hud-label">FORKS:</span><span class="hud-value">🍴 1,920</span></div>
-                        <div class="hud-item"><span class="hud-label">LANG:</span><span class="hud-value">🔤 Go</span></div>
-                    </div>
-
-                    <div class="spec-block">
-                        <div class="spec-header">
-                            <span class="spec-tag">📝 ORIGINAL DESC // 仓库原简介</span>
-                        </div>
-                        <div class="spec-body quote">DeepSeek-native AI coding agent for your terminal. Engineered around prefix-cache stability — leave it running.</div>
-                    </div>
-
-                    <div class="spec-block critical">
-                        <div class="spec-header">
-                            <span class="spec-tag">🎯 PAIN POINT & BACKGROUND // 痛点与背景</span>
-                        </div>
-                        <div class="spec-body">传统终端 AI 助手在大批量代码修改时未对 DeepSeek 前缀缓存针对性设计，导致 Token 消耗高昂且上下文易丢失。</div>
-                    </div>
-
-                    <div class="spec-block breakthrough">
-                        <div class="spec-header">
-                            <span class="spec-tag">⚡ CORE BREAKTHROUGH // 核心突破与功能</span>
-                        </div>
-                        <div class="spec-body spec-body-highlight">专为 DeepSeek 原生设计的终端 AI 编程助手，围绕前缀缓存稳定性构建，支持常驻后台高效运行。</div>
-                    </div>
-
-                    <div class="spec-block">
-                        <div class="spec-header">
-                            <span class="spec-tag">🛠️ TECH HIGHLIGHTS // 关键技术亮点</span>
-                        </div>
-                        <div class="spec-body">1. 前缀缓存稳定算法：优化 Prompt 结构，大幅提升前缀缓存命中率并降低成本；2. 终端高并发异步调度：保证在后台常驻处理复杂重构任务时稳定可靠。</div>
-                    </div>
-
-                    <div class="spec-block">
-                        <div class="spec-header">
-                            <span class="spec-tag">👥 USE CASES // 适用场景</span>
-                        </div>
-                        <div class="spec-body">需要长时间在终端环境下挂机执行代码编写、单元测试与重构的软件工程师。</div>
-                    </div>
-
-                    <div class="spec-block insight">
-                        <div class="spec-header">
-                            <span class="spec-tag">💡 ARCHITECTURE INSIGHT // 架构启示</span>
-                        </div>
-                        <div class="spec-body spec-body-highlight">充分结合 API 缓存特性的高性能终端 AI 编程工具。</div>
-                    </div>
-                </div>
-            </article>
-
-            <!-- MECH CARD #05 -->
-            <article class="mech-card">
-                <div class="card-header-plate">
-                    <div class="plate-top-row">
-                        <div class="rank-box">
-                            <span class="rank-num">#05</span>
-                            <a href="https://github.com/TencentCloud/TencentDB-Agent-Memory" target="_blank" class="repo-title-link">TencentCloud/TencentDB-Agent-Memory</a>
-                        </div>
-                        <span class="category-tag">多 Agent 协同 / 团队共享记忆库</span>
-                    </div>
-
-                    <!-- HIGH VISIBILITY EXECUTE TRIGGER LINK -->
-                    <a href="https://github.com/TencentCloud/TencentDB-Agent-Memory" target="_blank" class="execute-btn-trigger">
-                        <div class="execute-btn-left">
-                            <span class="btn-pulse-icon"></span>
-                            <span class="btn-text-main">⚡ ACCESS REPOSITORY // 访问仓库</span>
-                        </div>
-                        <span class="btn-jp-badge">[ 外部通信接入 ]</span>
-                    </a>
-                </div>
-
-                <div class="card-body-content">
-                    <div class="stats-hud">
-                        <div class="hud-item"><span class="hud-label">STARS:</span><span class="hud-value highlight-amber">⭐ 12,089</span></div>
-                        <div class="hud-item"><span class="hud-label">FORKS:</span><span class="hud-value">🍴 1,144</span></div>
-                        <div class="hud-item"><span class="hud-label">LANG:</span><span class="hud-value">🔤 TypeScript</span></div>
-                    </div>
-
-                    <div class="spec-block">
-                        <div class="spec-header">
-                            <span class="spec-tag">📝 ORIGINAL DESC // 仓库原简介</span>
-                        </div>
-                        <div class="spec-body quote">TencentDB Agent Memory is a team-level memory hub for AI Agents — turning conversations, docs, and code into four reusable memory assets.</div>
-                    </div>
-
-                    <div class="spec-block critical">
-                        <div class="spec-header">
-                            <span class="spec-tag">🎯 PAIN POINT & BACKGROUND // 痛点与背景</span>
-                        </div>
-                        <div class="spec-body">多 Agent 团队协作研发时缺乏统一的知识库，导致对话、文档与代码沉淀无法跨 Agent 有效复用。</div>
-                    </div>
-
-                    <div class="spec-block breakthrough">
-                        <div class="spec-header">
-                            <span class="spec-tag">⚡ CORE BREAKTHROUGH // 核心突破与功能</span>
-                        </div>
-                        <div class="spec-body spec-body-highlight">腾讯云开源的团队级 Agent 记忆中枢，将对话、文档与代码统一转化为四大可复用记忆资产。</div>
-                    </div>
-
-                    <div class="spec-block">
-                        <div class="spec-header">
-                            <span class="spec-tag">🛠️ TECH HIGHLIGHTS // 关键技术亮点</span>
-                        </div>
-                        <div class="spec-body">1. 四大记忆资产抽象：统一管理对话历史、标准技能、知识库与代码图谱；2. 跨框架治理共享：支持在主流 Agent 框架间进行数据沉淀与统一调用。</div>
-                    </div>
-
-                    <div class="spec-block">
-                        <div class="spec-header">
-                            <span class="spec-tag">👥 USE CASES // 适用场景</span>
-                        </div>
-                        <div class="spec-body">企业级多 Agent 协同研发、团队知识库沉淀与长期记忆管理。</div>
-                    </div>
-
-                    <div class="spec-block insight">
-                        <div class="spec-header">
-                            <span class="spec-tag">💡 ARCHITECTURE INSIGHT // 架构启示</span>
-                        </div>
-                        <div class="spec-body spec-body-highlight">多 Agent 协同体系中团队记忆资产标准化治理的探路者。</div>
-                    </div>
-                </div>
-            </article>
-
-            <!-- MECH CARD #06 -->
-            <article class="mech-card">
-                <div class="card-header-plate">
-                    <div class="plate-top-row">
-                        <div class="rank-box">
-                            <span class="rank-num">#06</span>
-                            <a href="https://github.com/microsoft/AI-For-Beginners" target="_blank" class="repo-title-link">microsoft/AI-For-Beginners</a>
-                        </div>
-                        <span class="category-tag">人工智能教程 / 微软官方零基础指南</span>
-                    </div>
-
-                    <!-- HIGH VISIBILITY EXECUTE TRIGGER LINK -->
-                    <a href="https://github.com/microsoft/AI-For-Beginners" target="_blank" class="execute-btn-trigger">
-                        <div class="execute-btn-left">
-                            <span class="btn-pulse-icon"></span>
-                            <span class="btn-text-main">⚡ ACCESS REPOSITORY // 访问仓库</span>
-                        </div>
-                        <span class="btn-jp-badge">[ 外部通信接入 ]</span>
-                    </a>
-                </div>
-
-                <div class="card-body-content">
-                    <div class="stats-hud">
-                        <div class="hud-item"><span class="hud-label">STARS:</span><span class="hud-value highlight-amber">⭐ 60,742</span></div>
-                        <div class="hud-item"><span class="hud-label">FORKS:</span><span class="hud-value">🍴 11,833</span></div>
-                        <div class="hud-item"><span class="hud-label">LANG:</span><span class="hud-value">🔤 Jupyter Notebook</span></div>
-                    </div>
-
-                    <div class="spec-block">
-                        <div class="spec-header">
-                            <span class="spec-tag">📝 ORIGINAL DESC // 仓库原简介</span>
-                        </div>
-                        <div class="spec-body quote">12 Weeks, 24 Lessons, AI for All!</div>
-                    </div>
-
-                    <div class="spec-block critical">
-                        <div class="spec-header">
-                            <span class="spec-tag">🎯 PAIN POINT & BACKGROUND // 痛点与背景</span>
-                        </div>
-                        <div class="spec-body">初学者在进入 AI 与深度学习领域时，往往面临教程零散、数学推导晦涩、缺乏实际代码实践等难题。</div>
-                    </div>
-
-                    <div class="spec-block breakthrough">
-                        <div class="spec-header">
-                            <span class="spec-tag">⚡ CORE BREAKTHROUGH // 核心突破与功能</span>
-                        </div>
-                        <div class="spec-body spec-body-highlight">微软官方推出的 12 周零基础人工智能系列课程，涵盖 24 节循序渐进的完整教学内容与动手实验。</div>
-                    </div>
-
-                    <div class="spec-block">
-                        <div class="spec-header">
-                            <span class="spec-tag">🛠️ TECH HIGHLIGHTS // 关键技术亮点</span>
-                        </div>
-                        <div class="spec-body">1. 全面知识图谱：涵盖符号 AI、神经网络、计算机视觉与自然语言处理；2. 交互式代码实践：提供完全可运行的 Jupyter 脚本与可视化示例。</div>
-                    </div>
-
-                    <div class="spec-block">
-                        <div class="spec-header">
-                            <span class="spec-tag">👥 USE CASES // 适用场景</span>
-                        </div>
-                        <div class="spec-body">零基础希望系统化学习人工智能、机器学习与深度学习的开发者与学生。</div>
-                    </div>
-
-                    <div class="spec-block insight">
-                        <div class="spec-header">
-                            <span class="spec-tag">💡 ARCHITECTURE INSIGHT // 架构启示</span>
-                        </div>
-                        <div class="spec-body spec-body-highlight">微软出品的系统化 AI 入门权威开源教程。</div>
-                    </div>
-                </div>
-            </article>
-
-            <!-- MECH CARD #07 -->
-            <article class="mech-card">
-                <div class="card-header-plate">
-                    <div class="plate-top-row">
-                        <div class="rank-box">
-                            <span class="rank-num">#07</span>
-                            <a href="https://github.com/microsoft/generative-ai-for-beginners" target="_blank" class="repo-title-link">microsoft/generative-ai-for-beginners</a>
-                        </div>
-                        <span class="category-tag">生成式 AI 教程 / 微软官方实战课程</span>
-                    </div>
-
-                    <!-- HIGH VISIBILITY EXECUTE TRIGGER LINK -->
-                    <a href="https://github.com/microsoft/generative-ai-for-beginners" target="_blank" class="execute-btn-trigger">
-                        <div class="execute-btn-left">
-                            <span class="btn-pulse-icon"></span>
-                            <span class="btn-text-main">⚡ ACCESS REPOSITORY // 访问仓库</span>
-                        </div>
-                        <span class="btn-jp-badge">[ 外部通信接入 ]</span>
-                    </a>
-                </div>
-
-                <div class="card-body-content">
-                    <div class="stats-hud">
-                        <div class="hud-item"><span class="hud-label">STARS:</span><span class="hud-value highlight-amber">⭐ 115,551</span></div>
-                        <div class="hud-item"><span class="hud-label">FORKS:</span><span class="hud-value">🍴 61,439</span></div>
-                        <div class="hud-item"><span class="hud-label">LANG:</span><span class="hud-value">🔤 Jupyter Notebook</span></div>
-                    </div>
-
-                    <div class="spec-block">
-                        <div class="spec-header">
-                            <span class="spec-tag">📝 ORIGINAL DESC // 仓库原简介</span>
-                        </div>
-                        <div class="spec-body quote">21 Lessons, Get Started Building with Generative AI</div>
-                    </div>
-
-                    <div class="spec-block critical">
-                        <div class="spec-header">
-                            <span class="spec-tag">🎯 PAIN POINT & BACKGROUND // 痛点与背景</span>
-                        </div>
-                        <div class="spec-body">开发者在学习生成式 AI 与提示词工程时，缺少从基础概念到构建真实 AI 应用的完整实践指南。</div>
-                    </div>
-
-                    <div class="spec-block breakthrough">
-                        <div class="spec-header">
-                            <span class="spec-tag">⚡ CORE BREAKTHROUGH // 核心突破与功能</span>
-                        </div>
-                        <div class="spec-body spec-body-highlight">微软官方推出的 21 节生成式 AI 实战课程，帮助开发者掌握构建生成式 AI 应用的核心技能。</div>
-                    </div>
-
-                    <div class="spec-block">
-                        <div class="spec-header">
-                            <span class="spec-tag">🛠️ TECH HIGHLIGHTS // 关键技术亮点</span>
-                        </div>
-                        <div class="spec-body">1. 提示词工程与 Agent 架构：深入讲解提示词优化、RAG 与多 Agent 设计；2. 全栈代码样例：提供 Python 与 TypeScript 实现的开源生成式 AI 应用模板。</div>
-                    </div>
-
-                    <div class="spec-block">
-                        <div class="spec-header">
-                            <span class="spec-tag">👥 USE CASES // 适用场景</span>
-                        </div>
-                        <div class="spec-body">希望快速掌握生成式 AI 开发、构建大模型应用与 AI Agent 的软件工程师。</div>
-                    </div>
-
-                    <div class="spec-block insight">
-                        <div class="spec-header">
-                            <span class="spec-tag">💡 ARCHITECTURE INSIGHT // 架构启示</span>
-                        </div>
-                        <div class="spec-body spec-body-highlight">微软官方打造的生成式 AI 应用研发实战标准课程。</div>
-                    </div>
-                </div>
-            </article>
-
-            <!-- MECH CARD #08 -->
-            <article class="mech-card">
-                <div class="card-header-plate">
-                    <div class="plate-top-row">
-                        <div class="rank-box">
-                            <span class="rank-num">#08</span>
-                            <a href="https://github.com/donnemartin/system-design-primer" target="_blank" class="repo-title-link">donnemartin/system-design-primer</a>
-                        </div>
-                        <span class="category-tag">系统架构设计 / 大规模分布式系统</span>
-                    </div>
-
-                    <!-- HIGH VISIBILITY EXECUTE TRIGGER LINK -->
-                    <a href="https://github.com/donnemartin/system-design-primer" target="_blank" class="execute-btn-trigger">
-                        <div class="execute-btn-left">
-                            <span class="btn-pulse-icon"></span>
-                            <span class="btn-text-main">⚡ ACCESS REPOSITORY // 访问仓库</span>
-                        </div>
-                        <span class="btn-jp-badge">[ 外部通信接入 ]</span>
-                    </a>
-                </div>
-
-                <div class="card-body-content">
-                    <div class="stats-hud">
-                        <div class="hud-item"><span class="hud-label">STARS:</span><span class="hud-value highlight-amber">⭐ 360,525</span></div>
-                        <div class="hud-item"><span class="hud-label">FORKS:</span><span class="hud-value">🍴 57,526</span></div>
-                        <div class="hud-item"><span class="hud-label">LANG:</span><span class="hud-value">🔤 Python</span></div>
-                    </div>
-
-                    <div class="spec-block">
-                        <div class="spec-header">
-                            <span class="spec-tag">📝 ORIGINAL DESC // 仓库原简介</span>
-                        </div>
-                        <div class="spec-body quote">Learn how to design large-scale systems. Prep for the system design interview. Includes Anki flashcards.</div>
-                    </div>
-
-                    <div class="spec-block critical">
-                        <div class="spec-header">
-                            <span class="spec-tag">🎯 PAIN POINT & BACKGROUND // 痛点与背景</span>
-                        </div>
-                        <div class="spec-body">工程师在准备架构面试或构建高并发分布式系统时，缺乏系统化、图文并茂的架构知识体系。</div>
-                    </div>
-
-                    <div class="spec-block breakthrough">
-                        <div class="spec-header">
-                            <span class="spec-tag">⚡ CORE BREAKTHROUGH // 核心突破与功能</span>
-                        </div>
-                        <div class="spec-body spec-body-highlight">全网最热门的大规模系统设计学习指南，涵盖高并发、高可用、分布式存储与架构演进核心主题。</div>
-                    </div>
-
-                    <div class="spec-block">
-                        <div class="spec-header">
-                            <span class="spec-tag">🛠️ TECH HIGHLIGHTS // 关键技术亮点</span>
-                        </div>
-                        <div class="spec-body">1. 图解架构范式：直观拆解负载均衡、缓存策略、数据库分片与消息队列；2. 真实案例分析：深入剖析 Twitter、Netflix 等大型互联网公司的架构演进历程。</div>
-                    </div>
-
-                    <div class="spec-block">
-                        <div class="spec-header">
-                            <span class="spec-tag">👥 USE CASES // 适用场景</span>
-                        </div>
-                        <div class="spec-body">准备系统设计面试的工程师以及需要进行架构选型与高并发设计的架构师。</div>
-                    </div>
-
-                    <div class="spec-block insight">
-                        <div class="spec-header">
-                            <span class="spec-tag">💡 ARCHITECTURE INSIGHT // 架构启示</span>
-                        </div>
-                        <div class="spec-body spec-body-highlight">大规模分布式系统设计与架构演进的百宝箱指南。</div>
-                    </div>
-                </div>
-            </article>
-
-            <!-- MECH CARD #09 -->
-            <article class="mech-card">
-                <div class="card-header-plate">
-                    <div class="plate-top-row">
-                        <div class="rank-box">
-                            <span class="rank-num">#09</span>
-                            <a href="https://github.com/antirez/ds4" target="_blank" class="repo-title-link">antirez/ds4</a>
-                        </div>
-                        <span class="category-tag">C 语言本地推理 / DeepSeek 本地引擎</span>
-                    </div>
-
-                    <!-- HIGH VISIBILITY EXECUTE TRIGGER LINK -->
-                    <a href="https://github.com/antirez/ds4" target="_blank" class="execute-btn-trigger">
-                        <div class="execute-btn-left">
-                            <span class="btn-pulse-icon"></span>
-                            <span class="btn-text-main">⚡ ACCESS REPOSITORY // 访问仓库</span>
-                        </div>
-                        <span class="btn-jp-badge">[ 外部通信接入 ]</span>
-                    </a>
-                </div>
-
-                <div class="card-body-content">
-                    <div class="stats-hud">
-                        <div class="hud-item"><span class="hud-label">STARS:</span><span class="hud-value highlight-amber">⭐ --</span></div>
-                        <div class="hud-item"><span class="hud-label">FORKS:</span><span class="hud-value">🍴 --</span></div>
-                        <div class="hud-item"><span class="hud-label">LANG:</span><span class="hud-value">🔤 C / Metal</span></div>
-                    </div>
-
-                    <div class="spec-block">
-                        <div class="spec-header">
-                            <span class="spec-tag">📝 ORIGINAL DESC // 仓库原简介</span>
-                        </div>
-                        <div class="spec-body quote">Pure C implementation of DeepSeek-V3/R1 inference engine by antirez</div>
-                    </div>
-
-                    <div class="spec-block critical">
-                        <div class="spec-header">
-                            <span class="spec-tag">🎯 PAIN POINT & BACKGROUND // 痛点与背景</span>
-                        </div>
-                        <div class="spec-body">开源大模型在本地设备部署时往往依赖重度 Python 框架，在苹果 Metal 或 CUDA 架构上难以达到极致推理解析速度。</div>
-                    </div>
-
-                    <div class="spec-block breakthrough">
-                        <div class="spec-header">
-                            <span class="spec-tag">⚡ CORE BREAKTHROUGH // 核心突破与功能</span>
-                        </div>
-                        <div class="spec-body spec-body-highlight">由 Redis 作者 antirez 采用纯 C 语言编写的高性能 DeepSeek 本地轻量化推理引擎。</div>
-                    </div>
-
-                    <div class="spec-block">
-                        <div class="spec-header">
-                            <span class="spec-tag">🛠️ TECH HIGHLIGHTS // 关键技术亮点</span>
-                        </div>
-                        <div class="spec-body">1. 纯 C 语言零依赖：直接调用 Apple Metal、NVIDIA CUDA 等底层加速接口；2. 极低内存开销：摒弃重型 Python 运行时，实现秒级启动与极致吞吐率。</div>
-                    </div>
-
-                    <div class="spec-block">
-                        <div class="spec-header">
-                            <span class="spec-tag">👥 USE CASES // 适用场景</span>
-                        </div>
-                        <div class="spec-body">需要在本地设备极速部署 DeepSeek 模型的 C/C++ 开发者与高性能推理探索者。</div>
-                    </div>
-
-                    <div class="spec-block insight">
-                        <div class="spec-header">
-                            <span class="spec-tag">💡 ARCHITECTURE INSIGHT // 架构启示</span>
-                        </div>
-                        <div class="spec-body spec-body-highlight">Redis 作者打造的 C 语言极速本地大模型推理引擎标杆。</div>
-                    </div>
-                </div>
-            </article>
-
-            <!-- MECH CARD #10 -->
-            <article class="mech-card">
-                <div class="card-header-plate">
-                    <div class="plate-top-row">
-                        <div class="rank-box">
-                            <span class="rank-num">#10</span>
-                            <a href="https://github.com/shiyu-coder/Kronos" target="_blank" class="repo-title-link">shiyu-coder/Kronos</a>
-                        </div>
-                        <span class="category-tag">金融时间序列 / AI 量化预测</span>
-                    </div>
-
-                    <!-- HIGH VISIBILITY EXECUTE TRIGGER LINK -->
-                    <a href="https://github.com/shiyu-coder/Kronos" target="_blank" class="execute-btn-trigger">
-                        <div class="execute-btn-left">
-                            <span class="btn-pulse-icon"></span>
-                            <span class="btn-text-main">⚡ ACCESS REPOSITORY // 访问仓库</span>
-                        </div>
-                        <span class="btn-jp-badge">[ 外部通信接入 ]</span>
-                    </a>
-                </div>
-
-                <div class="card-body-content">
-                    <div class="stats-hud">
-                        <div class="hud-item"><span class="hud-label">STARS:</span><span class="hud-value highlight-amber">⭐ 35,824</span></div>
-                        <div class="hud-item"><span class="hud-label">FORKS:</span><span class="hud-value">🍴 5,961</span></div>
-                        <div class="hud-item"><span class="hud-label">LANG:</span><span class="hud-value">🔤 Python</span></div>
-                    </div>
-
-                    <div class="spec-block">
-                        <div class="spec-header">
-                            <span class="spec-tag">📝 ORIGINAL DESC // 仓库原简介</span>
-                        </div>
-                        <div class="spec-body quote">Kronos: A Foundation Model for the Language of Financial Markets</div>
-                    </div>
-
-                    <div class="spec-block critical">
-                        <div class="spec-header">
-                            <span class="spec-tag">🎯 PAIN POINT & BACKGROUND // 痛点与背景</span>
-                        </div>
-                        <div class="spec-body">金融市场时间序列数据具有极高噪声与非线性特点，传统统计模型难以捕获复杂的跨周期趋势与风险波动。</div>
-                    </div>
-
-                    <div class="spec-block breakthrough">
-                        <div class="spec-header">
-                            <span class="spec-tag">⚡ CORE BREAKTHROUGH // 核心突破与功能</span>
-                        </div>
-                        <div class="spec-body spec-body-highlight">专为金融时间序列分析打造的开源深度学习预测框架，实现高精度多资产价格趋势预测。</div>
-                    </div>
-
-                    <div class="spec-block">
-                        <div class="spec-header">
-                            <span class="spec-tag">🛠️ TECH HIGHLIGHTS // 关键技术亮点</span>
-                        </div>
-                        <div class="spec-body">1. 时序 Transformer 架构：专为金融时序优化的自注意力机制；2. 多尺度特征融合：融合高频交易数据与宏观时序指标。</div>
-                    </div>
-
-                    <div class="spec-block">
-                        <div class="spec-header">
-                            <span class="spec-tag">👥 USE CASES // 适用场景</span>
-                        </div>
-                        <div class="spec-body">量化交易员、金融风险分析师及研究高频交易算法的开发团队。</div>
-                    </div>
-
-                    <div class="spec-block insight">
-                        <div class="spec-header">
-                            <span class="spec-tag">💡 ARCHITECTURE INSIGHT // 架构启示</span>
-                        </div>
-                        <div class="spec-body spec-body-highlight">深度学习在金融量化预测与风险控制领域的创新尝试。</div>
-                    </div>
-                </div>
-            </article>
-
-            <!-- MECH CARD #11 -->
-            <article class="mech-card">
-                <div class="card-header-plate">
-                    <div class="plate-top-row">
-                        <div class="rank-box">
-                            <span class="rank-num">#11</span>
-                            <a href="https://github.com/Panniantong/Agent-Reach" target="_blank" class="repo-title-link">Panniantong/Agent-Reach</a>
-                        </div>
-                        <span class="category-tag">全网数据抓取 / 浏览器智能扩展</span>
-                    </div>
-
-                    <!-- HIGH VISIBILITY EXECUTE TRIGGER LINK -->
-                    <a href="https://github.com/Panniantong/Agent-Reach" target="_blank" class="execute-btn-trigger">
-                        <div class="execute-btn-left">
-                            <span class="btn-pulse-icon"></span>
-                            <span class="btn-text-main">⚡ ACCESS REPOSITORY // 访问仓库</span>
-                        </div>
-                        <span class="btn-jp-badge">[ 外部通信接入 ]</span>
-                    </a>
-                </div>
-
-                <div class="card-body-content">
-                    <div class="stats-hud">
-                        <div class="hud-item"><span class="hud-label">STARS:</span><span class="hud-value highlight-amber">⭐ 65,715</span></div>
-                        <div class="hud-item"><span class="hud-label">FORKS:</span><span class="hud-value">🍴 5,457</span></div>
-                        <div class="hud-item"><span class="hud-label">LANG:</span><span class="hud-value">🔤 Python</span></div>
-                    </div>
-
-                    <div class="spec-block">
-                        <div class="spec-header">
-                            <span class="spec-tag">📝 ORIGINAL DESC // 仓库原简介</span>
-                        </div>
-                        <div class="spec-body quote">Give your AI agent eyes to see the entire internet. Read & search Twitter, Reddit, YouTube, GitHub, Bilibili, XiaoHongShu — one CLI, zero API fees.</div>
-                    </div>
-
-                    <div class="spec-block critical">
-                        <div class="spec-header">
-                            <span class="spec-tag">🎯 PAIN POINT & BACKGROUND // 痛点与背景</span>
-                        </div>
-                        <div class="spec-body">AI Agent 在获取社交媒体与特定网站最新内容时，容易触发反爬虫封禁或受到复杂动态渲染限制。</div>
-                    </div>
-
-                    <div class="spec-block breakthrough">
-                        <div class="spec-header">
-                            <span class="spec-tag">⚡ CORE BREAKTHROUGH // 核心突破与功能</span>
-                        </div>
-                        <div class="spec-body spec-body-highlight">基于 Playwright 构建的 Agent 全网抓取强化工具，支持突破复杂页面限制自动提取结构化数据。</div>
-                    </div>
-
-                    <div class="spec-block">
-                        <div class="spec-header">
-                            <span class="spec-tag">🛠️ TECH HIGHLIGHTS // 关键技术亮点</span>
-                        </div>
-                        <div class="spec-body">1. 反爬虫对抗机制：内置真实浏览器指纹伪装与请求频率平滑策略；2. 结构化提取引擎：自动将动态页面转化为干净的 Markdown 格式。</div>
-                    </div>
-
-                    <div class="spec-block">
-                        <div class="spec-header">
-                            <span class="spec-tag">👥 USE CASES // 适用场景</span>
-                        </div>
-                        <div class="spec-body">需要进行自动化全网情报搜集、社交媒体数据分析与知识库构建的 AI 场景。</div>
-                    </div>
-
-                    <div class="spec-block insight">
-                        <div class="spec-header">
-                            <span class="spec-tag">💡 ARCHITECTURE INSIGHT // 架构启示</span>
-                        </div>
-                        <div class="spec-body spec-body-highlight">提升 Agent 全网数据获取能力与抗封禁特性的利器。</div>
-                    </div>
-                </div>
-            </article>
-
-            <!-- MECH CARD #12 -->
-            <article class="mech-card">
-                <div class="card-header-plate">
-                    <div class="plate-top-row">
-                        <div class="rank-box">
-                            <span class="rank-num">#12</span>
-                            <a href="https://github.com/Alishahryar1/free-claude-code" target="_blank" class="repo-title-link">Alishahryar1/free-claude-code</a>
-                        </div>
-                        <span class="category-tag">AI 编程工具 / Claude Code 开源替代</span>
-                    </div>
-
-                    <!-- HIGH VISIBILITY EXECUTE TRIGGER LINK -->
-                    <a href="https://github.com/Alishahryar1/free-claude-code" target="_blank" class="execute-btn-trigger">
-                        <div class="execute-btn-left">
-                            <span class="btn-pulse-icon"></span>
-                            <span class="btn-text-main">⚡ ACCESS REPOSITORY // 访问仓库</span>
-                        </div>
-                        <span class="btn-jp-badge">[ 外部通信接入 ]</span>
-                    </a>
-                </div>
-
-                <div class="card-body-content">
-                    <div class="stats-hud">
-                        <div class="hud-item"><span class="hud-label">STARS:</span><span class="hud-value highlight-amber">⭐ 44,046</span></div>
-                        <div class="hud-item"><span class="hud-label">FORKS:</span><span class="hud-value">🍴 7,268</span></div>
-                        <div class="hud-item"><span class="hud-label">LANG:</span><span class="hud-value">🔤 Python</span></div>
-                    </div>
-
-                    <div class="spec-block">
-                        <div class="spec-header">
-                            <span class="spec-tag">📝 ORIGINAL DESC // 仓库原简介</span>
-                        </div>
-                        <div class="spec-body quote">Use Claude Code, Codex and Pi for free from your terminal, app, IDE, or phone like OpenClaw</div>
-                    </div>
-
-                    <div class="spec-block critical">
-                        <div class="spec-header">
-                            <span class="spec-tag">🎯 PAIN POINT & BACKGROUND // 痛点与背景</span>
-                        </div>
-                        <div class="spec-body">官方 Claude Code 工具存在高昂 API 使用门槛与区域限制，开发者难以在本地自由拓展或更换底座模型。</div>
-                    </div>
-
-                    <div class="spec-block breakthrough">
-                        <div class="spec-header">
-                            <span class="spec-tag">⚡ CORE BREAKTHROUGH // 核心突破与功能</span>
-                        </div>
-                        <div class="spec-body spec-body-highlight">Claude Code 的开源免费替代版，支持在本地终端调用多种大语言模型进行代码自动生成与重构。</div>
-                    </div>
-
-                    <div class="spec-block">
-                        <div class="spec-header">
-                            <span class="spec-tag">🛠️ TECH HIGHLIGHTS // 关键技术亮点</span>
-                        </div>
-                        <div class="spec-body">1. 多模型适配引擎：支持对接 OpenAI、DeepSeek 与本地 Ollama/vLLM 模型；2. 命令行交互界面：提供快捷的代码上下文解析、文件编辑与命令执行能力。</div>
-                    </div>
-
-                    <div class="spec-block">
-                        <div class="spec-header">
-                            <span class="spec-tag">👥 USE CASES // 适用场景</span>
-                        </div>
-                        <div class="spec-body">希望无门槛体验命令行 AI 编程、自定义底层模型的开发者。</div>
-                    </div>
-
-                    <div class="spec-block insight">
-                        <div class="spec-header">
-                            <span class="spec-tag">💡 ARCHITECTURE INSIGHT // 架构启示</span>
-                        </div>
-                        <div class="spec-body spec-body-highlight">轻量免费的终端 AI 编程替代方案。</div>
-                    </div>
-                </div>
-            </article>
-
-            <!-- MECH CARD #13 -->
-            <article class="mech-card">
-                <div class="card-header-plate">
-                    <div class="plate-top-row">
-                        <div class="rank-box">
-                            <span class="rank-num">#13</span>
-                            <a href="https://github.com/iv-org/invidious" target="_blank" class="repo-title-link">iv-org/invidious</a>
-                        </div>
-                        <span class="category-tag">隐私保护 / 开源视频轻量前端</span>
-                    </div>
-
-                    <!-- HIGH VISIBILITY EXECUTE TRIGGER LINK -->
-                    <a href="https://github.com/iv-org/invidious" target="_blank" class="execute-btn-trigger">
-                        <div class="execute-btn-left">
-                            <span class="btn-pulse-icon"></span>
-                            <span class="btn-text-main">⚡ ACCESS REPOSITORY // 访问仓库</span>
-                        </div>
-                        <span class="btn-jp-badge">[ 外部通信接入 ]</span>
-                    </a>
-                </div>
-
-                <div class="card-body-content">
-                    <div class="stats-hud">
-                        <div class="hud-item"><span class="hud-label">STARS:</span><span class="hud-value highlight-amber">⭐ 22,272</span></div>
-                        <div class="hud-item"><span class="hud-label">FORKS:</span><span class="hud-value">🍴 2,479</span></div>
-                        <div class="hud-item"><span class="hud-label">LANG:</span><span class="hud-value">🔤 Crystal</span></div>
-                    </div>
-
-                    <div class="spec-block">
-                        <div class="spec-header">
-                            <span class="spec-tag">📝 ORIGINAL DESC // 仓库原简介</span>
-                        </div>
-                        <div class="spec-body quote">Invidious is an alternative front-end to YouTube</div>
-                    </div>
-
-                    <div class="spec-block critical">
-                        <div class="spec-header">
-                            <span class="spec-tag">🎯 PAIN POINT & BACKGROUND // 痛点与背景</span>
-                        </div>
-                        <div class="spec-body">传统视频平台包含大量追踪脚本与广告，导致页面加载缓慢且用户隐私容易泄露。</div>
-                    </div>
-
-                    <div class="spec-block breakthrough">
-                        <div class="spec-header">
-                            <span class="spec-tag">⚡ CORE BREAKTHROUGH // 核心突破与功能</span>
-                        </div>
-                        <div class="spec-body spec-body-highlight">YouTube 开源轻量级替代前端，无需 Google 账号即可流畅观看视频并提供绝对隐私保护。</div>
-                    </div>
-
-                    <div class="spec-block">
-                        <div class="spec-header">
-                            <span class="spec-tag">🛠️ TECH HIGHLIGHTS // 关键技术亮点</span>
-                        </div>
-                        <div class="spec-body">1. 基于 Crystal 语言：极高运行效率与微量内存开销；2. 无广告与追踪器：自动过滤追踪脚本与视频广告，内置轻量化 API。</div>
-                    </div>
-
-                    <div class="spec-block">
-                        <div class="spec-header">
-                            <span class="spec-tag">👥 USE CASES // 适用场景</span>
-                        </div>
-                        <div class="spec-body">追求隐私保护、希望无广告干净流畅观看视频的用户与自建服务爱好者。</div>
-                    </div>
-
-                    <div class="spec-block insight">
-                        <div class="spec-header">
-                            <span class="spec-tag">💡 ARCHITECTURE INSIGHT // 架构启示</span>
-                        </div>
-                        <div class="spec-body spec-body-highlight">轻量化与隐私保护视频前端的经典开源标杆。</div>
-                    </div>
-                </div>
-            </article>
-
-            <!-- MECH CARD #14 -->
-            <article class="mech-card">
-                <div class="card-header-plate">
-                    <div class="plate-top-row">
-                        <div class="rank-box">
-                            <span class="rank-num">#14</span>
-                            <a href="https://github.com/livekit/agents" target="_blank" class="repo-title-link">livekit/agents</a>
-                        </div>
-                        <span class="category-tag">实时音视频 / AI Voice Agent 框架</span>
-                    </div>
-
-                    <!-- HIGH VISIBILITY EXECUTE TRIGGER LINK -->
-                    <a href="https://github.com/livekit/agents" target="_blank" class="execute-btn-trigger">
-                        <div class="execute-btn-left">
-                            <span class="btn-pulse-icon"></span>
-                            <span class="btn-text-main">⚡ ACCESS REPOSITORY // 访问仓库</span>
-                        </div>
-                        <span class="btn-jp-badge">[ 外部通信接入 ]</span>
-                    </a>
-                </div>
-
-                <div class="card-body-content">
-                    <div class="stats-hud">
-                        <div class="hud-item"><span class="hud-label">STARS:</span><span class="hud-value highlight-amber">⭐ 11,984</span></div>
-                        <div class="hud-item"><span class="hud-label">FORKS:</span><span class="hud-value">🍴 3,458</span></div>
-                        <div class="hud-item"><span class="hud-label">LANG:</span><span class="hud-value">🔤 Python</span></div>
-                    </div>
-
-                    <div class="spec-block">
-                        <div class="spec-header">
-                            <span class="spec-tag">📝 ORIGINAL DESC // 仓库原简介</span>
-                        </div>
-                        <div class="spec-body quote">A framework for building realtime voice AI agents 🤖🎙️📹</div>
-                    </div>
-
-                    <div class="spec-block critical">
-                        <div class="spec-header">
-                            <span class="spec-tag">🎯 PAIN POINT & BACKGROUND // 痛点与背景</span>
-                        </div>
-                        <div class="spec-body">构建实时语音交互 AI 时，传统 HTTP/WebSocket 架构难以保证超低延迟（<500ms）的音视频流传输。</div>
-                    </div>
-
-                    <div class="spec-block breakthrough">
-                        <div class="spec-header">
-                            <span class="spec-tag">⚡ CORE BREAKTHROUGH // 核心突破与功能</span>
-                        </div>
-                        <div class="spec-body spec-body-highlight">LiveKit 官方推出的构建实时多模态 AI Agent 开发框架，支持低延迟实时语音与视频交互。</div>
-                    </div>
-
-                    <div class="spec-block">
-                        <div class="spec-header">
-                            <span class="spec-tag">🛠️ TECH HIGHLIGHTS // 关键技术亮点</span>
-                        </div>
-                        <div class="spec-body">1. WebRTC 全双工通信：实现打断式语音对话与毫秒级端到端延迟；2. 插件化生态：集成 OpenAI Realtime、Deepgram、Cartesia 等语音模型。</div>
-                    </div>
-
-                    <div class="spec-block">
-                        <div class="spec-header">
-                            <span class="spec-tag">👥 USE CASES // 适用场景</span>
-                        </div>
-                        <div class="spec-body">开发实时语音客服、AI 虚拟人、数字人全双工对话以及实时视频分析应用。</div>
-                    </div>
-
-                    <div class="spec-block insight">
-                        <div class="spec-header">
-                            <span class="spec-tag">💡 ARCHITECTURE INSIGHT // 架构启示</span>
-                        </div>
-                        <div class="spec-body spec-body-highlight">实时多模态语音/视频 AI 智能体开发的标准基础设施。</div>
-                    </div>
-                </div>
-            </article>
-
-            <!-- MECH CARD #15 -->
-            <article class="mech-card">
-                <div class="card-header-plate">
-                    <div class="plate-top-row">
-                        <div class="rank-box">
-                            <span class="rank-num">#15</span>
-                            <a href="https://github.com/usekaneo/kaneo" target="_blank" class="repo-title-link">usekaneo/kaneo</a>
-                        </div>
-                        <span class="category-tag">开源项目管理 / 敏捷任务看板</span>
-                    </div>
-
-                    <!-- HIGH VISIBILITY EXECUTE TRIGGER LINK -->
-                    <a href="https://github.com/usekaneo/kaneo" target="_blank" class="execute-btn-trigger">
-                        <div class="execute-btn-left">
-                            <span class="btn-pulse-icon"></span>
-                            <span class="btn-text-main">⚡ ACCESS REPOSITORY // 访问仓库</span>
-                        </div>
-                        <span class="btn-jp-badge">[ 外部通信接入 ]</span>
-                    </a>
-                </div>
-
-                <div class="card-body-content">
-                    <div class="stats-hud">
-                        <div class="hud-item"><span class="hud-label">STARS:</span><span class="hud-value highlight-amber">⭐ 6,862</span></div>
-                        <div class="hud-item"><span class="hud-label">FORKS:</span><span class="hud-value">🍴 553</span></div>
-                        <div class="hud-item"><span class="hud-label">LANG:</span><span class="hud-value">🔤 TypeScript</span></div>
-                    </div>
-
-                    <div class="spec-block">
-                        <div class="spec-header">
-                            <span class="spec-tag">📝 ORIGINAL DESC // 仓库原简介</span>
-                        </div>
-                        <div class="spec-body quote">Open source project management that works for you, not against you.</div>
-                    </div>
-
-                    <div class="spec-block critical">
-                        <div class="spec-header">
-                            <span class="spec-tag">🎯 PAIN POINT & BACKGROUND // 痛点与背景</span>
-                        </div>
-                        <div class="spec-body">商业项目管理软件往往过于臃肿且收费昂贵，本地私有化部署门槛较高。</div>
-                    </div>
-
-                    <div class="spec-block breakthrough">
-                        <div class="spec-header">
-                            <span class="spec-tag">⚡ CORE BREAKTHROUGH // 核心突破与功能</span>
-                        </div>
-                        <div class="spec-body spec-body-highlight">现代化轻量级开源项目管理工具，提供类似 Linear 的极致顺滑任务看板与协作体验。</div>
-                    </div>
-
-                    <div class="spec-block">
-                        <div class="spec-header">
-                            <span class="spec-tag">🛠️ TECH HIGHLIGHTS // 关键技术亮点</span>
-                        </div>
-                        <div class="spec-body">1. 现代化全栈架构：基于 React 与 Go 开发，响应极速且开箱即用；2. 完全私有化部署：支持 Docker 一键部署，数据完全自主掌控。</div>
-                    </div>
-
-                    <div class="spec-block">
-                        <div class="spec-header">
-                            <span class="spec-tag">👥 USE CASES // 适用场景</span>
-                        </div>
-                        <div class="spec-body">需要私有化项目管理、任务看板与团队敏捷协作的开源团队与初创企业。</div>
-                    </div>
-
-                    <div class="spec-block insight">
-                        <div class="spec-header">
-                            <span class="spec-tag">💡 ARCHITECTURE INSIGHT // 架构启示</span>
-                        </div>
-                        <div class="spec-body spec-body-highlight">轻量极速且支持私有化部署的现代化协作看板。</div>
-                    </div>
-                </div>
-            </article>
-
-        </main>
-
-        <footer class="tactical-footer">
-            <div>TACTICAL DATA TERMINAL // POWERED BY REM & RAM CORE</div>
-            <div style="margin-top: 4px; opacity: 0.6;">SYSTEM VERSION 4.0.0-MECH // ALL SYSTEMS OPERATIONAL</div>
-        </footer>
-
-    </div>
+                <div class="rank-tag">#05</div>
+            </div>
+            <div class="repo-stats">⭐ <span>12,089</span> Stars | 🍴 <span>1,144</span> Forks</div>
+            <div class="intel-block highlight">
+                <div class="intel-label">⚡ 核心突破</div>
+                <div class="intel-body">腾讯云开源的团队级 Agent 记忆中枢，将对话、文档与代码统一转化为四大可复用记忆资产。</div>
+            </div>
+            <div class="trigger-wrapper">
+                <a href="https://github.com/TencentCloud/TencentDB-Agent-Memory" target="_blank" class="access-btn">
+                    <span>⚡ EXECUTE ACCESS // 调阅仓库</span>
+                    <span class="btn-glitch">LINK.05</span>
+                </a>
+            </div>
+        </article>
+
+    </main>
+
+    <!-- JS 特效：数码解密与按压悬停闪烁 -->
+    <script>
+        document.querySelectorAll('.access-btn').forEach(btn => {
+            btn.addEventListener('touchstart', function() {
+                this.style.transform = 'scale(0.96)';
+                this.style.boxShadow = '0 0 50px rgba(255, 42, 85, 1)';
+            });
+            btn.addEventListener('touchend', function() {
+                this.style.transform = 'scale(1)';
+            });
+        });
+    </script>
 </body>
 </html>
