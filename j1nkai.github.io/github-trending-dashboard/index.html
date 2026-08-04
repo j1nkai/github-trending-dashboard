@@ -3,18 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>GITHUB TRENDING // 日式高级机核战术终端</title>
+    <title>GITHUB TRENDING // 日式重型机甲战术情报站</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:ital,wght@0,500;0,700;1,700&family=JetBrains+Mono:wght@400;600;800&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-deep: #090b0e;
-            --panel-bg: #11141c;
+            --bg-deep: #080a0d;
+            --panel-bg: #10141d;
             --panel-border: rgba(255, 255, 255, 0.12);
             --panel-border-bright: #3b82f6;
             
             --mech-red: #ff2a55;
+            --mech-red-glow: rgba(255, 42, 85, 0.5);
             --mech-blue: #00d2ff;
             --mech-amber: #f59e0b;
             --mech-green: #10b981;
@@ -39,21 +40,20 @@
             color: var(--text-primary);
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Hiragino Sans", sans-serif;
             min-height: 100vh;
-            padding: 16px 12px 60px;
+            padding: 24px 16px 80px;
             background-image: 
                 linear-gradient(rgba(0, 210, 255, 0.03) 1px, transparent 1px),
                 linear-gradient(90deg, rgba(0, 210, 255, 0.03) 1px, transparent 1px);
             background-size: 32px 32px;
             position: relative;
-            overflow-x: hidden;
         }
 
-        /* 动态背景扫描线特效 */
+        /* 动态背景扫描线 */
         body::before {
             content: "";
             position: fixed;
             top: 0; left: 0; right: 0; bottom: 0;
-            background: linear-gradient(180deg, transparent 50%, rgba(0, 0, 0, 0.25) 51%);
+            background: linear-gradient(180deg, transparent 50%, rgba(0, 0, 0, 0.3) 51%);
             background-size: 100% 4px;
             pointer-events: none;
             z-index: 99;
@@ -61,22 +61,22 @@
         }
 
         .hud-header {
-            max-width: 900px;
-            margin: 0 auto 24px;
-            background: rgba(17, 20, 28, 0.85);
+            max-width: 860px;
+            margin: 0 auto 32px auto;
+            background: rgba(16, 20, 29, 0.9);
             backdrop-filter: blur(12px);
             border: 1px solid var(--panel-border-bright);
-            padding: 20px 16px;
+            padding: 24px 20px;
             position: relative;
             clip-path: polygon(0 0, 100% 0, 100% calc(100% - 15px), calc(100% - 15px) 100%, 0 100%);
-            box-shadow: 0 0 30px rgba(0, 210, 255, 0.15);
+            box-shadow: 0 0 35px rgba(0, 210, 255, 0.18);
         }
 
         .hud-meta {
             display: flex;
             justify-content: space-between;
             font-family: var(--font-mono);
-            font-size: 0.75rem;
+            font-size: 0.8rem;
             color: var(--mech-blue);
             margin-bottom: 8px;
             letter-spacing: 1px;
@@ -84,7 +84,7 @@
 
         .hud-title {
             font-family: var(--font-mech);
-            font-size: 1.8rem;
+            font-size: 2rem;
             font-weight: 700;
             color: #fff;
             letter-spacing: 1.5px;
@@ -93,30 +93,33 @@
 
         .hud-title span {
             color: var(--mech-red);
-            text-shadow: 0 0 10px rgba(255, 42, 85, 0.6);
+            text-shadow: 0 0 12px var(--mech-red-glow);
         }
 
+        /* 核心布局：强制单列垂直排列 (Single Column Layout) */
         .container {
-            max-width: 900px;
+            max-width: 860px;
             margin: 0 auto;
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
+            display: flex !important;
+            flex-direction: column !important;
+            gap: 24px;
         }
 
-        /* 高级机甲卡片 */
+        /* 机甲单卡片结构 */
         .mech-card {
+            width: 100% !important;
             background: var(--panel-bg);
             border: 1px solid var(--panel-border);
-            padding: 20px 16px;
+            padding: 24px 20px;
             position: relative;
             clip-path: polygon(0 0, calc(100% - 20px) 0, 100% 20px, 100% 100%, 20px 100%, 0 calc(100% - 20px));
             transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
         }
 
         .mech-card:hover {
             border-color: var(--mech-blue);
-            box-shadow: 0 0 25px rgba(0, 210, 255, 0.2);
+            box-shadow: 0 0 30px rgba(0, 210, 255, 0.25);
             transform: translateY(-2px);
         }
 
@@ -124,45 +127,50 @@
             display: flex;
             justify-content: space-between;
             align-items: flex-start;
-            margin-bottom: 12px;
-            border-bottom: 1px dashed rgba(255, 255, 255, 0.1);
-            padding-bottom: 10px;
+            margin-bottom: 14px;
+            border-bottom: 1px dashed rgba(255, 255, 255, 0.12);
+            padding-bottom: 12px;
         }
 
         .rank-tag {
             font-family: var(--font-mech);
-            font-size: 1.5rem;
+            font-size: 1.6rem;
             font-weight: 700;
             color: var(--mech-red);
             background: rgba(255, 42, 85, 0.12);
             border: 1px solid var(--mech-red);
-            padding: 2px 12px;
+            padding: 2px 14px;
             clip-path: polygon(0 0, 100% 0, 100% calc(100% - 6px), calc(100% - 6px) 100%, 0 100%);
+            text-shadow: 0 0 10px var(--mech-red-glow);
         }
 
         .repo-title {
             font-family: var(--font-mono);
-            font-size: 1.2rem;
+            font-size: 1.3rem;
             font-weight: 700;
             color: #ffffff;
+            word-break: break-all;
         }
 
         .repo-tag {
             display: inline-block;
             font-family: var(--font-mono);
-            font-size: 0.75rem;
+            font-size: 0.8rem;
             color: var(--mech-blue);
             background: rgba(0, 210, 255, 0.1);
             border: 1px solid rgba(0, 210, 255, 0.3);
-            padding: 2px 8px;
-            margin-top: 4px;
+            padding: 2px 10px;
+            margin-top: 6px;
         }
 
         .repo-stats {
             font-family: var(--font-mono);
-            font-size: 0.85rem;
+            font-size: 0.88rem;
             color: var(--text-secondary);
-            margin-bottom: 16px;
+            margin-bottom: 18px;
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
         }
 
         .repo-stats span {
@@ -170,32 +178,45 @@
             font-weight: 600;
         }
 
+        /* 战术分析情报块 */
+        .intel-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
         .intel-block {
-            background: rgba(0, 0, 0, 0.4);
+            background: rgba(0, 0, 0, 0.45);
             border-left: 3px solid var(--panel-border-bright);
-            padding: 10px 12px;
-            margin-bottom: 10px;
+            padding: 12px 14px;
         }
 
         .intel-block.highlight {
             border-left-color: var(--mech-red);
-            background: rgba(255, 42, 85, 0.05);
+            background: rgba(255, 42, 85, 0.06);
         }
 
         .intel-label {
             font-family: var(--font-mono);
-            font-size: 0.75rem;
+            font-size: 0.78rem;
             color: var(--text-muted);
-            margin-bottom: 4px;
+            margin-bottom: 6px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .intel-block.highlight .intel-label {
+            color: var(--mech-red);
         }
 
         .intel-body {
-            font-size: 0.95rem;
+            font-size: 0.98rem;
             color: var(--text-primary);
             line-height: 1.6;
         }
 
-        /* 💥 爆目发光与数码解密特效按键 (EXECUTE ACCESS TRIGGER) */
+        /* 爆目发光按键 */
         .trigger-wrapper {
             margin-top: 16px;
         }
@@ -210,7 +231,7 @@
             background: linear-gradient(135deg, #ff2a55 0%, #990022 100%);
             color: #ffffff !important;
             font-family: var(--font-mech);
-            font-size: 1.05rem;
+            font-size: 1.1rem;
             font-weight: 700;
             text-decoration: none !important;
             text-transform: uppercase;
@@ -224,7 +245,6 @@
             transition: all 0.2s ease;
         }
 
-        /* 激光脉冲扫过动画 */
         .access-btn::after {
             content: '';
             position: absolute;
@@ -250,16 +270,18 @@
 
         .btn-glitch {
             font-family: var(--font-mono);
-            font-size: 0.75rem;
+            font-size: 0.78rem;
             background: rgba(0, 0, 0, 0.4);
             padding: 2px 8px;
             border: 1px solid rgba(255, 255, 255, 0.2);
             color: var(--mech-blue);
         }
 
-        @media (max-width: 480px) {
-            .hud-title { font-size: 1.3rem; }
+        @media (max-width: 600px) {
+            body { padding: 12px 8px 40px; }
+            .hud-title { font-size: 1.4rem; }
             .access-btn { font-size: 0.95rem; padding: 14px 12px; }
+            .repo-title { font-size: 1.1rem; }
         }
     </style>
 </head>
@@ -268,11 +290,11 @@
     <header class="hud-header">
         <div class="hud-meta">
             <span>SYS.ID // GITHUB-TRENDING-HUD</span>
-            <span>[ 战术实时在线 ]</span>
+            <span>[ 战术单列模式 ]</span>
         </div>
         <h1 class="hud-title"><span>⚡ GITHUB TRENDING</span> TOP 15</h1>
-        <div style="font-size:0.85rem; color:var(--text-secondary); margin-top:6px; font-family:var(--font-mono);">
-            纯中文战术级深度解析 // 双核驱动
+        <div style="font-size:0.88rem; color:var(--text-secondary); margin-top:6px; font-family:var(--font-mono);">
+            纯中文战术级深度解析 // 单列垂直贯穿版
         </div>
     </header>
 
@@ -290,17 +312,19 @@
             <div class="repo-stats">
                 ⭐ <span>27,107</span> Stars &nbsp;|&nbsp; 🍴 <span>2,973</span> Forks &nbsp;|&nbsp; 🔤 Jupyter Notebook
             </div>
-            <div class="intel-block">
-                <div class="intel-label">📝 官方原简介</div>
-                <div class="intel-body">AirLLM 70B inference with single 4GB GPU</div>
-            </div>
-            <div class="intel-block highlight">
-                <div class="intel-label">🎯 痛点与背景</div>
-                <div class="intel-body">本地推理 70B 级大模型通常需要 140GB+ 显存，消费级 4GB 显卡根本无法调入模型，部署门槛极高。</div>
-            </div>
-            <div class="intel-block">
-                <div class="intel-label">⚡ 核心突破与功能</div>
-                <div class="intel-body">在单张 4GB 显存的普通显卡上直接运行 70B 规模超大语言模型推理，且无需对模型权重进行高损量化。</div>
+            <div class="intel-grid">
+                <div class="intel-block">
+                    <div class="intel-label">📝 官方原简介</div>
+                    <div class="intel-body">AirLLM 70B inference with single 4GB GPU</div>
+                </div>
+                <div class="intel-block highlight">
+                    <div class="intel-label">🎯 痛点与背景</div>
+                    <div class="intel-body">本地推理 70B 级大模型通常需要 140GB+ 显存，消费级 4GB 显卡根本无法调入模型，部署门槛极高。</div>
+                </div>
+                <div class="intel-block">
+                    <div class="intel-label">⚡ 核心突破与功能</div>
+                    <div class="intel-body">在单张 4GB 显存的普通显卡上直接运行 70B 规模超大语言模型推理，且无需对模型权重进行高损量化。</div>
+                </div>
             </div>
             <div class="trigger-wrapper">
                 <a href="https://github.com/lyogavin/airllm" target="_blank" class="access-btn">
@@ -322,17 +346,19 @@
             <div class="repo-stats">
                 ⭐ <span>158</span> Stars &nbsp;|&nbsp; 🍴 <span>18</span> Forks &nbsp;|&nbsp; 🔤 Python
             </div>
-            <div class="intel-block">
-                <div class="intel-label">📝 官方原简介</div>
-                <div class="intel-body">AI-assisted reverse engineering & security audit skill package</div>
-            </div>
-            <div class="intel-block highlight">
-                <div class="intel-label">🎯 痛点与背景</div>
-                <div class="intel-body">安全工程师进行逆向工程与渗透测试时，需频繁切换数十种命令行工具，缺乏标准化且智能化的 AI 调度助手。</div>
-            </div>
-            <div class="intel-block">
-                <div class="intel-label">⚡ 核心突破与功能</div>
-                <div class="intel-body">专为 AI 代码客户端打造的自动化安全逆向技能包，实现意图自动识别、工具按需自举与经验库自动进化。</div>
+            <div class="intel-grid">
+                <div class="intel-block">
+                    <div class="intel-label">📝 官方原简介</div>
+                    <div class="intel-body">AI-assisted reverse engineering & security audit skill package</div>
+                </div>
+                <div class="intel-block highlight">
+                    <div class="intel-label">🎯 痛点与背景</div>
+                    <div class="intel-body">安全工程师进行逆向工程与渗透测试时，需频繁切换数十种命令行工具，缺乏标准化且智能化的 AI 调度助手。</div>
+                </div>
+                <div class="intel-block">
+                    <div class="intel-label">⚡ 核心突破与功能</div>
+                    <div class="intel-body">专为 AI 代码客户端打造的自动化安全逆向技能包，实现意图自动识别、工具按需自举与经验库自动进化。</div>
+                </div>
             </div>
             <div class="trigger-wrapper">
                 <a href="https://github.com/zhaoxuya520/reverse-skill" target="_blank" class="access-btn">
@@ -352,9 +378,11 @@
                 <div class="rank-tag">#03</div>
             </div>
             <div class="repo-stats">⭐ <span>8,241</span> Stars | 🍴 <span>544</span> Forks</div>
-            <div class="intel-block highlight">
-                <div class="intel-label">⚡ 核心突破</div>
-                <div class="intel-body">基于 Rust 的高性能 PDF 结构检查与文本提取库，可毫秒级智能检测扫描件与文本型 PDF 并实现自动化分流。</div>
+            <div class="intel-grid">
+                <div class="intel-block highlight">
+                    <div class="intel-label">⚡ 核心突破</div>
+                    <div class="intel-body">基于 Rust 的高性能 PDF 结构检查与文本提取库，可毫秒级智能检测扫描件与文本型 PDF 并实现自动化分流。</div>
+                </div>
             </div>
             <div class="trigger-wrapper">
                 <a href="https://github.com/firecrawl/pdf-inspector" target="_blank" class="access-btn">
@@ -374,9 +402,11 @@
                 <div class="rank-tag">#04</div>
             </div>
             <div class="repo-stats">⭐ <span>29,932</span> Stars | 🍴 <span>1,920</span> Forks</div>
-            <div class="intel-block highlight">
-                <div class="intel-label">⚡ 核心突破</div>
-                <div class="intel-body">专为 DeepSeek 原生设计的终端 AI 编程助手，围绕前缀缓存稳定性专门构建，支持长期常驻后台高效运行。</div>
+            <div class="intel-grid">
+                <div class="intel-block highlight">
+                    <div class="intel-label">⚡ 核心突破</div>
+                    <div class="intel-body">专为 DeepSeek 原生设计的终端 AI 编程助手，围绕前缀缓存稳定性专门构建，支持长期常驻后台高效运行。</div>
+                </div>
             </div>
             <div class="trigger-wrapper">
                 <a href="https://github.com/esengine/DeepSeek-Reasonix" target="_blank" class="access-btn">
@@ -396,9 +426,11 @@
                 <div class="rank-tag">#05</div>
             </div>
             <div class="repo-stats">⭐ <span>12,089</span> Stars | 🍴 <span>1,144</span> Forks</div>
-            <div class="intel-block highlight">
-                <div class="intel-label">⚡ 核心突破</div>
-                <div class="intel-body">腾讯云开源的团队级 Agent 记忆中枢，将对话、文档与代码统一转化为四大可复用记忆资产。</div>
+            <div class="intel-grid">
+                <div class="intel-block highlight">
+                    <div class="intel-label">⚡ 核心突破</div>
+                    <div class="intel-body">腾讯云开源的团队级 Agent 记忆中枢，将对话、文档与代码统一转化为四大可复用记忆资产。</div>
+                </div>
             </div>
             <div class="trigger-wrapper">
                 <a href="https://github.com/TencentCloud/TencentDB-Agent-Memory" target="_blank" class="access-btn">
@@ -410,17 +442,5 @@
 
     </main>
 
-    <!-- JS 特效：数码解密与按压悬停闪烁 -->
-    <script>
-        document.querySelectorAll('.access-btn').forEach(btn => {
-            btn.addEventListener('touchstart', function() {
-                this.style.transform = 'scale(0.96)';
-                this.style.boxShadow = '0 0 50px rgba(255, 42, 85, 1)';
-            });
-            btn.addEventListener('touchend', function() {
-                this.style.transform = 'scale(1)';
-            });
-        });
-    </script>
 </body>
 </html>
