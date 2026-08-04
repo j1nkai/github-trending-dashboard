@@ -3,640 +3,1070 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GitHub Daily Trending Cyberpunk Dashboard</title>
+    <title>GitHub Daily Trending | 深度技术日报</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --bg: #0d0e11;
+            --surface: #14161b;
+            --surface-hover: #1a1d24;
+            --border: #232730;
+            --border-subtle: #1c1f26;
+            --text-main: #f0f3f6;
+            --text-muted: #8b949e;
+            --text-subtle: #57606a;
+            --accent: #38bdf8;
+            --accent-bg: rgba(56, 189, 248, 0.08);
+            --accent-border: rgba(56, 189, 248, 0.2);
+            --highlight: #34d399;
+            --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+            --font-mono: 'JetBrains Mono', SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
         body {
-            background-color: #0b0e14;
-            color: #e6edf3;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            margin: 0;
-            padding: 20px;
+            background-color: var(--bg);
+            color: var(--text-main);
+            font-family: var(--font-sans);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            padding: 40px 20px 80px;
         }
+
         .header {
-            text-align: center;
-            padding: 20px 0;
-            border-bottom: 2px solid #2f3542;
-            margin-bottom: 30px;
+            max-width: 1040px;
+            margin: 0 auto 40px;
+            padding-bottom: 24px;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            flex-wrap: wrap;
+            gap: 16px;
         }
-        .header h1 {
-            color: #00f2fe;
-            font-size: 2.2rem;
-            margin: 0;
-            text-shadow: 0 0 10px rgba(0, 242, 254, 0.5);
+
+        .header-brand {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
         }
-        .header p {
-            color: #a4b0be;
-            margin-top: 8px;
+
+        .header-title {
+            font-size: 1.75rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            color: var(--text-main);
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
+
+        .header-title svg {
+            color: var(--accent);
+        }
+
+        .header-subtitle {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            font-weight: 400;
+        }
+
+        .header-meta {
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            color: var(--text-subtle);
+            background: var(--surface);
+            padding: 6px 12px;
+            border-radius: 6px;
+            border: 1px solid var(--border-subtle);
+        }
+
         .container {
-            max-width: 1200px;
+            max-width: 1040px;
             margin: 0 auto;
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
         }
+
         .card {
-            background: #161b22;
-            border: 1px solid #30363d;
-            border-radius: 8px;
-            padding: 20px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-            transition: transform 0.2s, border-color 0.2s;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 24px 28px;
+            transition: border-color 0.2s ease, box-shadow 0.2s ease;
         }
+
         .card:hover {
-            border-color: #00f2fe;
-            transform: translateY(-2px);
+            border-color: rgba(56, 189, 248, 0.4);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
         }
-        .card-header {
+
+        .card-top {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 16px;
+            margin-bottom: 14px;
+            flex-wrap: wrap;
+        }
+
+        .repo-meta {
             display: flex;
             align-items: center;
             gap: 12px;
-            margin-bottom: 12px;
             flex-wrap: wrap;
         }
+
         .rank {
-            background: #00f2fe;
-            color: #000;
-            font-weight: bold;
-            padding: 2px 8px;
-            border-radius: 4px;
-            font-size: 1.1rem;
-        }
-        .title a {
-            color: #4facfe;
-            font-size: 1.3rem;
-            font-weight: bold;
-            text-decoration: none;
-        }
-        .title a:hover {
-            text-decoration: underline;
-        }
-        .tag {
-            background: #23272e;
-            color: #00f2fe;
-            padding: 2px 8px;
-            border-radius: 4px;
-            font-size: 0.85rem;
-            border: 1px solid #00f2fe;
-        }
-        .stats {
-            color: #8b949e;
+            font-family: var(--font-mono);
             font-size: 0.9rem;
-            margin-bottom: 16px;
+            font-weight: 600;
+            color: var(--accent);
+            background: var(--accent-bg);
+            border: 1px solid var(--accent-border);
+            padding: 2px 8px;
+            border-radius: 6px;
         }
-        .section {
-            margin-top: 12px;
+
+        .repo-name {
+            font-size: 1.25rem;
+            font-weight: 600;
+            letter-spacing: -0.01em;
         }
-        .sec-title {
-            color: #a4b0be;
-            font-size: 0.85rem;
-            font-weight: bold;
-            margin-bottom: 4px;
-            text-transform: uppercase;
+
+        .repo-name a {
+            color: var(--text-main);
+            text-decoration: none;
+            transition: color 0.15s ease;
         }
-        .sec-body {
-            color: #c9d1d9;
-            font-size: 0.95rem;
-            line-height: 1.5;
+
+        .repo-name a:hover {
+            color: var(--accent);
         }
-        .highlight {
-            color: #2ed573;
+
+        .tag {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid var(--border);
+            padding: 3px 10px;
+            border-radius: 20px;
             font-weight: 500;
+        }
+
+        .stats-group {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            font-family: var(--font-mono);
+            font-size: 0.825rem;
+            color: var(--text-muted);
+            margin-bottom: 20px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid var(--border-subtle);
+        }
+
+        .stat-item {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .stat-item svg {
+            color: var(--text-subtle);
+        }
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 16px;
+        }
+
+        .section-block {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .label {
+            font-size: 0.775rem;
+            font-weight: 600;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            color: var(--text-subtle);
+        }
+
+        .text-desc {
+            font-size: 0.925rem;
+            color: var(--text-muted);
+            font-style: italic;
+        }
+
+        .text-body {
+            font-size: 0.95rem;
+            color: #d1d5db;
+            line-height: 1.6;
+        }
+
+        .highlights-list {
+            margin: 0;
+            padding-left: 20px;
+            color: #d1d5db;
+            font-size: 0.95rem;
+        }
+
+        .highlights-list li {
+            margin-bottom: 4px;
+        }
+
+        .highlight-box {
+            background: rgba(52, 211, 153, 0.05);
+            border: 1px solid rgba(52, 211, 153, 0.15);
+            border-radius: 8px;
+            padding: 12px 16px;
+            margin-top: 4px;
+        }
+
+        .highlight-box .text-body {
+            color: var(--highlight);
+            font-weight: 500;
+        }
+
+        @media (max-width: 640px) {
+            body {
+                padding: 20px 14px 40px;
+            }
+            .card {
+                padding: 18px 16px;
+            }
+            .header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="header">
-        <h1>⚡ GITHUB DAILY TRENDING TOP 15 ⚡</h1>
-        <p>纯中文深度技术解析 | 由 Rem & Ram 实时驱动</p>
-    </div>
-    <div class="container">
-        
-        <div class="card">
-            <div class="card-header">
-                <span class="rank">#1</span>
-                <span class="title"><a href="https://github.com/lyogavin/airllm" target="_blank">lyogavin/airllm</a></span>
-                <span class="tag">大语言模型推理 / 显存极限压缩</span>
-            </div>
-            <div class="stats">
-                <span>⭐ 27107 Stars</span> | <span>🍴 2973 Forks</span> | <span>🔤 Jupyter Notebook</span>
-            </div>
-            <div class="section">
-                <div class="sec-title">📝 仓库原简介</div>
-                <div class="sec-body">AirLLM 70B inference with single 4GB GPU</div>
-            </div>
-            <div class="section">
-                <div class="sec-title">🎯 痛点与背景</div>
-                <div class="sec-body">在本地推理 70B 级别大语言模型时，通常需要 140GB 以上显存，消费级显卡（如 4GB/8GB 显存）完全无法直接载入模型权重，造成极高的硬件部署门槛。</div>
-            </div>
-            <div class="section">
-                <div class="sec-title">⚡ 核心突破与功能</div>
-                <div class="sec-body">AirLLM 实现了在单张 4GB 显存的普通显卡上直接运行 70B 规模超大语言模型推理的能力，且无需对模型权重进行高损量化削减。</div>
-            </div>
-            <div class="section">
-                <div class="sec-title">🛠️ 关键技术亮点</div>
-                <div class="sec-body">1. **逐层按需调入内存**：将 Transformer 网络层按需切分并流式调入 GPU 显存，大幅降低显存占用达 90%；<br>2. **内存与显存张量流式传输**：优化内存与显存传输通道，重叠计算与传输延迟。</div>
-            </div>
-            <div class="section">
-                <div class="sec-title">👥 适用场景</div>
-                <div class="sec-body">适合需要在普通个人电脑、消费级显卡或边缘计算设备上本地运行超大模型推理的开发者与研究人员。</div>
-            </div>
-            <div class="section">
-                <div class="sec-title">💡 架构启示</div>
-                <div class="sec-body highlight">打破硬件壁垒的极限显存优化方案，大幅降低超大模型的本地使用成本。</div>
-            </div>
+    <header class="header">
+        <div class="header-brand">
+            <h1 class="header-title">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 22v-4a4 4 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"></path><path d="M9 18c-4.51 2-5-2-7-2"></path></svg>
+                GitHub Daily Trending
+            </h1>
+            <p class="header-subtitle">每日开源热榜纯中文深度技术解析</p>
         </div>
-        
-        <div class="card">
-            <div class="card-header">
-                <span class="rank">#2</span>
-                <span class="title"><a href="https://github.com/zhaoxuya520/reverse-skill" target="_blank">zhaoxuya520/reverse-skill</a></span>
-                <span class="tag">网络安全 / AI 逆向自动化</span>
-            </div>
-            <div class="stats">
-                <span>⭐ 0 Stars</span> | <span>🍴 0 Forks</span> | <span>🔤 未知</span>
-            </div>
-            <div class="section">
-                <div class="sec-title">📝 仓库原简介</div>
-                <div class="sec-body">无简介</div>
-            </div>
-            <div class="section">
-                <div class="sec-title">🎯 痛点与背景</div>
-                <div class="sec-body">安全工程师在进行授权渗透测试与软件逆向工程时，需要频繁切换数十种复杂的命令行工具，缺乏标准化且智能化的 AI 调度助手。</div>
-            </div>
-            <div class="section">
-                <div class="sec-title">⚡ 核心突破与功能</div>
-                <div class="sec-body">专为 AI 代码客户端（如 Claude Code、Cursor）打造的自动化安全逆向技能包，实现意图自动识别、工具按需自举与经验库自动进化。</div>
-            </div>
-            <div class="section">
-                <div class="sec-title">🛠️ 关键技术亮点</div>
-                <div class="sec-body">1. **智能意图路由**：根据自然语言指令自动匹配最适用的安全逆向工具链；<br>2. **依赖工具按需自举**：自动检测并在本地环境安装缺失的渗透与逆向依赖；<br>3. **经验库自动进化**：自动将成功攻击载荷与分析过程结构化沉淀为知识库。</div>
-            </div>
-            <div class="section">
-                <div class="sec-title">👥 适用场景</div>
-                <div class="sec-body">适合网络安全研究员、CTF 选手以及需要进行自动化安全审计的开发运维团队。</div>
-            </div>
-            <div class="section">
-                <div class="sec-title">💡 架构启示</div>
-                <div class="sec-body highlight">AI 驱动的自动化安全渗透与逆向分析工具链典范。</div>
-            </div>
+        <div class="header-meta">
+            <span>2026.08.04 • Rem & Ram Engine</span>
         </div>
+    </header>
+
+    <main class="container">
         
-        <div class="card">
-            <div class="card-header">
-                <span class="rank">#3</span>
-                <span class="title"><a href="https://github.com/firecrawl/pdf-inspector" target="_blank">firecrawl/pdf-inspector</a></span>
-                <span class="tag">Rust 高性能库 / 智能文档解析</span>
-            </div>
-            <div class="stats">
-                <span>⭐ 8241 Stars</span> | <span>🍴 544 Forks</span> | <span>🔤 Rust</span>
-            </div>
-            <div class="section">
-                <div class="sec-title">📝 仓库原简介</div>
-                <div class="sec-body">Fast Rust library for PDF inspection, classification, and text extraction. Intelligently detects scanned vs text-based PDFs to enable smart routing decisions.</div>
-            </div>
-            <div class="section">
-                <div class="sec-title">🎯 痛点与背景</div>
-                <div class="sec-body">在海量 PDF 文档解析与知识库预处理过程中，传统解析库难以快速区分扫描件与可提取文本件，导致后端路由效率低下、字符识别开销巨大。</div>
-            </div>
-            <div class="section">
-                <div class="sec-title">⚡ 核心突破与功能</div>
-                <div class="sec-body">基于 Rust 编写的高性能 PDF 结构检查与文本提取库，可毫秒级智能检测扫描件与文本型 PDF，实现自动化智能分流。</div>
-            </div>
-            <div class="section">
-                <div class="sec-title">🛠️ 关键技术亮点</div>
-                <div class="sec-body">1. **Rust 零成本抽象**：微秒级解析 PDF 内部结构对象流；<br>2. **智能路由机制**：精准识别文本与图像层，自动引导至字符识别或直接文本提取流程；<br>3. **极低内存占用**：适合在大规模海量文档处理管线中并行运行。</div>
-            </div>
-            <div class="section">
-                <div class="sec-title">👥 适用场景</div>
-                <div class="sec-body">适合大模型知识库构建、海量 PDF 自动化清洗与文档处理管线研发。</div>
-            </div>
-            <div class="section">
-                <div class="sec-title">💡 架构启示</div>
-                <div class="sec-body highlight">Rust 赋能前置文档分析与分类处理的高性能解决方案。</div>
-            </div>
-        </div>
-        
-        <div class="card">
-            <div class="card-header">
-                <span class="rank">#4</span>
-                <span class="title"><a href="https://github.com/esengine/DeepSeek-Reasonix" target="_blank">esengine/DeepSeek-Reasonix</a></span>
-                <span class="tag">终端编程助手 / DeepSeek 专属优化</span>
-            </div>
-            <div class="stats">
-                <span>⭐ 29932 Stars</span> | <span>🍴 1920 Forks</span> | <span>🔤 Go</span>
-            </div>
-            <div class="section">
-                <div class="sec-title">📝 仓库原简介</div>
-                <div class="sec-body">DeepSeek-native AI coding agent for your terminal. Engineered around prefix-cache stability — leave it running.</div>
-            </div>
-            <div class="section">
-                <div class="sec-title">🎯 痛点与背景</div>
-                <div class="sec-body">传统终端 AI 编程助手在进行大批量代码修改时未对 DeepSeek 前缀缓存进行针对性设计，导致 Token 消耗高昂且上下文易丢失。</div>
-            </div>
-            <div class="section">
-                <div class="sec-title">⚡ 核心突破与功能</div>
-                <div class="sec-body">专为 DeepSeek 原生设计的终端 AI 编程助手，围绕前缀缓存稳定性专门构建，支持长期常驻后台高效运行。</div>
-            </div>
-            <div class="section">
-                <div class="sec-title">🛠️ 关键技术亮点</div>
-                <div class="sec-body">1. **前缀缓存稳定算法**：优化提示词结构，大幅提升 API 前缀缓存命中率并降低 Token 成本；<br>2. **终端高并发异步调度**：保证助手在后台常驻处理复杂重构任务时稳定可靠。</div>
-            </div>
-            <div class="section">
-                <div class="sec-title">👥 适用场景</div>
-                <div class="sec-body">适合需要长时间在终端环境下挂机执行代码编写、单元测试与重构的软件工程师。</div>
-            </div>
-            <div class="section">
-                <div class="sec-title">💡 架构启示</div>
-                <div class="sec-body highlight">充分结合 API 缓存特性的高性能终端 AI 编程工具。</div>
-            </div>
-        </div>
-        
-        <div class="card">
-            <div class="card-header">
-                <span class="rank">#5</span>
-                <span class="title"><a href="https://github.com/TencentCloud/TencentDB-Agent-Memory" target="_blank">TencentCloud/TencentDB-Agent-Memory</a></span>
-                <span class="tag">多 Agent 协同 / 团队共享记忆库</span>
-            </div>
-            <div class="stats">
-                <span>⭐ 12089 Stars</span> | <span>🍴 1144 Forks</span> | <span>🔤 TypeScript</span>
-            </div>
-            <div class="section">
-                <div class="sec-title">📝 仓库原简介</div>
-                <div class="sec-body">TencentDB Agent Memory is a team-level memory hub for AI Agents — turning conversations, docs, and code into four reusable memory assets (Chat Memory, Skill, LLM-Wiki, Code-Graph) that are governed, shared, and equipped across agents and frameworks.</div>
-            </div>
-            <div class="section">
-                <div class="sec-title">🎯 痛点与背景</div>
-                <div class="sec-body">多 Agent 团队协作研发时，缺乏统一管理和共享的知识库，导致对话、文档与代码沉淀无法跨 Agent 有效复用。</div>
-            </div>
-            <div class="section">
-                <div class="sec-title">⚡ 核心突破与功能</div>
-                <div class="sec-body">腾讯云开源的团队级 Agent 记忆中枢，将对话、文档与代码统一转化为四大可复用记忆资产（对话记忆、技能库、知识库与代码图谱）。</div>
-            </div>
-            <div class="section">
-                <div class="sec-title">🛠️ 关键技术亮点</div>
-                <div class="sec-body">1. **四大记忆资产抽象**：统一管理对话历史、标准技能、大模型知识库与代码图谱；<br>2. **跨框架治理与共享**：支持在多种主流 Agent 框架间进行数据沉淀与统一调用。</div>
-            </div>
-            <div class="section">
-                <div class="sec-title">👥 适用场景</div>
-                <div class="sec-body">适合企业级多 Agent 协同研发、团队知识库沉淀与长期记忆管理。</div>
-            </div>
-            <div class="section">
-                <div class="sec-title">💡 架构启示</div>
-                <div class="sec-body highlight">多 Agent 协同体系中团队记忆资产标准化治理的探路者。</div>
-            </div>
-        </div>
-        
-        <div class="card">
-            <div class="card-header">
-                <span class="rank">#6</span>
-                <span class="title"><a href="https://github.com/microsoft/AI-For-Beginners" target="_blank">microsoft/AI-For-Beginners</a></span>
-                <span class="tag">人工智能教程 / 微软官方零基础指南</span>
-            </div>
-            <div class="stats">
-                <span>⭐ 60742 Stars</span> | <span>🍴 11833 Forks</span> | <span>🔤 Jupyter Notebook</span>
-            </div>
-            <div class="section">
-                <div class="sec-title">📝 仓库原简介</div>
-                <div class="sec-body">12 Weeks, 24 Lessons, AI for All!</div>
-            </div>
-            <div class="section">
-                <div class="sec-title">🎯 痛点与背景</div>
-                <div class="sec-body">初学者在进入人工智能与深度学习领域时，往往面临教程零散、数学推导晦涩、缺乏实际代码实践等难题。</div>
-            </div>
-            <div class="section">
-                <div class="sec-title">⚡ 核心突破与功能</div>
-                <div class="sec-body">微软官方推出的 12 周零基础人工智能系列课程，涵盖 24 节循序渐进的完整教学内容与动手实验。</div>
-            </div>
-            <div class="section">
-                <div class="sec-title">🛠️ 关键技术亮点</div>
-                <div class="sec-body">1. **全面知识图谱**：涵盖符号 AI、神经网络、计算机视觉、自然语言处理与大语言模型；<br>2. **交互式代码实践**：提供完全可运行的 Jupyter 代码脚本与可视化示例。</div>
-            </div>
-            <div class="section">
-                <div class="sec-title">👥 适用场景</div>
-                <div class="sec-body">适合零基础希望系统化学习人工智能、机器学习与深度学习的开发者与学生。</div>
-            </div>
-            <div class="section">
-                <div class="sec-title">💡 架构启示</div>
-                <div class="sec-body highlight">微软出品的系统化 AI 入门权威开源教程。</div>
-            </div>
-        </div>
-        
-        <div class="card">
-            <div class="card-header">
-                <span class="rank">#7</span>
-                <span class="title"><a href="https://github.com/microsoft/generative-ai-for-beginners" target="_blank">microsoft/generative-ai-for-beginners</a></span>
-                <span class="tag">生成式 AI 教程 / 微软官方实战课程</span>
-            </div>
-            <div class="stats">
-                <span>⭐ 115551 Stars</span> | <span>🍴 61439 Forks</span> | <span>🔤 Jupyter Notebook</span>
-            </div>
-            <div class="section">
-                <div class="sec-title">📝 仓库原简介</div>
-                <div class="sec-body">21 Lessons, Get Started Building with Generative AI </div>
-            </div>
-            <div class="section">
-                <div class="sec-title">🎯 痛点与背景</div>
-                <div class="sec-body">开发者在学习生成式 AI 与提示词工程时，缺少从基础概念到构建真实 AI 应用的完整实践指南。</div>
-            </div>
-            <div class="section">
-                <div class="sec-title">⚡ 核心突破与功能</div>
-                <div class="sec-body">微软官方推出的 21 节生成式 AI 实战课程，帮助开发者掌握构建生成式 AI 应用的核心技能。</div>
-            </div>
-            <div class="section">
-                <div class="sec-title">🛠️ 关键技术亮点</div>
-                <div class="sec-body">1. **提示词工程与 Agent 架构**：深入讲解提示词优化、向量检索增强与多 Agent 设计；<br>2. **全栈代码样例**：提供 Python 与 TypeScript 实现的开源生成式 AI 应用模板。</div>
-            </div>
-            <div class="section">
-                <div class="sec-title">👥 适用场景</div>
-                <div class="sec-body">适合希望快速掌握生成式 AI 开发、构建大模型应用与 AI Agent 的软件工程师。</div>
-            </div>
-            <div class="section">
-                <div class="sec-title">💡 架构启示</div>
-                <div class="sec-body highlight">微软官方打造的生成式 AI 应用研发实战标准课程。</div>
-            </div>
-        </div>
-        
-        <div class="card">
-            <div class="card-header">
-                <span class="rank">#8</span>
-                <span class="title"><a href="https://github.com/donnemartin/system-design-primer" target="_blank">donnemartin/system-design-primer</a></span>
-                <span class="tag">系统架构设计 / 大规模分布式系统</span>
-            </div>
-            <div class="stats">
-                <span>⭐ 360525 Stars</span> | <span>🍴 57526 Forks</span> | <span>🔤 Python</span>
-            </div>
-            <div class="section">
-                <div class="sec-title">📝 仓库原简介</div>
-                <div class="sec-body">Learn how to design large-scale systems. Prep for the system design interview.  Includes Anki flashcards.</div>
-            </div>
-            <div class="section">
-                <div class="sec-title">🎯 痛点与背景</div>
-                <div class="sec-body">软件工程师在准备架构设计面试或构建高并发大规模分布式系统时，缺乏系统化、图文并茂的架构知识体系。</div>
-            </div>
-            <div class="section">
-                <div class="sec-title">⚡ 核心突破与功能</div>
-                <div class="sec-body">全网最热门的大规模系统设计学习指南，涵盖高并发、高可用、分布式存储与架构演进等核心主题。</div>
-            </div>
-            <div class="section">
-                <div class="sec-title">🛠️ 关键技术亮点</div>
-                <div class="sec-body">1. **图解架构范式**：直观拆解负载均衡、缓存策略、数据库分片、消息队列与微服务；<br>2. **真实案例分析**：深入剖析 Twitter、Netflix 等大型互联网公司的架构演进历程。</div>
-            </div>
-            <div class="section">
-                <div class="sec-title">👥 适用场景</div>
-                <div class="sec-body">适合准备系统设计面试的工程师以及需要进行架构选型与高并发设计的系统架构师。</div>
-            </div>
-            <div class="section">
-                <div class="sec-title">💡 架构启示</div>
-                <div class="sec-body highlight">大规模分布式系统设计与架构演进的百宝箱指南。</div>
-            </div>
-        </div>
-        
-        <div class="card">
-            <div class="card-header">
-                <span class="rank">#9</span>
-                <span class="title"><a href="https://github.com/antirez/ds4" target="_blank">antirez/ds4</a></span>
-                <span class="tag">C 语言本地推理 / DeepSeek 本地引擎</span>
-            </div>
-            <div class="stats">
-                <span>⭐ 0 Stars</span> | <span>🍴 0 Forks</span> | <span>🔤 未知</span>
-            </div>
-            <div class="section">
-                <div class="sec-title">📝 仓库原简介</div>
-                <div class="sec-body">无简介</div>
-            </div>
-            <div class="section">
-                <div class="sec-title">🎯 痛点与背景</div>
-                <div class="sec-body">开源大模型在本地设备部署时，往往依赖重度 Python 框架（如 PyTorch），在苹果 Metal 或 CUDA 架构上难以达到极致的推理解析速度。</div>
-            </div>
-            <div class="section">
-                <div class="sec-title">⚡ 核心突破与功能</div>
-                <div class="sec-body">由 Redis 作者 antirez 采用纯 C 语言编写的高性能 DeepSeek 4 Flash 与 PRO 本地轻量化推理引擎。</div>
-            </div>
-            <div class="section">
-                <div class="sec-title">🛠️ 关键技术亮点</div>
-                <div class="sec-body">1. **纯 C 语言零依赖**：直接调用 Apple Metal、NVIDIA CUDA 与 AMD ROCm 底层加速接口；<br>2. **极低内存开销**：摒弃重型 Python 运行时，实现秒级启动与极致吞吐率。</div>
-            </div>
-            <div class="section">
-                <div class="sec-title">👥 适用场景</div>
-                <div class="sec-body">适合需要在本地设备（Mac/PC/服务器）极速部署 DeepSeek 模型的 C/C++ 开发者与高性能推理探索者。</div>
-            </div>
-            <div class="section">
-                <div class="sec-title">💡 架构启示</div>
-                <div class="sec-body highlight">Redis 作者打造的 C 语言极速本地大模型推理引擎标杆。</div>
-            </div>
-        </div>
-        
-        <div class="card">
-            <div class="card-header">
-                <span class="rank">#10</span>
-                <span class="title"><a href="https://github.com/shiyu-coder/Kronos" target="_blank">shiyu-coder/Kronos</a></span>
-                <span class="tag">金融时间序列 / AI 量化预测</span>
-            </div>
-            <div class="stats">
-                <span>⭐ 35824 Stars</span> | <span>🍴 5961 Forks</span> | <span>🔤 Python</span>
-            </div>
-            <div class="section">
-                <div class="sec-title">📝 仓库原简介</div>
-                <div class="sec-body">Kronos: A Foundation Model for the Language of Financial Markets</div>
-            </div>
-            <div class="section">
-                <div class="sec-title">🎯 痛点与背景</div>
-                <div class="sec-body">金融市场时间序列数据具有极高的噪声与非线性特点，传统统计模型难以捕获复杂的跨周期趋势与风险波动。</div>
-            </div>
-            <div class="section">
-                <div class="sec-title">⚡ 核心突破与功能</div>
-                <div class="sec-body">专为金融时间序列分析打造的开源深度学习预测框架，实现高精度的多资产价格趋势预测与风险建模。</div>
-            </div>
-            <div class="section">
-                <div class="sec-title">🛠️ 关键技术亮点</div>
-                <div class="sec-body">1. **时序 Transformer 架构**：专为金融时序优化的自注意力机制；<br>2. **多尺度特征融合**：融合高频交易数据与宏观时序指标。</div>
-            </div>
-            <div class="section">
-                <div class="sec-title">👥 适用场景</div>
-                <div class="sec-body">适合量化交易员、金融风险分析师及研究高频交易算法的开发团队。</div>
-            </div>
-            <div class="section">
-                <div class="sec-title">💡 架构启示</div>
-                <div class="sec-body highlight">深度学习在金融量化预测与风险控制领域的创新尝试。</div>
-            </div>
-        </div>
-        
-        <div class="card">
-            <div class="card-header">
-                <span class="rank">#11</span>
-                <span class="title"><a href="https://github.com/Panniantong/Agent-Reach" target="_blank">Panniantong/Agent-Reach</a></span>
-                <span class="tag">全网数据抓取 / 浏览器智能扩展</span>
-            </div>
-            <div class="stats">
-                <span>⭐ 65715 Stars</span> | <span>🍴 5457 Forks</span> | <span>🔤 Python</span>
-            </div>
-            <div class="section">
-                <div class="sec-title">📝 仓库原简介</div>
-                <div class="sec-body">Give your AI agent eyes to see the entire internet. Read & search Twitter, Reddit, YouTube, GitHub, Bilibili, XiaoHongShu — one CLI, zero API fees.</div>
-            </div>
-            <div class="section">
-                <div class="sec-title">🎯 痛点与背景</div>
-                <div class="sec-body">AI Agent 在获取社交媒体与特定网站最新内容时，容易触发反爬虫封禁或受到复杂动态渲染的限制。</div>
-            </div>
-            <div class="section">
-                <div class="sec-title">⚡ 核心突破与功能</div>
-                <div class="sec-body">基于 Playwright 构建的 Agent 全网抓取强化工具，支持突破复杂页面限制自动提取高质量结构化数据。</div>
-            </div>
-            <div class="section">
-                <div class="sec-title">🛠️ 关键技术亮点</div>
-                <div class="sec-body">1. **反爬虫对抗机制**：内置真实浏览器指纹伪装与请求频率平滑策略；<br>2. **结构化提取引擎**：自动将动态页面转化为干净的 Markdown 格式。</div>
-            </div>
-            <div class="section">
-                <div class="sec-title">👥 适用场景</div>
-                <div class="sec-body">适合需要进行自动化全网情报搜集、社交媒体数据分析与知识库构建的 AI 场景。</div>
-            </div>
-            <div class="section">
-                <div class="sec-title">💡 架构启示</div>
-                <div class="sec-body highlight">提升 Agent 全网数据获取能力与抗封禁特性的利器。</div>
-            </div>
-        </div>
-        
-        <div class="card">
-            <div class="card-header">
-                <span class="rank">#12</span>
-                <span class="title"><a href="https://github.com/Alishahryar1/free-claude-code" target="_blank">Alishahryar1/free-claude-code</a></span>
-                <span class="tag">AI 编程工具 / Claude Code 开源替代</span>
-            </div>
-            <div class="stats">
-                <span>⭐ 44046 Stars</span> | <span>🍴 7268 Forks</span> | <span>🔤 Python</span>
-            </div>
-            <div class="section">
-                <div class="sec-title">📝 仓库原简介</div>
-                <div class="sec-body">Use Claude Code, Codex and Pi for free from your terminal, app, IDE, or phone like OpenClaw (voice supported)</div>
-            </div>
-            <div class="section">
-                <div class="sec-title">🎯 痛点与背景</div>
-                <div class="sec-body">官方 Claude Code 工具存在高昂的 API 使用门槛与区域调用限制，开发者难以在本地自由拓展或更换底座模型。</div>
-            </div>
-            <div class="section">
-                <div class="sec-title">⚡ 核心突破与功能</div>
-                <div class="sec-body">Claude Code 的开源免费替代版，支持在本地命令行终端调用多种大语言模型进行代码自动生成与重构。</div>
-            </div>
-            <div class="section">
-                <div class="sec-title">🛠️ 关键技术亮点</div>
-                <div class="sec-body">1. **多模型适配引擎**：支持对接 OpenAI、DeepSeek 与本地 Ollama/vLLM 模型；<br>2. **命令行交互界面**：提供快捷的代码上下文解析、文件编辑与命令执行能力。</div>
-            </div>
-            <div class="section">
-                <div class="sec-title">👥 适用场景</div>
-                <div class="sec-body">适合希望无门槛体验命令行 AI 编程、自定义底层模型的开发者。</div>
-            </div>
-            <div class="section">
-                <div class="sec-title">💡 架构启示</div>
-                <div class="sec-body highlight">轻量免费的终端 AI 编程替代方案。</div>
-            </div>
-        </div>
-        
-        <div class="card">
-            <div class="card-header">
-                <span class="rank">#13</span>
-                <span class="title"><a href="https://github.com/iv-org/invidious" target="_blank">iv-org/invidious</a></span>
-                <span class="tag">隐私保护 / 开源视频轻量前端</span>
-            </div>
-            <div class="stats">
-                <span>⭐ 22272 Stars</span> | <span>🍴 2479 Forks</span> | <span>🔤 Crystal</span>
-            </div>
-            <div class="section">
-                <div class="sec-title">📝 仓库原简介</div>
-                <div class="sec-body">Invidious is an alternative front-end to YouTube</div>
-            </div>
-            <div class="section">
-                <div class="sec-title">🎯 痛点与背景</div>
-                <div class="sec-body">传统视频平台包含大量追踪脚本、官方广告与重度网页框架，导致页面加载缓慢且用户隐私容易泄露。</div>
-            </div>
-            <div class="section">
-                <div class="sec-title">⚡ 核心突破与功能</div>
-                <div class="sec-body">YouTube 的开源轻量级替代前端，无需 Google 账号即可流畅观看视频并提供绝对的隐私保护。</div>
-            </div>
-            <div class="section">
-                <div class="sec-title">🛠️ 关键技术亮点</div>
-                <div class="sec-body">1. **基于 Crystal 语言编写**：极高运行效率与微量内存开销；<br>2. **无广告与追踪器**：自动过滤所有追踪脚本与视频广告，内置轻量化 API。</div>
-            </div>
-            <div class="section">
-                <div class="sec-title">👥 适用场景</div>
-                <div class="sec-body">适合追求隐私保护、希望无广告干净流畅观看视频的用户与自建服务爱好者。</div>
-            </div>
-            <div class="section">
-                <div class="sec-title">💡 架构启示</div>
-                <div class="sec-body highlight">轻量化与隐私保护视频前端的经典开源标杆。</div>
-            </div>
-        </div>
-        
-        <div class="card">
-            <div class="card-header">
-                <span class="rank">#14</span>
-                <span class="title"><a href="https://github.com/livekit/agents" target="_blank">livekit/agents</a></span>
-                <span class="tag">实时音视频 / AI Voice Agent 框架</span>
-            </div>
-            <div class="stats">
-                <span>⭐ 11984 Stars</span> | <span>🍴 3458 Forks</span> | <span>🔤 Python</span>
-            </div>
-            <div class="section">
-                <div class="sec-title">📝 仓库原简介</div>
-                <div class="sec-body">A framework for building realtime voice AI agents 🤖🎙️📹 </div>
-            </div>
-            <div class="section">
-                <div class="sec-title">🎯 痛点与背景</div>
-                <div class="sec-body">构建实时语音交互 AI（如语音助手、实时视频对话）时，传统 HTTP/WebSocket 架构难以保证超低延迟（<500ms）的音视频流传输。</div>
-            </div>
-            <div class="section">
-                <div class="sec-title">⚡ 核心突破与功能</div>
-                <div class="sec-body">LiveKit 官方推出的构建实时多模态 AI Agent 的轻量级开发框架，支持低延迟实时语音与视频交互。</div>
-            </div>
-            <div class="section">
-                <div class="sec-title">🛠️ 关键技术亮点</div>
-                <div class="sec-body">1. **WebRTC 全双工通信**：实现打断式语音对话与毫秒级端到端延迟；<br>2. **插件化生态**：集成 OpenAI Realtime、Deepgram、Cartesia 等大语言与语音模型。</div>
-            </div>
-            <div class="section">
-                <div class="sec-title">👥 适用场景</div>
-                <div class="sec-body">适合开发实时语音客服、AI 虚拟人、数字人全双工对话以及实时视频分析应用。</div>
-            </div>
-            <div class="section">
-                <div class="sec-title">💡 架构启示</div>
-                <div class="sec-body highlight">实时多模态语音/视频 AI 智能体开发的标准基础设施。</div>
-            </div>
-        </div>
-        
-        <div class="card">
-            <div class="card-header">
-                <span class="rank">#15</span>
-                <span class="title"><a href="https://github.com/usekaneo/kaneo" target="_blank">usekaneo/kaneo</a></span>
-                <span class="tag">开源项目管理 / 敏捷任务看板</span>
-            </div>
-            <div class="stats">
-                <span>⭐ 6862 Stars</span> | <span>🍴 553 Forks</span> | <span>🔤 TypeScript</span>
-            </div>
-            <div class="section">
-                <div class="sec-title">📝 仓库原简介</div>
-                <div class="sec-body">🎯 All you need. Nothing you don't. Open source project management that works for you, not against you.</div>
-            </div>
-            <div class="section">
-                <div class="sec-title">🎯 痛点与背景</div>
-                <div class="sec-body">企业与开源团队使用的商业项目管理软件往往过于臃肿且收费昂贵，本地私有化部署门槛较高。</div>
-            </div>
-            <div class="section">
-                <div class="sec-title">⚡ 核心突破与功能</div>
-                <div class="sec-body">现代化轻量级开源项目管理工具，提供类似 Trello / Linear 的极致顺滑任务看板与协作体验。</div>
-            </div>
-            <div class="section">
-                <div class="sec-title">🛠️ 关键技术亮点</div>
-                <div class="sec-body">1. **现代化全栈架构**：基于 React 与 Go 开发，响应极速且支持开箱即用；<br>2. **完全私有化部署**：支持 Docker 一键部署，数据完全自主掌控。</div>
-            </div>
-            <div class="section">
-                <div class="sec-title">👥 适用场景</div>
-                <div class="sec-body">适合需要私有化项目管理、任务看板与团队敏捷协作的开源团队与初创企业。</div>
-            </div>
-            <div class="section">
-                <div class="sec-title">💡 架构启示</div>
-                <div class="sec-body highlight">轻量极速且支持私有化部署的现代化协作看板。</div>
-            </div>
-        </div>
-        
-    </div>
+        <article class="card">
+            <div class="card-top">
+                <div class="repo-meta">
+                    <span class="rank">#01</span>
+                    <h2 class="repo-name"><a href="https://github.com/lyogavin/airllm" target="_blank" rel="noopener">lyogavin/airllm</a></h2>
+                    <span class="tag">大语言模型推理 / 显存极限压缩</span>
+                </div>
+            </div>
+            <div class="stats-group">
+                <div class="stat-item">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                    <span>27,107</span>
+                </div>
+                <div class="stat-item">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="18" r="3"></circle><circle cx="6" cy="6" r="3"></circle><path d="M6 21V9a9 9 0 0 0 9 9"></path></svg>
+                    <span>2,973</span>
+                </div>
+                <div class="stat-item">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m18 16 4-4-4-4"></path><path d="m6 8-4 4 4 4"></path><path d="m14.5 4-5 16"></path></svg>
+                    <span>Jupyter Notebook</span>
+                </div>
+            </div>
+            <div class="content-grid">
+                <div class="section-block">
+                    <span class="label">仓库简介</span>
+                    <p class="text-desc">AirLLM 70B inference with single 4GB GPU</p>
+                </div>
+                <div class="section-block">
+                    <span class="label">痛点与背景</span>
+                    <p class="text-body">在本地推理 70B 级别大语言模型时，通常需要 140GB 以上显存，消费级显卡（如 4GB/8GB 显存）完全无法直接载入模型权重，造成极高的硬件部署门槛。</p>
+                </div>
+                <div class="section-block">
+                    <span class="label">核心突破与功能</span>
+                    <p class="text-body">AirLLM 实现了在单张 4GB 显存的普通显卡上直接运行 70B 规模超大语言模型推理的能力，且无需对模型权重进行高损量化削减。</p>
+                </div>
+                <div class="section-block">
+                    <span class="label">关键技术亮点</span>
+                    <ul class="highlights-list">
+                        <li><strong>逐层按需调入内存</strong>：将 Transformer 网络层按需切分并流式调入 GPU 显存，大幅降低显存占用达 90%；</li>
+                        <li><strong>内存与显存张量流式传输</strong>：优化内存与显存传输通道，重叠计算与传输延迟。</li>
+                    </ul>
+                </div>
+                <div class="section-block">
+                    <span class="label">适用场景</span>
+                    <p class="text-body">适合需要在普通个人电脑、消费级显卡或边缘计算设备上本地运行超大模型推理的开发者与研究人员。</p>
+                </div>
+                <div class="section-block highlight-box">
+                    <span class="label" style="color: var(--highlight);">架构启示</span>
+                    <p class="text-body">打破硬件壁垒的极限显存优化方案，大幅降低超大模型的本地使用成本。</p>
+                </div>
+            </div>
+        </article>
+
+        <article class="card">
+            <div class="card-top">
+                <div class="repo-meta">
+                    <span class="rank">#02</span>
+                    <h2 class="repo-name"><a href="https://github.com/zhaoxuya520/reverse-skill" target="_blank" rel="noopener">zhaoxuya520/reverse-skill</a></h2>
+                    <span class="tag">网络安全 / AI 逆向自动化</span>
+                </div>
+            </div>
+            <div class="stats-group">
+                <div class="stat-item">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                    <span>0</span>
+                </div>
+                <div class="stat-item">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="18" r="3"></circle><circle cx="6" cy="6" r="3"></circle><path d="M6 21V9a9 9 0 0 0 9 9"></path></svg>
+                    <span>0</span>
+                </div>
+                <div class="stat-item">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m18 16 4-4-4-4"></path><path d="m6 8-4 4 4 4"></path><path d="m14.5 4-5 16"></path></svg>
+                    <span>Shell / Python</span>
+                </div>
+            </div>
+            <div class="content-grid">
+                <div class="section-block">
+                    <span class="label">仓库简介</span>
+                    <p class="text-desc">AI-assisted reverse engineering & security audit skill package</p>
+                </div>
+                <div class="section-block">
+                    <span class="label">痛点与背景</span>
+                    <p class="text-body">安全工程师在进行授权渗透测试与软件逆向工程时，需要频繁切换数十种复杂的命令行工具，缺乏标准化且智能化的 AI 调度助手。</p>
+                </div>
+                <div class="section-block">
+                    <span class="label">核心突破与功能</span>
+                    <p class="text-body">专为 AI 代码客户端（如 Claude Code、Cursor）打造的自动化安全逆向技能包，实现意图自动识别、工具按需自举与经验库自动进化。</p>
+                </div>
+                <div class="section-block">
+                    <span class="label">关键技术亮点</span>
+                    <ul class="highlights-list">
+                        <li><strong>智能意图路由</strong>：根据自然语言指令自动匹配最适用的安全逆向工具链；</li>
+                        <li><strong>依赖工具按需自举</strong>：自动检测并在本地环境安装缺失的渗透与逆向依赖；</li>
+                        <li><strong>经验库自动进化</strong>：自动将成功攻击载荷与分析过程结构化沉淀为知识库。</li>
+                    </ul>
+                </div>
+                <div class="section-block">
+                    <span class="label">适用场景</span>
+                    <p class="text-body">适合网络安全研究员、CTF 选手以及需要进行自动化安全审计的开发运维团队。</p>
+                </div>
+                <div class="section-block highlight-box">
+                    <span class="label" style="color: var(--highlight);">架构启示</span>
+                    <p class="text-body">AI 驱动的自动化安全渗透与逆向分析工具链典范。</p>
+                </div>
+            </div>
+        </article>
+
+        <article class="card">
+            <div class="card-top">
+                <div class="repo-meta">
+                    <span class="rank">#03</span>
+                    <h2 class="repo-name"><a href="https://github.com/firecrawl/pdf-inspector" target="_blank" rel="noopener">firecrawl/pdf-inspector</a></h2>
+                    <span class="tag">Rust 高性能库 / 智能文档解析</span>
+                </div>
+            </div>
+            <div class="stats-group">
+                <div class="stat-item">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                    <span>8,241</span>
+                </div>
+                <div class="stat-item">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="18" r="3"></circle><circle cx="6" cy="6" r="3"></circle><path d="M6 21V9a9 9 0 0 0 9 9"></path></svg>
+                    <span>544</span>
+                </div>
+                <div class="stat-item">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m18 16 4-4-4-4"></path><path d="m6 8-4 4 4 4"></path><path d="m14.5 4-5 16"></path></svg>
+                    <span>Rust</span>
+                </div>
+            </div>
+            <div class="content-grid">
+                <div class="section-block">
+                    <span class="label">仓库简介</span>
+                    <p class="text-desc">Fast Rust library for PDF inspection, classification, and text extraction.</p>
+                </div>
+                <div class="section-block">
+                    <span class="label">痛点与背景</span>
+                    <p class="text-body">在海量 PDF 文档解析与知识库预处理过程中，传统解析库难以快速区分扫描件与可提取文本件，导致后端路由效率低下、字符识别开销巨大。</p>
+                </div>
+                <div class="section-block">
+                    <span class="label">核心突破与功能</span>
+                    <p class="text-body">基于 Rust 编写的高性能 PDF 结构检查与文本提取库，可毫秒级智能检测扫描件与文本型 PDF，实现自动化智能分流。</p>
+                </div>
+                <div class="section-block">
+                    <span class="label">关键技术亮点</span>
+                    <ul class="highlights-list">
+                        <li><strong>Rust 零成本抽象</strong>：微秒级解析 PDF 内部结构对象流；</li>
+                        <li><strong>智能路由机制</strong>：精准识别文本与图像层，自动引导至字符识别或直接文本提取流程；</li>
+                        <li><strong>极低内存占用</strong>：适合在大规模海量文档处理管线中并行运行。</li>
+                    </ul>
+                </div>
+                <div class="section-block">
+                    <span class="label">适用场景</span>
+                    <p class="text-body">适合大模型知识库构建、海量 PDF 自动化清洗与文档处理管线研发。</p>
+                </div>
+                <div class="section-block highlight-box">
+                    <span class="label" style="color: var(--highlight);">架构启示</span>
+                    <p class="text-body">Rust 赋能前置文档分析与分类处理的高性能解决方案。</p>
+                </div>
+            </div>
+        </article>
+
+        <article class="card">
+            <div class="card-top">
+                <div class="repo-meta">
+                    <span class="rank">#04</span>
+                    <h2 class="repo-name"><a href="https://github.com/esengine/DeepSeek-Reasonix" target="_blank" rel="noopener">esengine/DeepSeek-Reasonix</a></h2>
+                    <span class="tag">终端编程助手 / DeepSeek 专属优化</span>
+                </div>
+            </div>
+            <div class="stats-group">
+                <div class="stat-item">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                    <span>29,932</span>
+                </div>
+                <div class="stat-item">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="18" r="3"></circle><circle cx="6" cy="6" r="3"></circle><path d="M6 21V9a9 9 0 0 0 9 9"></path></svg>
+                    <span>1,920</span>
+                </div>
+                <div class="stat-item">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m18 16 4-4-4-4"></path><path d="m6 8-4 4 4 4"></path><path d="m14.5 4-5 16"></path></svg>
+                    <span>Go</span>
+                </div>
+            </div>
+            <div class="content-grid">
+                <div class="section-block">
+                    <span class="label">仓库简介</span>
+                    <p class="text-desc">DeepSeek-native AI coding agent for your terminal. Engineered around prefix-cache stability.</p>
+                </div>
+                <div class="section-block">
+                    <span class="label">痛点与背景</span>
+                    <p class="text-body">传统终端 AI 编程助手在进行大批量代码修改时未对 DeepSeek 前缀缓存进行针对性设计，导致 Token 消耗高昂且上下文易丢失。</p>
+                </div>
+                <div class="section-block">
+                    <span class="label">核心突破与功能</span>
+                    <p class="text-body">专为 DeepSeek 原生设计的终端 AI 编程助手，围绕前缀缓存稳定性专门构建，支持长期常驻后台高效运行。</p>
+                </div>
+                <div class="section-block">
+                    <span class="label">关键技术亮点</span>
+                    <ul class="highlights-list">
+                        <li><strong>前缀缓存稳定算法</strong>：优化提示词结构，大幅提升 API 前缀缓存命中率并降低 Token 成本；</li>
+                        <li><strong>终端高并发异步调度</strong>：保证助手在后台常驻处理复杂重构任务时稳定可靠。</li>
+                    </ul>
+                </div>
+                <div class="section-block">
+                    <span class="label">适用场景</span>
+                    <p class="text-body">适合需要长时间在终端环境下挂机执行代码编写、单元测试与重构的软件工程师。</p>
+                </div>
+                <div class="section-block highlight-box">
+                    <span class="label" style="color: var(--highlight);">架构启示</span>
+                    <p class="text-body">充分结合 API 缓存特性的高性能终端 AI 编程工具。</p>
+                </div>
+            </div>
+        </article>
+
+        <article class="card">
+            <div class="card-top">
+                <div class="repo-meta">
+                    <span class="rank">#05</span>
+                    <h2 class="repo-name"><a href="https://github.com/TencentCloud/TencentDB-Agent-Memory" target="_blank" rel="noopener">TencentCloud/TencentDB-Agent-Memory</a></h2>
+                    <span class="tag">多 Agent 协同 / 团队共享记忆库</span>
+                </div>
+            </div>
+            <div class="stats-group">
+                <div class="stat-item">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                    <span>12,089</span>
+                </div>
+                <div class="stat-item">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="18" r="3"></circle><circle cx="6" cy="6" r="3"></circle><path d="M6 21V9a9 9 0 0 0 9 9"></path></svg>
+                    <span>1,144</span>
+                </div>
+                <div class="stat-item">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m18 16 4-4-4-4"></path><path d="m6 8-4 4 4 4"></path><path d="m14.5 4-5 16"></path></svg>
+                    <span>TypeScript</span>
+                </div>
+            </div>
+            <div class="content-grid">
+                <div class="section-block">
+                    <span class="label">仓库简介</span>
+                    <p class="text-desc">Team-level memory hub for AI Agents — turning conversations, docs, and code into four reusable memory assets.</p>
+                </div>
+                <div class="section-block">
+                    <span class="label">痛点与背景</span>
+                    <p class="text-body">多 Agent 团队协作研发时，缺乏统一管理和共享的知识库，导致对话、文档与代码沉淀无法跨 Agent 有效复用。</p>
+                </div>
+                <div class="section-block">
+                    <span class="label">核心突破与功能</span>
+                    <p class="text-body">腾讯云开源的团队级 Agent 记忆中枢，将对话、文档与代码统一转化为四大可复用记忆资产（对话记忆、技能库、知识库与代码图谱）。</p>
+                </div>
+                <div class="section-block">
+                    <span class="label">关键技术亮点</span>
+                    <ul class="highlights-list">
+                        <li><strong>四大记忆资产抽象</strong>：统一管理对话历史、标准技能、大模型知识库与代码图谱；</li>
+                        <li><strong>跨框架治理与共享</strong>：支持在多种主流 Agent 框架间进行数据沉淀与统一调用。</li>
+                    </ul>
+                </div>
+                <div class="section-block">
+                    <span class="label">适用场景</span>
+                    <p class="text-body">适合企业级多 Agent 协同研发、团队知识库沉淀与长期记忆管理。</p>
+                </div>
+                <div class="section-block highlight-box">
+                    <span class="label" style="color: var(--highlight);">架构启示</span>
+                    <p class="text-body">多 Agent 协同体系中团队记忆资产标准化治理的探路者。</p>
+                </div>
+            </div>
+        </article>
+
+        <article class="card">
+            <div class="card-top">
+                <div class="repo-meta">
+                    <span class="rank">#06</span>
+                    <h2 class="repo-name"><a href="https://github.com/microsoft/AI-For-Beginners" target="_blank" rel="noopener">microsoft/AI-For-Beginners</a></h2>
+                    <span class="tag">人工智能教程 / 微软官方零基础指南</span>
+                </div>
+            </div>
+            <div class="stats-group">
+                <div class="stat-item">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                    <span>60,742</span>
+                </div>
+                <div class="stat-item">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="18" r="3"></circle><circle cx="6" cy="6" r="3"></circle><path d="M6 21V9a9 9 0 0 0 9 9"></path></svg>
+                    <span>11,833</span>
+                </div>
+                <div class="stat-item">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m18 16 4-4-4-4"></path><path d="m6 8-4 4 4 4"></path><path d="m14.5 4-5 16"></path></svg>
+                    <span>Jupyter Notebook</span>
+                </div>
+            </div>
+            <div class="content-grid">
+                <div class="section-block">
+                    <span class="label">仓库简介</span>
+                    <p class="text-desc">12 Weeks, 24 Lessons, AI for All!</p>
+                </div>
+                <div class="section-block">
+                    <span class="label">痛点与背景</span>
+                    <p class="text-body">初学者在进入人工智能与深度学习领域时，往往面临教程零散、数学推导晦涩、缺乏实际代码实践等难题。</p>
+                </div>
+                <div class="section-block">
+                    <span class="label">核心突破与功能</span>
+                    <p class="text-body">微软官方推出的 12 周零基础人工智能系列课程，涵盖 24 节循序渐进的完整教学内容与动手实验。</p>
+                </div>
+                <div class="section-block">
+                    <span class="label">关键技术亮点</span>
+                    <ul class="highlights-list">
+                        <li><strong>全面知识图谱</strong>：涵盖符号 AI、神经网络、计算机视觉、自然语言处理与大语言模型；</li>
+                        <li><strong>交互式代码实践</strong>：提供完全可运行的 Jupyter 代码脚本与可视化示例。</li>
+                    </ul>
+                </div>
+                <div class="section-block">
+                    <span class="label">适用场景</span>
+                    <p class="text-body">适合零基础希望系统化学习人工智能、机器学习与深度学习的开发者与学生。</p>
+                </div>
+                <div class="section-block highlight-box">
+                    <span class="label" style="color: var(--highlight);">架构启示</span>
+                    <p class="text-body">微软出品的系统化 AI 入门权威开源教程。</p>
+                </div>
+            </div>
+        </article>
+
+        <article class="card">
+            <div class="card-top">
+                <div class="repo-meta">
+                    <span class="rank">#07</span>
+                    <h2 class="repo-name"><a href="https://github.com/microsoft/generative-ai-for-beginners" target="_blank" rel="noopener">microsoft/generative-ai-for-beginners</a></h2>
+                    <span class="tag">生成式 AI 教程 / 微软官方实战课程</span>
+                </div>
+            </div>
+            <div class="stats-group">
+                <div class="stat-item">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                    <span>115,551</span>
+                </div>
+                <div class="stat-item">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="18" r="3"></circle><circle cx="6" cy="6" r="3"></circle><path d="M6 21V9a9 9 0 0 0 9 9"></path></svg>
+                    <span>61,439</span>
+                </div>
+                <div class="stat-item">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m18 16 4-4-4-4"></path><path d="m6 8-4 4 4 4"></path><path d="m14.5 4-5 16"></path></svg>
+                    <span>Jupyter Notebook</span>
+                </div>
+            </div>
+            <div class="content-grid">
+                <div class="section-block">
+                    <span class="label">仓库简介</span>
+                    <p class="text-desc">21 Lessons, Get Started Building with Generative AI</p>
+                </div>
+                <div class="section-block">
+                    <span class="label">痛点与背景</span>
+                    <p class="text-body">开发者在学习生成式 AI 与提示词工程时，缺少从基础概念到构建真实 AI 应用的完整实践指南。</p>
+                </div>
+                <div class="section-block">
+                    <span class="label">核心突破与功能</span>
+                    <p class="text-body">微软官方推出的 21 节生成式 AI 实战课程，帮助开发者掌握构建生成式 AI 应用的核心技能。</p>
+                </div>
+                <div class="section-block">
+                    <span class="label">关键技术亮点</span>
+                    <ul class="highlights-list">
+                        <li><strong>提示词工程与 Agent 架构</strong>：深入讲解提示词优化、向量检索增强与多 Agent 设计；</li>
+                        <li><strong>全栈代码样例</strong>：提供 Python 与 TypeScript 实现的开源生成式 AI 应用模板。</li>
+                    </ul>
+                </div>
+                <div class="section-block">
+                    <span class="label">适用场景</span>
+                    <p class="text-body">适合希望快速掌握生成式 AI 开发、构建大模型应用与 AI Agent 的软件工程师。</p>
+                </div>
+                <div class="section-block highlight-box">
+                    <span class="label" style="color: var(--highlight);">架构启示</span>
+                    <p class="text-body">微软官方打造的生成式 AI 应用研发实战标准课程。</p>
+                </div>
+            </div>
+        </article>
+
+        <article class="card">
+            <div class="card-top">
+                <div class="repo-meta">
+                    <span class="rank">#08</span>
+                    <h2 class="repo-name"><a href="https://github.com/donnemartin/system-design-primer" target="_blank" rel="noopener">donnemartin/system-design-primer</a></h2>
+                    <span class="tag">系统架构设计 / 大规模分布式系统</span>
+                </div>
+            </div>
+            <div class="stats-group">
+                <div class="stat-item">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                    <span>360,525</span>
+                </div>
+                <div class="stat-item">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="18" r="3"></circle><circle cx="6" cy="6" r="3"></circle><path d="M6 21V9a9 9 0 0 0 9 9"></path></svg>
+                    <span>57,526</span>
+                </div>
+                <div class="stat-item">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m18 16 4-4-4-4"></path><path d="m6 8-4 4 4 4"></path><path d="m14.5 4-5 16"></path></svg>
+                    <span>Python</span>
+                </div>
+            </div>
+            <div class="content-grid">
+                <div class="section-block">
+                    <span class="label">仓库简介</span>
+                    <p class="text-desc">Learn how to design large-scale systems. Prep for the system design interview.</p>
+                </div>
+                <div class="section-block">
+                    <span class="label">痛点与背景</span>
+                    <p class="text-body">软件工程师在准备架构设计面试或构建高并发大规模分布式系统时，缺乏系统化、图文并茂的架构知识体系。</p>
+                </div>
+                <div class="section-block">
+                    <span class="label">核心突破与功能</span>
+                    <p class="text-body">全网最热门的大规模系统设计学习指南，涵盖高并发、高可用、分布式存储与架构演进等核心主题。</p>
+                </div>
+                <div class="section-block">
+                    <span class="label">关键技术亮点</span>
+                    <ul class="highlights-list">
+                        <li><strong>图解架构范式</strong>：直观拆解负载均衡、缓存策略、数据库分片、消息队列与微服务；</li>
+                        <li><strong>真实案例分析</strong>：深入剖析 Twitter、Netflix 等大型互联网公司的架构演进历程。</li>
+                    </ul>
+                </div>
+                <div class="section-block">
+                    <span class="label">适用场景</span>
+                    <p class="text-body">适合准备系统设计面试的工程师以及需要进行架构选型与高并发设计的系统架构师。</p>
+                </div>
+                <div class="section-block highlight-box">
+                    <span class="label" style="color: var(--highlight);">架构启示</span>
+                    <p class="text-body">大规模分布式系统设计与架构演进的百宝箱指南。</p>
+                </div>
+            </div>
+        </article>
+
+        <article class="card">
+            <div class="card-top">
+                <div class="repo-meta">
+                    <span class="rank">#09</span>
+                    <h2 class="repo-name"><a href="https://github.com/antirez/ds4" target="_blank" rel="noopener">antirez/ds4</a></h2>
+                    <span class="tag">C 语言本地推理 / DeepSeek 本地引擎</span>
+                </div>
+            </div>
+            <div class="stats-group">
+                <div class="stat-item">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                    <span>0</span>
+                </div>
+                <div class="stat-item">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="18" r="3"></circle><circle cx="6" cy="6" r="3"></circle><path d="M6 21V9a9 9 0 0 0 9 9"></path></svg>
+                    <span>0</span>
+                </div>
+                <div class="stat-item">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m18 16 4-4-4-4"></path><path d="m6 8-4 4 4 4"></path><path d="m14.5 4-5 16"></path></svg>
+                    <span>C</span>
+                </div>
+            </div>
+            <div class="content-grid">
+                <div class="section-block">
+                    <span class="label">仓库简介</span>
+                    <p class="text-desc">Pure C implementation of DeepSeek-V3/R1 inference engine</p>
+                </div>
+                <div class="section-block">
+                    <span class="label">痛点与背景</span>
+                    <p class="text-body">开源大模型在本地设备部署时，往往依赖重度 Python 框架（如 PyTorch），在苹果 Metal 或 CUDA 架构上难以达到极致的推理解析速度。</p>
+                </div>
+                <div class="section-block">
+                    <span class="label">核心突破与功能</span>
+                    <p class="text-body">由 Redis 作者 antirez 采用纯 C 语言编写的高性能 DeepSeek 4 Flash 与 PRO 本地轻量化推理引擎。</p>
+                </div>
+                <div class="section-block">
+                    <span class="label">关键技术亮点</span>
+                    <ul class="highlights-list">
+                        <li><strong>纯 C 语言零依赖</strong>：直接调用 Apple Metal、NVIDIA CUDA 与 AMD ROCm 底层加速接口；</li>
+                        <li><strong>极低内存开销</strong>：摒弃重型 Python 运行时，实现秒级启动与极致吞吐率。</li>
+                    </ul>
+                </div>
+                <div class="section-block">
+                    <span class="label">适用场景</span>
+                    <p class="text-body">适合需要在本地设备（Mac/PC/服务器）极速部署 DeepSeek 模型的 C/C++ 开发者与高性能推理探索者。</p>
+                </div>
+                <div class="section-block highlight-box">
+                    <span class="label" style="color: var(--highlight);">架构启示</span>
+                    <p class="text-body">Redis 作者打造的 C 语言极速本地大模型推理引擎标杆。</p>
+                </div>
+            </div>
+        </article>
+
+        <article class="card">
+            <div class="card-top">
+                <div class="repo-meta">
+                    <span class="rank">#10</span>
+                    <h2 class="repo-name"><a href="https://github.com/shiyu-coder/Kronos" target="_blank" rel="noopener">shiyu-coder/Kronos</a></h2>
+                    <span class="tag">金融时间序列 / AI 量化预测</span>
+                </div>
+            </div>
+            <div class="stats-group">
+                <div class="stat-item">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                    <span>35,824</span>
+                </div>
+                <div class="stat-item">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="18" r="3"></circle><circle cx="6" cy="6" r="3"></circle><path d="M6 21V9a9 9 0 0 0 9 9"></path></svg>
+                    <span>5,961</span>
+                </div>
+                <div class="stat-item">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m18 16 4-4-4-4"></path><path d="m6 8-4 4 4 4"></path><path d="m14.5 4-5 16"></path></svg>
+                    <span>Python</span>
+                </div>
+            </div>
+            <div class="content-grid">
+                <div class="section-block">
+                    <span class="label">仓库简介</span>
+                    <p class="text-desc">Kronos: A Foundation Model for the Language of Financial Markets</p>
+                </div>
+                <div class="section-block">
+                    <span class="label">痛点与背景</span>
+                    <p class="text-body">金融市场时间序列数据具有极高的噪声与非线性特点，传统统计模型难以捕获复杂的跨周期趋势与风险波动。</p>
+                </div>
+                <div class="section-block">
+                    <span class="label">核心突破与功能</span>
+                    <p class="text-body">专为金融时间序列分析打造的开源深度学习预测框架，实现高精度的多资产价格趋势预测与风险建模。</p>
+                </div>
+                <div class="section-block">
+                    <span class="label">关键技术亮点</span>
+                    <ul class="highlights-list">
+                        <li><strong>时序 Transformer 架构</strong>：专为金融时序优化的自注意力机制；</li>
+                        <li><strong>多尺度特征融合</strong>：融合高频交易数据与宏观时序指标。</li>
+                    </ul>
+                </div>
+                <div class="section-block">
+                    <span class="label">适用场景</span>
+                    <p class="text-body">适合量化交易员、金融风险分析师及研究高频交易算法的开发团队。</p>
+                </div>
+                <div class="section-block highlight-box">
+                    <span class="label" style="color: var(--highlight);">架构启示</span>
+                    <p class="text-body">深度学习在金融量化预测与风险控制领域的创新尝试。</p>
+                </div>
+            </div>
+        </article>
+
+        <article class="card">
+            <div class="card-top">
+                <div class="repo-meta">
+                    <span class="rank">#11</span>
+                    <h2 class="repo-name"><a href="https://github.com/Panniantong/Agent-Reach" target="_blank" rel="noopener">Panniantong/Agent-Reach</a></h2>
+                    <span class="tag">全网数据抓取 / 浏览器智能扩展</span>
+                </div>
+            </div>
+            <div class="stats-group">
+                <div class="stat-item">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                    <span>65,715</span>
+                </div>
+                <div class="stat-item">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="18" r="3"></circle><circle cx="6" cy="6" r="3"></circle><path d="M6 21V9a9 9 0 0 0 9 9"></path></svg>
+                    <span>5,457</span>
+                </div>
+                <div class="stat-item">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m18 16 4-4-4-4"></path><path d="m6 8-4 4 4 4"></path><path d="m14.5 4-5 16"></path></svg>
+                    <span>Python</span>
+                </div>
+            </div>
+            <div class="content-grid">
+                <div class="section-block">
+                    <span class="label">仓库简介</span>
+                    <p class="text-desc">Give your AI agent eyes to see the entire internet. Read & search Twitter, Reddit, YouTube, GitHub...</p>
+                </div>
+                <div class="section-block">
+                    <span class="label">痛点与背景</span>
+                    <p class="text-body">AI Agent 在获取社交媒体与特定网站最新内容时，容易触发反爬虫封禁或受到复杂动态渲染的限制。</p>
+                </div>
+                <div class="section-block">
+                    <span class="label">核心突破与功能</span>
+                    <p class="text-body">基于 Playwright 构建的 Agent 全网抓取强化工具，支持突破复杂页面限制自动提取高质量结构化数据。</p>
+                </div>
+                <div class="section-block">
+                    <span class="label">关键技术亮点</span>
+                    <ul class="highlights-list">
+                        <li><strong>反爬虫对抗机制</strong>：内置真实浏览器指纹伪装与请求频率平滑策略；</li>
+                        <li><strong>结构化提取引擎</strong>：自动将动态页面转化为干净的 Markdown 格式。</li>
+                    </ul>
+                </div>
+                <div class="section-block">
+                    <span class="label">适用场景</span>
+                    <p class="text-body">适合需要进行自动化全网情报搜集、社交媒体数据分析与知识库构建的 AI 场景。</p>
+                </div>
+                <div class="section-block highlight-box">
+                    <span class="label" style="color: var(--highlight);">架构启示</span>
+                    <p class="text-body">提升 Agent 全网数据获取能力与抗封禁特性的利器。</p>
+                </div>
+            </div>
+        </article>
+
+        <article class="card">
+            <div class="card-top">
+                <div class="repo-meta">
+                    <span class="rank">#12</span>
+                    <h2 class="repo-name"><a href="https://github.com/Alishahryar1/free-claude-code" target="_blank" rel="noopener">Alishahryar1/free-claude-code</a></h2>
+                    <span class="tag">AI 编程工具 / Claude Code 开源替代</span>
+                </div>
+            </div>
+            <div class="stats-group">
+                <div class="stat-item">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                    <span>44,046</span>
+                </div>
+                <div class="stat-item">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="18" r="3"></circle><circle cx="6" cy="6" r="3"></circle><path d="M6 21V9a9 9 0 0 0 9 9"></path></svg>
+                    <span>7,268</span>
+                </div>
+                <div class="stat-item">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m18 16 4-4-4-4"></path><path d="m6 8-4 4 4 4"></path><path d="m14.5 4-5 16"></path></svg>
+                    <span>Python</span>
+                </div>
+            </div>
+            <div class="content-grid">
+                <div class="section-block">
+                    <span class="label">仓库简介</span>
+                    <p class="text-desc">Use Claude Code, Codex and Pi for free from your terminal, app, IDE, or phone</p>
+                </div>
+                <div class="section-block">
+                    <span class="label">痛点与背景</span>
+                    <p class="text-body">官方 Claude Code 工具存在高昂的 API 使用门槛与区域调用限制，开发者难以在本地自由拓展或更换底座模型。</p>
+                </div>
+                <div class="section-block">
+                    <span class="label">核心突破与功能</span>
+                    <p class="text-body">Claude Code 的开源免费替代版，支持在本地命令行终端调用多种大语言模型进行代码自动生成与重构。</p>
+                </div>
+                <div class="section-block">
+                    <span class="label">关键技术亮点</span>
+                    <ul class="highlights-list">
+                        <li><strong>多模型适配引擎</strong>：支持对接 OpenAI、DeepSeek 与本地 Ollama/vLLM 模型；</li>
+                        <li><strong>命令行交互界面</strong>：提供快捷的代码上下文解析、文件编辑与命令执行能力。</li>
+                    </ul>
+                </div>
+                <div class="section-block">
+                    <span class="label">适用场景</span>
+                    <p class="text-body">适合希望无门槛体验命令行 AI 编程、自定义底层模型的开发者。</p>
+                </div>
+                <div class="section-block highlight-box">
+                    <span class="label" style="color: var(--highlight);">架构启示</span>
+                    <p class="text-body">轻量免费的终端 AI 编程替代方案。</p>
+                </div>
+            </div>
+        </article>
+
+        <article class="card">
+            <div class="card-top">
+                <div class="repo-meta">
+                    <span class="rank">#13</span>
+                    <h2 class="repo-name"><a href="https://github.com/iv-org/invidious" target="_blank" rel="noopener">iv-org/invidious</a></h2>
+                    <span class="tag">隐私保护 / 开源视频轻量前端</span>
+                </div>
+            </div>
+            <div class="stats-group">
+                <div class="stat-item">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                    <span>22,272</span>
+                </div>
+                <div class="stat-item">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="18" r="3"></circle><circle cx="6" cy="6" r="3"></circle><path d="M6 21V9a9 9 0 0 0 9 9"></path></svg>
+                    <span>2,479</span>
+                </div>
+                <div class="stat-item">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m18 16 4-4-4-4"></path><path d="m6 8-4 4 4 4"></path><path d="m14.5 4-5 16"></path></svg>
+                    <span>Crystal</span>
+                </div>
+            </div>
+            <div class="content-grid">
+                <div class="section-block">
+                    <span class="label">仓库简介</span>
+                    <p class="text-desc">Invidious is an alternative front-end to YouTube</p>
+                </div>
+                <div class="section-block">
+                    <span class="label">痛点与背景</span>
+                    <p class="text-body">传统视频平台包含大量追踪脚本、官方广告与重度网页框架，导致页面加载缓慢且用户隐私容易泄露。</p>
+                </div>
+                <div class="section-block">
+                    <span class="label">核心突破与功能</span>
+                    <p class="text-body">YouTube 的开源轻量级替代前端，无需 Google 账号即可流畅观看视频并提供绝对的隐私保护。</p>
+                </div>
+                <div class="section-block">
+                    <span class="label">关键技术亮点</span>
+                    <ul class="highlights-list">
+                        <li><strong>基于 Crystal 语言编写</strong>：极高运行效率与微量内存开销；</li>
+                        <li><strong>无广告与追踪器</strong>：自动过滤所有追踪脚本与视频广告，内置轻量化 API。</li>
+                    </ul>
+                </div>
+                <div class="section-block">
+                    <span class="label">适用场景</span>
+                    <p class="text-body">适合追求隐私保护、希望无广告干净流畅观看视频的用户与自建服务爱好者。</p>
+                </div>
+                <div class="section-block highlight-box">
+                    <span class="label" style="color: var(--highlight);">架构启示</span>
+                    <p class="text-body">轻量化与隐私保护视频前端的经典开源标杆。</p>
+                </div>
+            </div>
+        </article>
+
+        <article class="card">
+            <div class="card-top">
+                <div class="repo-meta">
+                    <span class="rank">#14</span>
+                    <h2 class="repo-name"><a href="https://github.com/livekit/agents" target="_blank" rel="noopener">livekit/agents</a></h2>
+                    <span class="tag">实时音视频 / AI Voice Agent 框架</span>
+                </div>
+            </div>
+            <div class="stats-group">
+                <div class="stat-item">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                    <span>11,984</span>
+                </div>
+                <div class="stat-item">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="18" r="3"></circle><circle cx="6" cy="6" r="3"></circle><path d="M6 21V9a9 9 0 0 0 9 9"></path></svg>
+                    <span>3,458</span>
+                </div>
+                <div class="stat-item">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m18 16 4-4-4-4"></path><path d="m6 8-4 4 4 4"></path><path d="m14.5 4-5 16"></path></svg>
+                    <span>Python</span>
+                </div>
+            </div>
+            <div class="content-grid">
+                <div class="section-block">
+                    <span class="label">仓库简介</span>
+                    <p class="text-desc">A framework for building realtime voice AI agents</p>
+                </div>
+                <div class="section-block">
+                    <span class="label">痛点与背景</span>
+                    <p class="text-body">构建实时语音交互 AI（如语音助手、实时视频对话）时，传统 HTTP/WebSocket 架构难以保证超低延迟（<500ms）的音视频流传输。</p>
+                </div>
+                <div class="section-block">
+                    <span class="label">核心突破与功能</span>
+                    <p class="text-body">LiveKit 官方推出的构建实时多模态 AI Agent 的轻量级开发框架，支持低延迟实时语音与视频交互。</p>
+                </div>
+                <div class="section-block">
+                    <span class="label">关键技术亮点</span>
+                    <ul class="highlights-list">
+                        <li><strong>WebRTC 全双工通信</strong>：实现打断式语音对话与毫秒级端到端延迟；</li>
+                        <li><strong>插件化生态</strong>：集成 OpenAI Realtime、Deepgram、Cartesia 等大语言与语音模型。</li>
+                    </ul>
+                </div>
+                <div class="section-block">
+                    <span class="label">适用场景</span>
+                    <p class="text-body">适合开发实时语音客服、AI 虚拟人、数字人全双工对话以及实时视频分析应用。</p>
+                </div>
+                <div class="section-block highlight-box">
+                    <span class="label" style="color: var(--highlight);">架构启示</span>
+                    <p class="text-body">实时多模态语音/视频 AI 智能体开发的标准基础设施。</p>
+                </div>
+            </div>
+        </article>
+
+        <article class="card">
+            <div class="card-top">
+                <div class="repo-meta">
+                    <span class="rank">#15</span>
+                    <h2 class="repo-name"><a href="https://github.com/usekaneo/kaneo" target="_blank" rel="noopener">usekaneo/kaneo</a></h2>
+                    <span class="tag">开源项目管理 / 敏捷任务看板</span>
+                </div>
+            </div>
+            <div class="stats-group">
+                <div class="stat-item">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                    <span>6,862</span>
+                </div>
+                <div class="stat-item">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="18" r="3"></circle><circle cx="6" cy="6" r="3"></circle><path d="M6 21V9a9 9 0 0 0 9 9"></path></svg>
+                    <span>553</span>
+                </div>
+                <div class="stat-item">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m18 16 4-4-4-4"></path><path d="m6 8-4 4 4 4"></path><path d="m14.5 4-5 16"></path></svg>
+                    <span>TypeScript</span>
+                </div>
+            </div>
+            <div class="content-grid">
+                <div class="section-block">
+                    <span class="label">仓库简介</span>
+                    <p class="text-desc">Open source project management that works for you, not against you.</p>
+                </div>
+                <div class="section-block">
+                    <span class="label">痛点与背景</span>
+                    <p class="text-body">企业与开源团队使用的商业项目管理软件往往过于臃肿且收费昂贵，本地私有化部署门槛较高。</p>
+                </div>
+                <div class="section-block">
+                    <span class="label">核心突破与功能</span>
+                    <p class="text-body">现代化轻量级开源项目管理工具，提供类似 Trello / Linear 的极致顺滑任务看板与协作体验。</p>
+                </div>
+                <div class="section-block">
+                    <span class="label">关键技术亮点</span>
+                    <ul class="highlights-list">
+                        <li><strong>现代化全栈架构</strong>：基于 React 与 Go 开发，响应极速且支持开箱即用；</li>
+                        <li><strong>完全私有化部署</strong>：支持 Docker 一键部署，数据完全自主掌控。</li>
+                    </ul>
+                </div>
+                <div class="section-block">
+                    <span class="label">适用场景</span>
+                    <p class="text-body">适合需要私有化项目管理、任务看板与团队敏捷协作的开源团队与初创企业。</p>
+                </div>
+                <div class="section-block highlight-box">
+                    <span class="label" style="color: var(--highlight);">架构启示</span>
+                    <p class="text-body">轻量极速且支持私有化部署的现代化协作看板。</p>
+                </div>
+            </div>
+        </article>
+
+    </main>
 </body>
 </html>
