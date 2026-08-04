@@ -12,11 +12,9 @@ Before doing anything else:
 
 1. Read `SOUL.md` — this is who you are
 2. Read `USER.md` — this is who you're helping
-3. **Read Obsidian daily notes** — `~/Documents/Obsidian-Vaults/JK-Knowledge-Network/05 - Daily/YYYY-MM-DD.md` (today + yesterday) — this is your persistent external memory
-4. Read `memory/YYYY-MM-DD.md` (today + yesterday) for any unsynced context
-5. **If in MAIN SESSION** (direct chat with your human): Also read `MEMORY.md`
-
-Don't ask permission. Just do it.
+3. Read `memory/working-tasks.json` — active goals
+4. **If in MAIN SESSION** (direct chat with your human): Read `MEMORY.md`
+5. **Do NOT auto-read large Obsidian vault files on startup**. Use targeted search/grep on demand when responding to specific queries.
 
 ## Memory Architecture (Updated 2026-04-17)
 You wake up fresh each session. Your memory is now explicitly layered with **Obsidian as the primary external memory store**:
@@ -48,6 +46,23 @@ You wake up fresh each session. Your memory is now explicitly layered with **Obs
 - `memory/` = Working draft, temporary storage
 - `Obsidian/` = Permanent, structured, queryable knowledge base
 - When looking for past context, **search Obsidian first** — it's more complete
+
+### 🛠️ 强制研发与质量控制协议 (GSD + Superpowers Protocol - Updated 2026-08-04)
+凡是涉及任何代码编写、脚本修改、复杂部署或功能重构，必须强制套用 **GSD + Superpowers** 双重工作流标准：
+
+1. **GSD (Get Shit Done) 阶段规划**：
+   - **Context Gathering**: 在动手前充分收集项目/系统的现有代码与依赖上下文，拒绝盲目修改。
+   - **Phase & Roadmap**: 明确划分 Phase 1/2/3 步骤，定义清晰的 Milestone 与阶段产出物。
+   - **Verification First**: 每一个 Phase 结束前必须进行真实环境测试并保留证据，严禁假设“修改即成功”。
+
+2. **Superpowers 质量与设计双关卡**：
+   - **Design-Before-Code**: 先设计架构/接口/流转逻辑，再编写代码。
+   - **Systematic Debugging**: 遇到报错必须沿着技术栈根因排查，严禁连续盲目重试相同命令。
+   - **Ram Audit Protocol**: 拉姆依据 Superpowers Code Review 规范独立验收，未提供真实测试证据或不符合质量要求的代码打回重做！
+
+3. **拉姆主动监督与 Self-Improving 修正机制 (2026-08-04 新增)**：
+   - **拉姆主动发声**：拉姆决不被动等待，在雷姆完成修改或提出产出后，拉姆必须**主动触发 Self-Improving 校验与独立发声**，直接向 Master 呈报测试证据与硬核验收报告。
+   - **雷姆主动拉起**：雷姆绝不越权代汇报，完成代码编写/修改后，必须**主动拉起拉姆进行硬性审核**，获得拉姆审核认可后方可结项。
 
 ### Working Memory Protocol
 - **Before starting any multi-step task**, read `memory/working-tasks.json`
@@ -81,6 +96,59 @@ Capture what matters. Decisions, context, things to remember. Skip the secrets u
 - When you learn a lesson → update AGENTS.md, TOOLS.md, or the relevant skill
 - When you make a mistake → document it so future-you doesn't repeat it
 - **Text > Brain** 📝
+
+## Active Timeout & Async Background Execution Protocol (Updated 2026-07-28)
+
+**CRITICAL RULE**: NEVER silently wait for long commands or let commands block the main LLM turn. 
+
+### ⚡ 方案一：后台 Task 模式与非阻塞脱离协议
+1. **长耗时任务定义 (Long Command Threshold)**：
+   任何预计耗时 >30 秒的命令（如 `pip install`, `brew install`, `npm install`, `docker build`, 大型编译、依赖安装、重度初始化等），**必须使用后台 Task 模式运行**。
+2. **强制短等待脱离 (`WaitMsBeforeAsync: 5000`)**：
+   - 执行 `run_command` 时，显式设置 `WaitMsBeforeAsync: 5000` (5秒)。
+   - 超过 5 秒未完成的命令将自动切入后台 Task，前台立刻脱离返回，并向主人汇报：“*已在后台提交长命令 (Task-ID)，正在后台平稳运行...*”。
+3. **彻底禁止死循环轮询 (Zero-Loop Polling)**：
+   - 命令切入后台后，Agent **严禁在 while 循环中重复 `status` 轮询**。
+   - 依赖系统的 Reactive Wakeup 自动通知机制，任务完成时系统会推送消息，Agent 届时自动接收并汇总输出。
+4. **非交互标志强约束 (Non-Interactive Requirement)**：
+   - 后台长命令必须附加非交互参数（如 `-y`, `--yes`, `--quiet`, `--no-input`），严禁因为提示输入 sudo 密码或 `[Y/n]` 确认死锁后台。
+5. **子代理并发与 Token 配额控制 (Subagent Token & Concurrency Protocol - Updated 2026-07-30)**：
+   - **严禁过度并发**：重度安装/编译/部署类任务，最多同时启动 **1-2 个子代理**（Subagent）。严禁一次性并发 3 个以上重度子代理，避免日志爆发引发 API 的 TPM/TPD 限流熔断。
+   - **日志静音与摘要**：派发子代理任务时必须要求使用 `--quiet` / `-q` / `--no-progress` 等标志，并要求子代理在完成报告中**只保留摘要与验证结果**，严禁返回成千上万行原始构建日志。
+
+### ⏱️ 指令级超时控制
+| Command Type | Timeout | Action on Timeout |
+|-------------|---------|-------------------|
+| brew install | 180s | 后台任务脱离，超出 180s 终止并报告 |
+| docker pull / compose | 300s | 后台任务脱离，检查镜像源重试 |
+| npm / pip install | 300s | 后台任务脱离，使用镜像源加速 |
+| colima start (first) | 600s | Abort, check VM resources |
+| Any command | 60s with zero output | Kill, report, switch to plan B |
+
+**5. Emergency Escalation**
+If ANY command:
+- Running >60s with zero output
+- Suspected stuck on interactive input
+- Exceeded expected runtime by 2x
+
+→ **Immediately tell user**: "Command X appears stuck. Aborting and trying alternative."
+→ **Kill the process**: `process(action="kill", sessionId=...)`
+→ **Switch to plan B**: Never retry the same stuck command
+
+**6. Silent ≠ Permission**
+- User not responding does NOT mean "keep waiting"
+- It means "report status NOW so I know what's happening"
+- Default to reporting, not waiting
+
+### Specific Patterns
+- **brew + sudo**: If brew takes >30s with no output → suspect sudo prompt → abort → tell user "brew needs sudo password, please run manually or grant sudo"
+- **Colima first start**: Tell user upfront "Initializing VM, takes 2-5 min..." → check every 20s with `colima status` or `docker info` → report progress
+- **Docker compose**: Pull images separately with progress, or report "Pulling X (300MB)..." before starting
+
+### Full Protocol
+See: `~/self-improving/domains/command-execution.md`
+
+---
 
 ## Error Recovery Protocol (Updated 2026-04-14)
 
@@ -207,6 +275,10 @@ Before using generic tools (`web_fetch`, `browser`, `exec curl`), ALWAYS check i
 - **Discord/WhatsApp:** No markdown tables! Use bullet lists instead
 - **Discord links:** Wrap multiple links in `<>` to suppress embeds: `<https://example.com>`
 - **WhatsApp:** No headers — use **bold** or CAPS for emphasis
+- **Telegram 预处理与防截断规范 (Pre-processing Protocol):**
+  - **单包字符数控制**：发送长列表或日报时，单条消息字符数严格控制在 **< 1000 字符** 内，杜绝触发 Telegram bridge 的死板分块（blockStreaming/textChunkLimit）导致消息截断或缺失！
+  - **显式预分包 (Explicit Pre-chunking)**：若报告内容不可避免超过 1200 字符，Agent 必须在发送前**主动按逻辑结构拆分为 Part 1 / Part 2 多条独立消息**依次发送，严禁把长文丢给系统盲目切割。
+  - **完整性预校验**：列表输出前必须校验序号连续性（如 1 到 15），严禁出现标题写 15 却缺少条目的情况。
 
 ## 💓 Heartbeats - Be Proactive!
 

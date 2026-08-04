@@ -119,6 +119,15 @@ ps aux | grep "agent-browser-chrome" | grep -v grep | awk '{print $2}' | xargs -
 
 ---
 
+## Emby VPS 内网穿透
+
+**Emby 外网 HTTPS 访问地址**: `https://192-220-34-136.sslip.io:8920` (或 `:8443`)
+**VPS IP**: `192.220.34.136` (Caddy 反向代理 + SSL)
+**本地源站**: `http://192.168.100.25:8096` ("深夜图书馆")
+**守护进程**: `scripts/vps-tunnel-daemon.py` (自动重连 SSH 反向隧道 `8096 -> 192.168.100.25:8096`)
+
+---
+
 ## 单一旋钮配置系统 (Single-Knob Config) — 借鉴 nanochat
 
 **核心思想**：像 nanochat 的 `--depth` 一样，用一个参数控制所有行为复杂度。

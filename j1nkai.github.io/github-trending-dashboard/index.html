@@ -321,6 +321,137 @@
                 padding: 16px;
             }
         }
+    
+        /* =========================================================
+           JAPANESE MECH-CORE "EXECUTE ACCESS" BUTTON & FX
+           ========================================================= */
+        .execute-access-btn {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 5px 12px;
+            background: #ffffff;
+            border: 1px solid var(--border-strong);
+            color: var(--text-primary);
+            font-family: var(--font-mono);
+            font-size: 11px;
+            font-weight: 600;
+            text-decoration: none;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            overflow: hidden;
+            transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+            cursor: pointer;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+            user-select: none;
+        }
+
+        .execute-access-btn::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 3px;
+            height: 100%;
+            background: var(--border-strong);
+            transition: background 0.2s ease, width 0.2s ease;
+        }
+
+        .execute-access-btn .scan-line {
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 60%;
+            height: 100%;
+            background: linear-gradient(
+                90deg, 
+                transparent 0%, 
+                rgba(37, 99, 235, 0.18) 50%, 
+                transparent 100%
+            );
+            transform: skewX(-20deg);
+            pointer-events: none;
+        }
+
+        .execute-access-btn:hover .scan-line {
+            animation: mech-laser-sweep 0.7s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+        }
+
+        @keyframes mech-laser-sweep {
+            0% { left: -100%; }
+            100% { left: 200%; }
+        }
+
+        .execute-access-btn .status-indicator {
+            display: inline-block;
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            background: var(--text-tertiary);
+            transition: all 0.2s ease;
+        }
+
+        .execute-access-btn:hover {
+            border-color: var(--text-primary);
+            background: #fafafa;
+            color: #000000;
+            box-shadow: 0 2px 8px rgba(9, 9, 11, 0.08);
+            transform: translateY(-1px);
+        }
+
+        .execute-access-btn:hover::before {
+            background: var(--accent-blue);
+            width: 3px;
+        }
+
+        .execute-access-btn:hover .status-indicator {
+            background: var(--accent-blue);
+            box-shadow: 0 0 6px rgba(37, 99, 235, 0.8);
+            animation: status-pulse 0.8s infinite alternate;
+        }
+
+        @keyframes status-pulse {
+            0% { opacity: 0.3; }
+            100% { opacity: 1; }
+        }
+
+        .execute-access-btn .jp-tag {
+            font-family: var(--font-jp);
+            font-size: 10px;
+            color: var(--text-tertiary);
+            font-weight: 400;
+            transition: color 0.2s ease;
+        }
+
+        .execute-access-btn:hover .jp-tag {
+            color: var(--text-secondary);
+        }
+
+        .execute-access-btn.mech-locked {
+            border-color: var(--accent-red) !important;
+            background: var(--accent-red-bg) !important;
+            color: var(--accent-red) !important;
+            box-shadow: 0 0 12px rgba(239, 68, 68, 0.25) !important;
+            transform: scale(0.96) !important;
+        }
+
+        .execute-access-btn.mech-locked::before {
+            background: var(--accent-red) !important;
+            width: 100% !important;
+            opacity: 0.15;
+        }
+
+        .execute-access-btn.mech-locked .status-indicator {
+            background: var(--accent-red) !important;
+            box-shadow: 0 0 8px var(--accent-red) !important;
+        }
+
+        .execute-access-btn .btn-text {
+            display: inline-block;
+            min-width: 145px;
+        }
+
     </style>
 </head>
 <body>
@@ -356,6 +487,12 @@
                         <span class="rank-num">01</span>
                         <a href="https://github.com/lyogavin/airllm" target="_blank" class="repo-link">lyogavin/airllm</a>
                     </div>
+                    <a href="https://github.com/lyogavin/airllm" target="_blank" class="execute-access-btn" title="调阅 GitHub 仓库原始数据">
+                        <span class="scan-line"></span>
+                        <span class="status-indicator"></span>
+                        <span class="btn-text">EXECUTE ACCESS // 01</span>
+                        <span class="jp-tag">[ 外部通信 ]</span>
+                    </a>
                     <div class="card-meta-right">
                         <span class="tag-pill">大语言模型推理 / 显存极限压缩</span>
                     </div>
@@ -400,6 +537,12 @@
                         <span class="rank-num">02</span>
                         <a href="https://github.com/zhaoxuya520/reverse-skill" target="_blank" class="repo-link">zhaoxuya520/reverse-skill</a>
                     </div>
+                    <a href="https://github.com/zhaoxuya520/reverse-skill" target="_blank" class="execute-access-btn" title="调阅 GitHub 仓库原始数据">
+                        <span class="scan-line"></span>
+                        <span class="status-indicator"></span>
+                        <span class="btn-text">EXECUTE ACCESS // 02</span>
+                        <span class="jp-tag">[ 外部通信 ]</span>
+                    </a>
                     <div class="card-meta-right">
                         <span class="tag-pill">网络安全 / AI 逆向自动化</span>
                     </div>
@@ -444,6 +587,12 @@
                         <span class="rank-num">03</span>
                         <a href="https://github.com/firecrawl/pdf-inspector" target="_blank" class="repo-link">firecrawl/pdf-inspector</a>
                     </div>
+                    <a href="https://github.com/firecrawl/pdf-inspector" target="_blank" class="execute-access-btn" title="调阅 GitHub 仓库原始数据">
+                        <span class="scan-line"></span>
+                        <span class="status-indicator"></span>
+                        <span class="btn-text">EXECUTE ACCESS // 03</span>
+                        <span class="jp-tag">[ 外部通信 ]</span>
+                    </a>
                     <div class="card-meta-right">
                         <span class="tag-pill">Rust 高性能库 / 智能文档解析</span>
                     </div>
@@ -488,6 +637,12 @@
                         <span class="rank-num">04</span>
                         <a href="https://github.com/esengine/DeepSeek-Reasonix" target="_blank" class="repo-link">esengine/DeepSeek-Reasonix</a>
                     </div>
+                    <a href="https://github.com/esengine/DeepSeek-Reasonix" target="_blank" class="execute-access-btn" title="调阅 GitHub 仓库原始数据">
+                        <span class="scan-line"></span>
+                        <span class="status-indicator"></span>
+                        <span class="btn-text">EXECUTE ACCESS // 04</span>
+                        <span class="jp-tag">[ 外部通信 ]</span>
+                    </a>
                     <div class="card-meta-right">
                         <span class="tag-pill">终端编程助手 / DeepSeek 专属优化</span>
                     </div>
@@ -532,6 +687,12 @@
                         <span class="rank-num">05</span>
                         <a href="https://github.com/TencentCloud/TencentDB-Agent-Memory" target="_blank" class="repo-link">TencentCloud/TencentDB-Agent-Memory</a>
                     </div>
+                    <a href="https://github.com/TencentCloud/TencentDB-Agent-Memory" target="_blank" class="execute-access-btn" title="调阅 GitHub 仓库原始数据">
+                        <span class="scan-line"></span>
+                        <span class="status-indicator"></span>
+                        <span class="btn-text">EXECUTE ACCESS // 05</span>
+                        <span class="jp-tag">[ 外部通信 ]</span>
+                    </a>
                     <div class="card-meta-right">
                         <span class="tag-pill">多 Agent 协同 / 团队共享记忆库</span>
                     </div>
@@ -576,6 +737,12 @@
                         <span class="rank-num">06</span>
                         <a href="https://github.com/microsoft/AI-For-Beginners" target="_blank" class="repo-link">microsoft/AI-For-Beginners</a>
                     </div>
+                    <a href="https://github.com/microsoft/AI-For-Beginners" target="_blank" class="execute-access-btn" title="调阅 GitHub 仓库原始数据">
+                        <span class="scan-line"></span>
+                        <span class="status-indicator"></span>
+                        <span class="btn-text">EXECUTE ACCESS // 06</span>
+                        <span class="jp-tag">[ 外部通信 ]</span>
+                    </a>
                     <div class="card-meta-right">
                         <span class="tag-pill">人工智能教程 / 微软官方零基础指南</span>
                     </div>
@@ -620,6 +787,12 @@
                         <span class="rank-num">07</span>
                         <a href="https://github.com/microsoft/generative-ai-for-beginners" target="_blank" class="repo-link">microsoft/generative-ai-for-beginners</a>
                     </div>
+                    <a href="https://github.com/microsoft/generative-ai-for-beginners" target="_blank" class="execute-access-btn" title="调阅 GitHub 仓库原始数据">
+                        <span class="scan-line"></span>
+                        <span class="status-indicator"></span>
+                        <span class="btn-text">EXECUTE ACCESS // 07</span>
+                        <span class="jp-tag">[ 外部通信 ]</span>
+                    </a>
                     <div class="card-meta-right">
                         <span class="tag-pill">生成式 AI 教程 / 微软官方实战课程</span>
                     </div>
@@ -664,6 +837,12 @@
                         <span class="rank-num">08</span>
                         <a href="https://github.com/donnemartin/system-design-primer" target="_blank" class="repo-link">donnemartin/system-design-primer</a>
                     </div>
+                    <a href="https://github.com/donnemartin/system-design-primer" target="_blank" class="execute-access-btn" title="调阅 GitHub 仓库原始数据">
+                        <span class="scan-line"></span>
+                        <span class="status-indicator"></span>
+                        <span class="btn-text">EXECUTE ACCESS // 08</span>
+                        <span class="jp-tag">[ 外部通信 ]</span>
+                    </a>
                     <div class="card-meta-right">
                         <span class="tag-pill">系统架构设计 / 大规模分布式系统</span>
                     </div>
@@ -708,6 +887,12 @@
                         <span class="rank-num">09</span>
                         <a href="https://github.com/antirez/ds4" target="_blank" class="repo-link">antirez/ds4</a>
                     </div>
+                    <a href="https://github.com/antirez/ds4" target="_blank" class="execute-access-btn" title="调阅 GitHub 仓库原始数据">
+                        <span class="scan-line"></span>
+                        <span class="status-indicator"></span>
+                        <span class="btn-text">EXECUTE ACCESS // 09</span>
+                        <span class="jp-tag">[ 外部通信 ]</span>
+                    </a>
                     <div class="card-meta-right">
                         <span class="tag-pill">C 语言本地推理 / DeepSeek 本地引擎</span>
                     </div>
@@ -752,6 +937,12 @@
                         <span class="rank-num">10</span>
                         <a href="https://github.com/shiyu-coder/Kronos" target="_blank" class="repo-link">shiyu-coder/Kronos</a>
                     </div>
+                    <a href="https://github.com/shiyu-coder/Kronos" target="_blank" class="execute-access-btn" title="调阅 GitHub 仓库原始数据">
+                        <span class="scan-line"></span>
+                        <span class="status-indicator"></span>
+                        <span class="btn-text">EXECUTE ACCESS // 10</span>
+                        <span class="jp-tag">[ 外部通信 ]</span>
+                    </a>
                     <div class="card-meta-right">
                         <span class="tag-pill">金融时间序列 / AI 量化预测</span>
                     </div>
@@ -796,6 +987,12 @@
                         <span class="rank-num">11</span>
                         <a href="https://github.com/Panniantong/Agent-Reach" target="_blank" class="repo-link">Panniantong/Agent-Reach</a>
                     </div>
+                    <a href="https://github.com/Panniantong/Agent-Reach" target="_blank" class="execute-access-btn" title="调阅 GitHub 仓库原始数据">
+                        <span class="scan-line"></span>
+                        <span class="status-indicator"></span>
+                        <span class="btn-text">EXECUTE ACCESS // 11</span>
+                        <span class="jp-tag">[ 外部通信 ]</span>
+                    </a>
                     <div class="card-meta-right">
                         <span class="tag-pill">全网数据抓取 / 浏览器智能扩展</span>
                     </div>
@@ -840,6 +1037,12 @@
                         <span class="rank-num">12</span>
                         <a href="https://github.com/Alishahryar1/free-claude-code" target="_blank" class="repo-link">Alishahryar1/free-claude-code</a>
                     </div>
+                    <a href="https://github.com/Alishahryar1/free-claude-code" target="_blank" class="execute-access-btn" title="调阅 GitHub 仓库原始数据">
+                        <span class="scan-line"></span>
+                        <span class="status-indicator"></span>
+                        <span class="btn-text">EXECUTE ACCESS // 12</span>
+                        <span class="jp-tag">[ 外部通信 ]</span>
+                    </a>
                     <div class="card-meta-right">
                         <span class="tag-pill">AI 编程工具 / Claude Code 开源替代</span>
                     </div>
@@ -884,6 +1087,12 @@
                         <span class="rank-num">13</span>
                         <a href="https://github.com/iv-org/invidious" target="_blank" class="repo-link">iv-org/invidious</a>
                     </div>
+                    <a href="https://github.com/iv-org/invidious" target="_blank" class="execute-access-btn" title="调阅 GitHub 仓库原始数据">
+                        <span class="scan-line"></span>
+                        <span class="status-indicator"></span>
+                        <span class="btn-text">EXECUTE ACCESS // 13</span>
+                        <span class="jp-tag">[ 外部通信 ]</span>
+                    </a>
                     <div class="card-meta-right">
                         <span class="tag-pill">隐私保护 / 开源视频轻量前端</span>
                     </div>
@@ -928,6 +1137,12 @@
                         <span class="rank-num">14</span>
                         <a href="https://github.com/livekit/agents" target="_blank" class="repo-link">livekit/agents</a>
                     </div>
+                    <a href="https://github.com/livekit/agents" target="_blank" class="execute-access-btn" title="调阅 GitHub 仓库原始数据">
+                        <span class="scan-line"></span>
+                        <span class="status-indicator"></span>
+                        <span class="btn-text">EXECUTE ACCESS // 14</span>
+                        <span class="jp-tag">[ 外部通信 ]</span>
+                    </a>
                     <div class="card-meta-right">
                         <span class="tag-pill">实时音视频 / AI Voice Agent 框架</span>
                     </div>
@@ -972,6 +1187,12 @@
                         <span class="rank-num">15</span>
                         <a href="https://github.com/usekaneo/kaneo" target="_blank" class="repo-link">usekaneo/kaneo</a>
                     </div>
+                    <a href="https://github.com/usekaneo/kaneo" target="_blank" class="execute-access-btn" title="调阅 GitHub 仓库原始数据">
+                        <span class="scan-line"></span>
+                        <span class="status-indicator"></span>
+                        <span class="btn-text">EXECUTE ACCESS // 15</span>
+                        <span class="jp-tag">[ 外部通信 ]</span>
+                    </a>
                     <div class="card-meta-right">
                         <span class="tag-pill">开源项目管理 / 敏捷任务看板</span>
                     </div>
@@ -1011,5 +1232,60 @@
 
         </main>
     </div>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const buttons = document.querySelectorAll('.execute-access-btn');
+        const CHARS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789//_-[#]';
+
+        buttons.forEach((btn, index) => {
+            const textSpan = btn.querySelector('.btn-text');
+            const rankStr = String(index + 1).padStart(2, '0');
+            const originalText = `EXECUTE ACCESS // ${rankStr}`;
+            let timer = null;
+
+            btn.addEventListener('mouseenter', () => {
+                let iteration = 0;
+                clearInterval(timer);
+
+                timer = setInterval(() => {
+                    textSpan.innerText = originalText
+                        .split('')
+                        .map((char, idx) => {
+                            if (idx < iteration) {
+                                return originalText[idx];
+                            }
+                            if (char === ' ' || char === '/') return char;
+                            return CHARS[Math.floor(Math.random() * CHARS.length)];
+                        })
+                        .join('');
+
+                    if (iteration >= originalText.length) {
+                        clearInterval(timer);
+                    }
+                    iteration += 1 / 2;
+                }, 25);
+            });
+
+            btn.addEventListener('mouseleave', () => {
+                clearInterval(timer);
+                textSpan.innerText = originalText;
+            });
+
+            btn.addEventListener('click', (e) => {
+                btn.classList.add('mech-locked');
+                const textSpan = btn.querySelector('.btn-text');
+                const orig = textSpan.innerText;
+                textSpan.innerText = `CONNECTING // [${rankStr}]`;
+
+                setTimeout(() => {
+                    btn.classList.remove('mech-locked');
+                    textSpan.innerText = orig;
+                }, 400);
+            });
+        });
+    });
+    </script>
+
 </body>
 </html>
