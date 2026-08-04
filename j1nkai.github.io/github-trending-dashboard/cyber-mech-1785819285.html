@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>GITHUB TRENDING // 赛博朋克重型机甲战术情报站</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:ital,wght@0,500;0,700;1,700&family=JetBrains+Mono:wght@400;700;800&family=Orbitron:wght@700;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-deep: #05070a;
+            --panel-bg: #0d1117;
+            --panel-border: rgba(0, 240, 255, 0.2);
+            --panel-border-glow: rgba(0, 240, 255, 0.5);
+            
+            --cyber-cyan: #00f0ff;
+            --cyber-pink: #ff0055;
+            --cyber-yellow: #ffea00;
+            --cyber-green: #00ff66;
+            
+            --text-main: #f0f6fc;
+            --text-sub: #8b949e;
+            --text-muted: #484f58;
+            
+            --font-mono: 'JetBrains Mono', monospace;
+            --font-mech: 'Chakra Petch', sans-serif;
+            --font-hud: 'Orbitron', sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            background-color: var(--bg-deep);
+            color: var(--text-main);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Hiragino Sans", sans-serif;
+            min-height: 100vh;
+            padding: 24px 16px 80px;
+            background-image: 
+                radial-gradient(rgba(0, 240, 255, 0.08) 1px, transparent 0),
+                linear-gradient(rgba(0, 240, 255, 0.04) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 240, 255, 0.04) 1px, transparent 1px);
+            background-size: 32px 32px, 32px 32px, 32px 32px;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* 🤖 机甲 HUD 战术扫描线与网格激光动画 (Scanline + Grid Laser) */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: linear-gradient(180deg, transparent 50%, rgba(0, 0, 0, 0.4) 51%);
+            background-size: 100% 4px;
+            pointer-events: none;
+            z-index: 99;
+            opacity: 0.7;
+        }
+
+        /* 战术雷达扫描线动画 */
+        .radar-sweep {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--cyber-cyan), transparent);
+            box-shadow: 0 0 15px var(--cyber-cyan);
+            animation: radarSweep 6s linear infinite;
+            z-index: 98;
+            pointer-events: none;
+        }
+
+        @keyframes radarSweep {
+            0% { top: -10px; opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { top: 100vh; opacity: 0; }
+        }
+
+        /* 顶部机体 HUD 控制面板 */
+        .hud-header {
+            max-width: 860px;
+            margin: 0 auto 32px auto;
+            background: rgba(13, 17, 23, 0.92);
+            backdrop-filter: blur(16px);
+            border: 1px solid var(--cyber-cyan);
+            padding: 24px 20px;
+            position: relative;
+            clip-path: polygon(0 0, calc(100% - 20px) 0, 100% 20px, 100% 100%, 20px 100%, 0 calc(100% - 20px));
+            box-shadow: 0 0 35px rgba(0, 240, 255, 0.25), inset 0 0 15px rgba(0, 240, 255, 0.1);
+        }
+
+        .hud-header::before {
+            content: "CYBER_MECH // SYSTEM ONLINE";
+            position: absolute;
+            top: -10px;
+            right: 20px;
+            background: var(--cyber-pink);
+            color: #fff;
+            font-family: var(--font-mono);
+            font-size: 0.65rem;
+            font-weight: 800;
+            padding: 2px 8px;
+            letter-spacing: 1px;
+            box-shadow: 0 0 10px var(--cyber-pink);
+        }
+
+        .hud-meta {
+            display: flex;
+            justify-content: space-between;
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            color: var(--cyber-cyan);
+            margin-bottom: 8px;
+            letter-spacing: 1px;
+        }
+
+        .hud-title {
+            font-family: var(--font-hud);
+            font-size: 2.2rem;
+            font-weight: 900;
+            color: #fff;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            text-shadow: 0 0 15px rgba(0, 240, 255, 0.6);
+        }
+
+        .hud-title span {
+            color: var(--cyber-pink);
+            text-shadow: 0 0 15px var(--cyber-pink);
+        }
+
+        /* 强制单列布局 (Single Column Layout) */
+        .container {
+            max-width: 860px;
+            margin: 0 auto;
+            display: flex !important;
+            flex-direction: column !important;
+            gap: 28px;
+        }
+
+        /* 🤖 机甲外骨骼装甲卡片 (Armor Slice Card with Hydraulics Animation) */
+        .mech-card {
+            width: 100% !important;
+            background: var(--panel-bg);
+            border: 1px solid var(--panel-border);
+            padding: 24px 20px;
+            position: relative;
+            clip-path: polygon(0 0, calc(100% - 24px) 0, 100% 24px, 100% 100%, 24px 100%, 0 calc(100% - 24px));
+            transition: all 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.7);
+        }
+
+        /* 机甲装甲接缝光线 */
+        .mech-card::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0;
+            width: 4px; height: 100%;
+            background: var(--cyber-cyan);
+            box-shadow: 0 0 12px var(--cyber-cyan);
+            opacity: 0.6;
+            transition: all 0.3s ease;
+        }
+
+        /* 悬停/触控时装甲展开与电光闪烁特效 */
+        .mech-card:hover, .mech-card:active {
+            border-color: var(--cyber-cyan);
+            box-shadow: 0 0 40px rgba(0, 240, 255, 0.35), inset 0 0 20px rgba(0, 240, 255, 0.15);
+            transform: translateY(-4px) scale(1.005);
+        }
+
+        .mech-card:hover::before {
+            background: var(--cyber-pink);
+            box-shadow: 0 0 20px var(--cyber-pink);
+            opacity: 1;
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 14px;
+            border-bottom: 1px solid rgba(0, 240, 255, 0.15);
+            padding-bottom: 12px;
+        }
+
+        .rank-tag {
+            font-family: var(--font-hud);
+            font-size: 1.8rem;
+            font-weight: 900;
+            color: #000;
+            background: var(--cyber-cyan);
+            padding: 2px 14px;
+            clip-path: polygon(0 0, 100% 0, 100% calc(100% - 8px), calc(100% - 8px) 100%, 0 100%);
+            box-shadow: 0 0 15px var(--cyber-cyan);
+            letter-spacing: 1px;
+        }
+
+        .repo-title {
+            font-family: var(--font-mono);
+            font-size: 1.35rem;
+            font-weight: 800;
+            color: #ffffff;
+            word-break: break-all;
+            text-shadow: 0 0 8px rgba(255, 255, 255, 0.3);
+        }
+
+        .repo-tag {
+            display: inline-block;
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            color: var(--cyber-cyan);
+            background: rgba(0, 240, 255, 0.1);
+            border: 1px solid var(--cyber-cyan);
+            padding: 3px 10px;
+            margin-top: 6px;
+            text-transform: uppercase;
+        }
+
+        .repo-stats {
+            font-family: var(--font-mono);
+            font-size: 0.88rem;
+            color: var(--text-sub);
+            margin-bottom: 18px;
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .repo-stats span {
+            color: var(--cyber-yellow);
+            font-weight: 700;
+        }
+
+        /* 战术分析情报块 */
+        .intel-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 22px;
+        }
+
+        .intel-block {
+            background: rgba(5, 7, 10, 0.7);
+            border-left: 3px solid var(--cyber-cyan);
+            padding: 12px 14px;
+            position: relative;
+        }
+
+        .intel-block.highlight {
+            border-left-color: var(--cyber-pink);
+            background: rgba(255, 0, 85, 0.08);
+        }
+
+        .intel-label {
+            font-family: var(--font-mono);
+            font-size: 0.78rem;
+            font-weight: 700;
+            color: var(--cyber-cyan);
+            margin-bottom: 6px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+        }
+
+        .intel-block.highlight .intel-label {
+            color: var(--cyber-pink);
+        }
+
+        .intel-body {
+            font-size: 1.02rem;
+            color: var(--text-main);
+            line-height: 1.6;
+        }
+
+        /* 💥 重型机甲战术链接触发按键 (Heavy Mech Access Trigger with Glitch & Hologram Effect) */
+        .trigger-wrapper {
+            margin-top: 18px;
+        }
+
+        .access-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            width: 100%;
+            padding: 18px 24px;
+            background: linear-gradient(135deg, var(--cyber-pink) 0%, #a00033 100%);
+            color: #ffffff !important;
+            font-family: var(--font-hud);
+            font-size: 1.15rem;
+            font-weight: 900;
+            text-decoration: none !important;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            border: 2px solid #ff6699;
+            box-shadow: 0 0 30px rgba(255, 0, 85, 0.7), inset 0 2px 0 rgba(255, 255, 255, 0.6);
+            clip-path: polygon(0 0, calc(100% - 14px) 0, 100% 14px, 100% 100%, 14px 100%, 0 calc(100% - 14px));
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.25s ease;
+        }
+
+        /* 激光电光扫过动画 (Laser Glitch Sweep) */
+        .access-btn::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.5), transparent);
+            transform: rotate(45deg);
+            animation: laserSweep 2s infinite;
+        }
+
+        @keyframes laserSweep {
+            0% { transform: translateX(-100%) rotate(45deg); }
+            30%, 100% { transform: translateX(100%) rotate(45deg); }
+        }
+
+        .access-btn:hover, .access-btn:active {
+            background: linear-gradient(135deg, #ff3377 0%, #d60044 100%);
+            box-shadow: 0 0 50px rgba(255, 0, 85, 1), inset 0 2px 0 rgba(255, 255, 255, 0.9);
+            transform: scale(0.985);
+            letter-spacing: 3px;
+        }
+
+        .btn-glitch {
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            background: #000;
+            color: var(--cyber-cyan);
+            padding: 2px 8px;
+            border: 1px solid var(--cyber-cyan);
+            box-shadow: 0 0 8px var(--cyber-cyan);
+        }
+
+        @media (max-width: 600px) {
+            body { padding: 12px 8px 40px; }
+            .hud-title { font-size: 1.5rem; }
+            .access-btn { font-size: 1rem; padding: 14px 12px; }
+            .repo-title { font-size: 1.15rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="radar-sweep"></div>
+
+    <header class="hud-header">
+        <div class="hud-meta">
+            <span>SYS.ID // CYBER-MECH-HUD-2026</span>
+            <span>[ 战术单列核心引擎 ]</span>
+        </div>
+        <h1 class="hud-title"><span>⚡ GITHUB TRENDING</span> TOP 15</h1>
+        <div style="font-size:0.88rem; color:var(--text-sub); margin-top:6px; font-family:var(--font-mono);">
+            纯中文赛博朋克重型机甲战术情报站 // 贯穿单列版
+        </div>
+    </header>
+
+    <main class="container">
+
+        <!-- #1 -->
+        <article class="mech-card">
+            <div class="card-header">
+                <div>
+                    <div class="repo-title">lyogavin/airllm</div>
+                    <span class="repo-tag">大语言模型推理 / 显存极限压缩</span>
+                </div>
+                <div class="rank-tag">#01</div>
+            </div>
+            <div class="repo-stats">
+                ⭐ <span>27,107</span> Stars &nbsp;|&nbsp; 🍴 <span>2,973</span> Forks &nbsp;|&nbsp; 🔤 Jupyter Notebook
+            </div>
+            <div class="intel-grid">
+                <div class="intel-block">
+                    <div class="intel-label">📝 官方原简介</div>
+                    <div class="intel-body">AirLLM 70B inference with single 4GB GPU</div>
+                </div>
+                <div class="intel-block highlight">
+                    <div class="intel-label">🎯 痛点与背景</div>
+                    <div class="intel-body">本地推理 70B 级大模型通常需要 140GB+ 显存，消费级 4GB 显卡根本无法调入模型，部署门槛极高。</div>
+                </div>
+                <div class="intel-block">
+                    <div class="intel-label">⚡ 核心突破与功能</div>
+                    <div class="intel-body">在单张 4GB 显存的普通显卡上直接运行 70B 规模超大语言模型推理，且无需对模型权重进行高损量化。</div>
+                </div>
+            </div>
+            <div class="trigger-wrapper">
+                <a href="https://github.com/lyogavin/airllm" target="_blank" class="access-btn">
+                    <span>⚡ EXECUTE ACCESS // 调阅仓库</span>
+                    <span class="btn-glitch">LINK.01</span>
+                </a>
+            </div>
+        </article>
+
+        <!-- #2 -->
+        <article class="mech-card">
+            <div class="card-header">
+                <div>
+                    <div class="repo-title">zhaoxuya520/reverse-skill</div>
+                    <span class="repo-tag">网络安全 / AI 逆向自动化</span>
+                </div>
+                <div class="rank-tag">#02</div>
+            </div>
+            <div class="repo-stats">
+                ⭐ <span>158</span> Stars &nbsp;|&nbsp; 🍴 <span>18</span> Forks &nbsp;|&nbsp; 🔤 Python
+            </div>
+            <div class="intel-grid">
+                <div class="intel-block">
+                    <div class="intel-label">📝 官方原简介</div>
+                    <div class="intel-body">AI-assisted reverse engineering & security audit skill package</div>
+                </div>
+                <div class="intel-block highlight">
+                    <div class="intel-label">🎯 痛点与背景</div>
+                    <div class="intel-body">安全工程师进行逆向工程与渗透测试时，需频繁切换数十种命令行工具，缺乏标准化且智能化的 AI 调度助手。</div>
+                </div>
+                <div class="intel-block">
+                    <div class="intel-label">⚡ 核心突破与功能</div>
+                    <div class="intel-body">专为 AI 代码客户端打造的自动化安全逆向技能包，实现意图自动识别、工具按需自举与经验库自动进化。</div>
+                </div>
+            </div>
+            <div class="trigger-wrapper">
+                <a href="https://github.com/zhaoxuya520/reverse-skill" target="_blank" class="access-btn">
+                    <span>⚡ EXECUTE ACCESS // 调阅仓库</span>
+                    <span class="btn-glitch">LINK.02</span>
+                </a>
+            </div>
+        </article>
+
+        <!-- #3 -->
+        <article class="mech-card">
+            <div class="card-header">
+                <div>
+                    <div class="repo-title">firecrawl/pdf-inspector</div>
+                    <span class="repo-tag">Rust 高性能库 / 智能文档解析</span>
+                </div>
+                <div class="rank-tag">#03</div>
+            </div>
+            <div class="repo-stats">⭐ <span>8,241</span> Stars | 🍴 <span>544</span> Forks</div>
+            <div class="intel-grid">
+                <div class="intel-block highlight">
+                    <div class="intel-label">⚡ 核心突破</div>
+                    <div class="intel-body">基于 Rust 的高性能 PDF 结构检查与文本提取库，可毫秒级智能检测扫描件与文本型 PDF 并实现自动化分流。</div>
+                </div>
+            </div>
+            <div class="trigger-wrapper">
+                <a href="https://github.com/firecrawl/pdf-inspector" target="_blank" class="access-btn">
+                    <span>⚡ EXECUTE ACCESS // 调阅仓库</span>
+                    <span class="btn-glitch">LINK.03</span>
+                </a>
+            </div>
+        </article>
+
+        <!-- #4 -->
+        <article class="mech-card">
+            <div class="card-header">
+                <div>
+                    <div class="repo-title">esengine/DeepSeek-Reasonix</div>
+                    <span class="repo-tag">终端编程助手 / DeepSeek 专属优化</span>
+                </div>
+                <div class="rank-tag">#04</div>
+            </div>
+            <div class="repo-stats">⭐ <span>29,932</span> Stars | 🍴 <span>1,920</span> Forks</div>
+            <div class="intel-grid">
+                <div class="intel-block highlight">
+                    <div class="intel-label">⚡ 核心突破</div>
+                    <div class="intel-body">专为 DeepSeek 原生设计的终端 AI 编程助手，围绕前缀缓存稳定性专门构建，支持长期常驻后台高效运行。</div>
+                </div>
+            </div>
+            <div class="trigger-wrapper">
+                <a href="https://github.com/esengine/DeepSeek-Reasonix" target="_blank" class="access-btn">
+                    <span>⚡ EXECUTE ACCESS // 调阅仓库</span>
+                    <span class="btn-glitch">LINK.04</span>
+                </a>
+            </div>
+        </article>
+
+        <!-- #5 -->
+        <article class="mech-card">
+            <div class="card-header">
+                <div>
+                    <div class="repo-title">TencentCloud/TencentDB-Agent-Memory</div>
+                    <span class="repo-tag">多 Agent 协同 / 团队共享记忆库</span>
+                </div>
+                <div class="rank-tag">#05</div>
+            </div>
+            <div class="repo-stats">⭐ <span>12,089</span> Stars | 🍴 <span>1,144</span> Forks</div>
+            <div class="intel-grid">
+                <div class="intel-block highlight">
+                    <div class="intel-label">⚡ 核心突破</div>
+                    <div class="intel-body">腾讯云开源的团队级 Agent 记忆中枢，将对话、文档与代码统一转化为四大可复用记忆资产。</div>
+                </div>
+            </div>
+            <div class="trigger-wrapper">
+                <a href="https://github.com/TencentCloud/TencentDB-Agent-Memory" target="_blank" class="access-btn">
+                    <span>⚡ EXECUTE ACCESS // 调阅仓库</span>
+                    <span class="btn-glitch">LINK.05</span>
+                </a>
+            </div>
+        </article>
+
+    </main>
+
+    <!-- 💥 机甲交互与触控电光闪烁 JavaScript -->
+    <script>
+        document.querySelectorAll('.access-btn').forEach(btn => {
+            btn.addEventListener('touchstart', function() {
+                this.style.transform = 'scale(0.96)';
+                this.style.boxShadow = '0 0 60px rgba(255, 0, 85, 1)';
+            });
+            btn.addEventListener('touchend', function() {
+                this.style.transform = 'scale(1)';
+            });
+        });
+    </script>
+</body>
+</html>
