@@ -3,29 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>GITHUB TRENDING // 日式重型机甲战术情报站</title>
+    <title>GITHUB TRENDING // 赛博朋克重型机甲战术情报站</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:ital,wght@0,500;0,700;1,700&family=JetBrains+Mono:wght@400;600;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:ital,wght@0,500;0,700;1,700&family=JetBrains+Mono:wght@400;700;800&family=Orbitron:wght@700;900&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-deep: #080a0d;
-            --panel-bg: #10141d;
-            --panel-border: rgba(255, 255, 255, 0.12);
-            --panel-border-bright: #3b82f6;
+            --bg-deep: #05070a;
+            --panel-bg: #0d1117;
+            --panel-border: rgba(0, 240, 255, 0.2);
+            --panel-border-glow: rgba(0, 240, 255, 0.5);
             
-            --mech-red: #ff2a55;
-            --mech-red-glow: rgba(255, 42, 85, 0.5);
-            --mech-blue: #00d2ff;
-            --mech-amber: #f59e0b;
-            --mech-green: #10b981;
+            --cyber-cyan: #00f0ff;
+            --cyber-pink: #ff0055;
+            --cyber-yellow: #ffea00;
+            --cyber-green: #00ff66;
             
-            --text-primary: #ffffff;
-            --text-secondary: #94a3b8;
-            --text-muted: #64748b;
+            --text-main: #f0f6fc;
+            --text-sub: #8b949e;
+            --text-muted: #484f58;
             
             --font-mono: 'JetBrains Mono', monospace;
             --font-mech: 'Chakra Petch', sans-serif;
+            --font-hud: 'Orbitron', sans-serif;
         }
 
         * {
@@ -37,39 +37,76 @@
 
         body {
             background-color: var(--bg-deep);
-            color: var(--text-primary);
+            color: var(--text-main);
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Hiragino Sans", sans-serif;
             min-height: 100vh;
             padding: 24px 16px 80px;
             background-image: 
-                linear-gradient(rgba(0, 210, 255, 0.03) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(0, 210, 255, 0.03) 1px, transparent 1px);
-            background-size: 32px 32px;
+                radial-gradient(rgba(0, 240, 255, 0.08) 1px, transparent 0),
+                linear-gradient(rgba(0, 240, 255, 0.04) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 240, 255, 0.04) 1px, transparent 1px);
+            background-size: 32px 32px, 32px 32px, 32px 32px;
             position: relative;
+            overflow-x: hidden;
         }
 
-        /* 动态背景扫描线 */
+        /* 🤖 机甲 HUD 战术扫描线与网格激光动画 (Scanline + Grid Laser) */
         body::before {
             content: "";
             position: fixed;
             top: 0; left: 0; right: 0; bottom: 0;
-            background: linear-gradient(180deg, transparent 50%, rgba(0, 0, 0, 0.3) 51%);
+            background: linear-gradient(180deg, transparent 50%, rgba(0, 0, 0, 0.4) 51%);
             background-size: 100% 4px;
             pointer-events: none;
             z-index: 99;
-            opacity: 0.6;
+            opacity: 0.7;
         }
 
+        /* 战术雷达扫描线动画 */
+        .radar-sweep {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--cyber-cyan), transparent);
+            box-shadow: 0 0 15px var(--cyber-cyan);
+            animation: radarSweep 6s linear infinite;
+            z-index: 98;
+            pointer-events: none;
+        }
+
+        @keyframes radarSweep {
+            0% { top: -10px; opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { top: 100vh; opacity: 0; }
+        }
+
+        /* 顶部机体 HUD 控制面板 */
         .hud-header {
             max-width: 860px;
             margin: 0 auto 32px auto;
-            background: rgba(16, 20, 29, 0.9);
-            backdrop-filter: blur(12px);
-            border: 1px solid var(--panel-border-bright);
+            background: rgba(13, 17, 23, 0.92);
+            backdrop-filter: blur(16px);
+            border: 1px solid var(--cyber-cyan);
             padding: 24px 20px;
             position: relative;
-            clip-path: polygon(0 0, 100% 0, 100% calc(100% - 15px), calc(100% - 15px) 100%, 0 100%);
-            box-shadow: 0 0 35px rgba(0, 210, 255, 0.18);
+            clip-path: polygon(0 0, calc(100% - 20px) 0, 100% 20px, 100% 100%, 20px 100%, 0 calc(100% - 20px));
+            box-shadow: 0 0 35px rgba(0, 240, 255, 0.25), inset 0 0 15px rgba(0, 240, 255, 0.1);
+        }
+
+        .hud-header::before {
+            content: "CYBER_MECH // SYSTEM ONLINE";
+            position: absolute;
+            top: -10px;
+            right: 20px;
+            background: var(--cyber-pink);
+            color: #fff;
+            font-family: var(--font-mono);
+            font-size: 0.65rem;
+            font-weight: 800;
+            padding: 2px 8px;
+            letter-spacing: 1px;
+            box-shadow: 0 0 10px var(--cyber-pink);
         }
 
         .hud-meta {
@@ -77,50 +114,70 @@
             justify-content: space-between;
             font-family: var(--font-mono);
             font-size: 0.8rem;
-            color: var(--mech-blue);
+            color: var(--cyber-cyan);
             margin-bottom: 8px;
             letter-spacing: 1px;
         }
 
         .hud-title {
-            font-family: var(--font-mech);
-            font-size: 2rem;
-            font-weight: 700;
+            font-family: var(--font-hud);
+            font-size: 2.2rem;
+            font-weight: 900;
             color: #fff;
-            letter-spacing: 1.5px;
+            letter-spacing: 2px;
             text-transform: uppercase;
+            text-shadow: 0 0 15px rgba(0, 240, 255, 0.6);
         }
 
         .hud-title span {
-            color: var(--mech-red);
-            text-shadow: 0 0 12px var(--mech-red-glow);
+            color: var(--cyber-pink);
+            text-shadow: 0 0 15px var(--cyber-pink);
         }
 
-        /* 核心布局：强制单列垂直排列 (Single Column Layout) */
+        /* 强制单列布局 (Single Column Layout) */
         .container {
             max-width: 860px;
             margin: 0 auto;
             display: flex !important;
             flex-direction: column !important;
-            gap: 24px;
+            gap: 28px;
         }
 
-        /* 机甲单卡片结构 */
+        /* 🤖 机甲外骨骼装甲卡片 (Armor Slice Card with Hydraulics Animation) */
         .mech-card {
             width: 100% !important;
             background: var(--panel-bg);
             border: 1px solid var(--panel-border);
             padding: 24px 20px;
             position: relative;
-            clip-path: polygon(0 0, calc(100% - 20px) 0, 100% 20px, 100% 100%, 20px 100%, 0 calc(100% - 20px));
-            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+            clip-path: polygon(0 0, calc(100% - 24px) 0, 100% 24px, 100% 100%, 24px 100%, 0 calc(100% - 24px));
+            transition: all 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.7);
         }
 
-        .mech-card:hover {
-            border-color: var(--mech-blue);
-            box-shadow: 0 0 30px rgba(0, 210, 255, 0.25);
-            transform: translateY(-2px);
+        /* 机甲装甲接缝光线 */
+        .mech-card::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0;
+            width: 4px; height: 100%;
+            background: var(--cyber-cyan);
+            box-shadow: 0 0 12px var(--cyber-cyan);
+            opacity: 0.6;
+            transition: all 0.3s ease;
+        }
+
+        /* 悬停/触控时装甲展开与电光闪烁特效 */
+        .mech-card:hover, .mech-card:active {
+            border-color: var(--cyber-cyan);
+            box-shadow: 0 0 40px rgba(0, 240, 255, 0.35), inset 0 0 20px rgba(0, 240, 255, 0.15);
+            transform: translateY(-4px) scale(1.005);
+        }
+
+        .mech-card:hover::before {
+            background: var(--cyber-pink);
+            box-shadow: 0 0 20px var(--cyber-pink);
+            opacity: 1;
         }
 
         .card-header {
@@ -128,45 +185,47 @@
             justify-content: space-between;
             align-items: flex-start;
             margin-bottom: 14px;
-            border-bottom: 1px dashed rgba(255, 255, 255, 0.12);
+            border-bottom: 1px solid rgba(0, 240, 255, 0.15);
             padding-bottom: 12px;
         }
 
         .rank-tag {
-            font-family: var(--font-mech);
-            font-size: 1.6rem;
-            font-weight: 700;
-            color: var(--mech-red);
-            background: rgba(255, 42, 85, 0.12);
-            border: 1px solid var(--mech-red);
+            font-family: var(--font-hud);
+            font-size: 1.8rem;
+            font-weight: 900;
+            color: #000;
+            background: var(--cyber-cyan);
             padding: 2px 14px;
-            clip-path: polygon(0 0, 100% 0, 100% calc(100% - 6px), calc(100% - 6px) 100%, 0 100%);
-            text-shadow: 0 0 10px var(--mech-red-glow);
+            clip-path: polygon(0 0, 100% 0, 100% calc(100% - 8px), calc(100% - 8px) 100%, 0 100%);
+            box-shadow: 0 0 15px var(--cyber-cyan);
+            letter-spacing: 1px;
         }
 
         .repo-title {
             font-family: var(--font-mono);
-            font-size: 1.3rem;
-            font-weight: 700;
+            font-size: 1.35rem;
+            font-weight: 800;
             color: #ffffff;
             word-break: break-all;
+            text-shadow: 0 0 8px rgba(255, 255, 255, 0.3);
         }
 
         .repo-tag {
             display: inline-block;
             font-family: var(--font-mono);
             font-size: 0.8rem;
-            color: var(--mech-blue);
-            background: rgba(0, 210, 255, 0.1);
-            border: 1px solid rgba(0, 210, 255, 0.3);
-            padding: 2px 10px;
+            color: var(--cyber-cyan);
+            background: rgba(0, 240, 255, 0.1);
+            border: 1px solid var(--cyber-cyan);
+            padding: 3px 10px;
             margin-top: 6px;
+            text-transform: uppercase;
         }
 
         .repo-stats {
             font-family: var(--font-mono);
             font-size: 0.88rem;
-            color: var(--text-secondary);
+            color: var(--text-sub);
             margin-bottom: 18px;
             display: flex;
             gap: 16px;
@@ -174,8 +233,8 @@
         }
 
         .repo-stats span {
-            color: var(--mech-amber);
-            font-weight: 600;
+            color: var(--cyber-yellow);
+            font-weight: 700;
         }
 
         /* 战术分析情报块 */
@@ -183,42 +242,44 @@
             display: flex;
             flex-direction: column;
             gap: 12px;
-            margin-bottom: 20px;
+            margin-bottom: 22px;
         }
 
         .intel-block {
-            background: rgba(0, 0, 0, 0.45);
-            border-left: 3px solid var(--panel-border-bright);
+            background: rgba(5, 7, 10, 0.7);
+            border-left: 3px solid var(--cyber-cyan);
             padding: 12px 14px;
+            position: relative;
         }
 
         .intel-block.highlight {
-            border-left-color: var(--mech-red);
-            background: rgba(255, 42, 85, 0.06);
+            border-left-color: var(--cyber-pink);
+            background: rgba(255, 0, 85, 0.08);
         }
 
         .intel-label {
             font-family: var(--font-mono);
             font-size: 0.78rem;
-            color: var(--text-muted);
+            font-weight: 700;
+            color: var(--cyber-cyan);
             margin-bottom: 6px;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 1.5px;
         }
 
         .intel-block.highlight .intel-label {
-            color: var(--mech-red);
+            color: var(--cyber-pink);
         }
 
         .intel-body {
-            font-size: 0.98rem;
-            color: var(--text-primary);
+            font-size: 1.02rem;
+            color: var(--text-main);
             line-height: 1.6;
         }
 
-        /* 爆目发光按键 */
+        /* 💥 重型机甲战术链接触发按键 (Heavy Mech Access Trigger with Glitch & Hologram Effect) */
         .trigger-wrapper {
-            margin-top: 16px;
+            margin-top: 18px;
         }
 
         .access-btn {
@@ -227,24 +288,25 @@
             justify-content: center;
             gap: 12px;
             width: 100%;
-            padding: 16px 20px;
-            background: linear-gradient(135deg, #ff2a55 0%, #990022 100%);
+            padding: 18px 24px;
+            background: linear-gradient(135deg, var(--cyber-pink) 0%, #a00033 100%);
             color: #ffffff !important;
-            font-family: var(--font-mech);
-            font-size: 1.1rem;
-            font-weight: 700;
+            font-family: var(--font-hud);
+            font-size: 1.15rem;
+            font-weight: 900;
             text-decoration: none !important;
             text-transform: uppercase;
             letter-spacing: 2px;
-            border: 1px solid #ff6685;
-            box-shadow: 0 0 25px rgba(255, 42, 85, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.5);
-            clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px));
+            border: 2px solid #ff6699;
+            box-shadow: 0 0 30px rgba(255, 0, 85, 0.7), inset 0 2px 0 rgba(255, 255, 255, 0.6);
+            clip-path: polygon(0 0, calc(100% - 14px) 0, 100% 14px, 100% 100%, 14px 100%, 0 calc(100% - 14px));
             position: relative;
             overflow: hidden;
             cursor: pointer;
-            transition: all 0.2s ease;
+            transition: all 0.25s ease;
         }
 
+        /* 激光电光扫过动画 (Laser Glitch Sweep) */
         .access-btn::after {
             content: '';
             position: absolute;
@@ -252,49 +314,53 @@
             left: -50%;
             width: 200%;
             height: 200%;
-            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.5), transparent);
             transform: rotate(45deg);
-            animation: pulseSweep 2.5s infinite;
+            animation: laserSweep 2s infinite;
         }
 
-        @keyframes pulseSweep {
+        @keyframes laserSweep {
             0% { transform: translateX(-100%) rotate(45deg); }
-            20%, 100% { transform: translateX(100%) rotate(45deg); }
+            30%, 100% { transform: translateX(100%) rotate(45deg); }
         }
 
-        .access-btn:active, .access-btn:hover {
-            background: linear-gradient(135deg, #ff476e 0%, #cc0033 100%);
-            box-shadow: 0 0 40px rgba(255, 42, 85, 0.9), inset 0 1px 0 rgba(255, 255, 255, 0.8);
-            transform: scale(0.98);
+        .access-btn:hover, .access-btn:active {
+            background: linear-gradient(135deg, #ff3377 0%, #d60044 100%);
+            box-shadow: 0 0 50px rgba(255, 0, 85, 1), inset 0 2px 0 rgba(255, 255, 255, 0.9);
+            transform: scale(0.985);
+            letter-spacing: 3px;
         }
 
         .btn-glitch {
             font-family: var(--font-mono);
-            font-size: 0.78rem;
-            background: rgba(0, 0, 0, 0.4);
+            font-size: 0.8rem;
+            background: #000;
+            color: var(--cyber-cyan);
             padding: 2px 8px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            color: var(--mech-blue);
+            border: 1px solid var(--cyber-cyan);
+            box-shadow: 0 0 8px var(--cyber-cyan);
         }
 
         @media (max-width: 600px) {
             body { padding: 12px 8px 40px; }
-            .hud-title { font-size: 1.4rem; }
-            .access-btn { font-size: 0.95rem; padding: 14px 12px; }
-            .repo-title { font-size: 1.1rem; }
+            .hud-title { font-size: 1.5rem; }
+            .access-btn { font-size: 1rem; padding: 14px 12px; }
+            .repo-title { font-size: 1.15rem; }
         }
     </style>
 </head>
 <body>
 
+    <div class="radar-sweep"></div>
+
     <header class="hud-header">
         <div class="hud-meta">
-            <span>SYS.ID // GITHUB-TRENDING-HUD</span>
-            <span>[ 战术单列模式 ]</span>
+            <span>SYS.ID // CYBER-MECH-HUD-2026</span>
+            <span>[ 战术单列核心引擎 ]</span>
         </div>
         <h1 class="hud-title"><span>⚡ GITHUB TRENDING</span> TOP 15</h1>
-        <div style="font-size:0.88rem; color:var(--text-secondary); margin-top:6px; font-family:var(--font-mono);">
-            纯中文战术级深度解析 // 单列垂直贯穿版
+        <div style="font-size:0.88rem; color:var(--text-sub); margin-top:6px; font-family:var(--font-mono);">
+            纯中文赛博朋克重型机甲战术情报站 // 贯穿单列版
         </div>
     </header>
 
@@ -442,5 +508,17 @@
 
     </main>
 
+    <!-- 💥 机甲交互与触控电光闪烁 JavaScript -->
+    <script>
+        document.querySelectorAll('.access-btn').forEach(btn => {
+            btn.addEventListener('touchstart', function() {
+                this.style.transform = 'scale(0.96)';
+                this.style.boxShadow = '0 0 60px rgba(255, 0, 85, 1)';
+            });
+            btn.addEventListener('touchend', function() {
+                this.style.transform = 'scale(1)';
+            });
+        });
+    </script>
 </body>
 </html>
