@@ -27,6 +27,7 @@
             'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
             'fade-in': 'fadeIn 0.5s ease-out forwards',
             'slide-up': 'slideUp 0.4s ease-out forwards',
+            'float': 'float 6s ease-in-out infinite',
           },
           keyframes: {
             scan: {
@@ -40,6 +41,10 @@
             slideUp: {
               '0%': { opacity: '0', transform: 'translateY(10px)' },
               '100%': { opacity: '1', transform: 'translateY(0)' },
+            },
+            float: {
+              '0%, 100%': { transform: 'translateY(0)' },
+              '50%': { transform: 'translateY(-5px)' },
             },
           },
           boxShadow: {
@@ -137,6 +142,20 @@
       .stagger-item:nth-child(13) { animation-delay: 0.65s; }
       .stagger-item:nth-child(14) { animation-delay: 0.7s; }
       .stagger-item:nth-child(15) { animation-delay: 0.75s; }
+      
+      .float-animation {
+        animation: float 6s ease-in-out infinite;
+      }
+      
+      .data-stream {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 1px;
+        background: linear-gradient(90deg, transparent, rgba(37,99,235,0.2), transparent);
+        animation: scan 4s linear infinite;
+      }
     }
   </style>
 </head>
@@ -351,6 +370,9 @@
               </div>
             </div>
           </div>
+          
+          <!-- 底部数据流装饰 -->
+          <div class="data-stream"></div>
         `;
         listEl.appendChild(card);
       });
