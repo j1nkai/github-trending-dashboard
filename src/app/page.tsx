@@ -1,68 +1,45 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Star, GitFork, Terminal, Search, ArrowUpRight } from "lucide-react";
+
+interface Review {
+  tag: string;
+  bg: string;
+  func: string;
+  tech: string;
+  scene: string;
+  insight: string;
+}
 
 interface Repo {
   rank: number;
   name: string;
-  author: string;
   url: string;
-  description: string;
+  stars: number;
+  forks: number;
   language: string;
-  stars: string;
-  forks: string;
-  todayStars: string;
-  avatar: string;
+  description: string;
+  review: Review;
 }
 
-const SAMPLE_REPOS: Repo[] = [
-  {
-    rank: 1,
-    name: "openclaw",
-    author: "openclaw",
-    url: "https://github.com/openclaw/openclaw",
-    description: "自主 AI Agent 框架，专注于本地私有化控制与多模态自动化工作流。",
-    language: "TypeScript",
-    stars: "14,230",
-    forks: "1,820",
-    todayStars: "+412 stars today",
-    avatar: "https://github.com/openclaw.png",
-  },
-  {
-    rank: 2,
-    name: "tailwindcss",
-    author: "tailwindcss",
-    url: "https://github.com/tailwindcss/tailwindcss",
-    description: "原子化 CSS 框架，基于下一代高性能 Rust 引擎构建，极速响应 UI 迭代。",
-    language: "Rust",
-    stars: "83,500",
-    forks: "4,100",
-    todayStars: "+289 stars today",
-    avatar: "https://github.com/tailwindcss.png",
-  },
-  {
-    rank: 3,
-    name: "next.js",
-    author: "vercel",
-    url: "https://github.com/vercel/next.js",
-    description: "React 现代化全栈框架，支持 App Router 与极速静态导出 (SSG/ISR)。",
-    language: "TypeScript",
-    stars: "125,400",
-    forks: "26,100",
-    todayStars: "+195 stars today",
-    avatar: "https://github.com/vercel.png",
-  }
-];
-
 export default function Home() {
+  const [repos, setRepos] = useState<Repo[]>([]);
   const [filter, setFilter] = useState("");
 
-  const filteredRepos = SAMPLE_REPOS.filter(
+  useEffect(() => {
+    fetch("https://raw.githubusercontent.com/j1nkai/github-trending-dashboard/main/data/github-trending-top15.json")
+      .then((res) => res.json())
+      .then((data) => setRepos(data))
+      .catch((err) => console.error("Failed to load trending data:", err));
+  }, []);
+
+  const filteredRepos = repos.filter(
     (repo) =>
       repo.name.toLowerCase().includes(filter.toLowerCase()) ||
       repo.description.toLowerCase().includes(filter.toLowerCase()) ||
-      repo.language.toLowerCase().includes(filter.toLowerCase())
+      repo.language.toLowerCase().includes(filter.toLowerCase()) ||
+      repo.review?.tag.toLowerCase().includes(filter.toLowerCase())
   );
 
   return (
@@ -79,7 +56,7 @@ export default function Home() {
           </h1>
         </div>
         <div className="text-xs text-[#737373] bg-[#F5F5F5] border border-[#E5E5E5] px-3 py-1.5 rounded-sm">
-          STATUS: <span className="text-[#16A34A] font-bold">ONLINE</span> | SYNC: 2026-08-06
+          STATUS: <span className="text-[#16A34A] font-bold">ONLINE</span> | NEXT.JS + TAILWIND
         </div>
       </header>
 
@@ -90,7 +67,7 @@ export default function Home() {
           <Search className="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 text-[#A3A3A3]" />
           <input
             type="text"
-            placeholder="搜索项目、语言或关键词..."
+            placeholder="搜索开源项目、语言、架构标签或关键词..."
             value={filter}
             onChange={(e) => setFilter(e.target.value)}
             className="w-full bg-white border border-[#E5E5E5] pl-9 pr-4 py-2 text-sm text-[#171717] placeholder-[#A3A3A3] focus:outline-none focus:border-[#0A0A0A] rounded-sm transition-colors"
@@ -102,33 +79,54 @@ export default function Home() {
           {filteredRepos.map((repo) => (
             <div
               key={repo.rank}
-              className="bg-white border border-[#E5E5E5] hover:border-[#0A0A0A] p-5 rounded-sm transition-all shadow-sm hover:shadow-none relative group"
+              className="bg-white border border-[#E5E5E5] hover:border-[#0A0A0A] p-6 rounded-sm transition-all shadow-sm hover:shadow-none relative group"
             >
               <div className="flex items-start justify-between gap-4">
-                <div className="flex items-start gap-4">
-                  <span className="text-xl font-bold text-[#A3A3A3] w-6">
-                    0{repo.rank}
+                <div className="flex items-start gap-4 w-full">
+                  <span className="text-xl font-bold text-[#A3A3A3] w-8">
+                    {repo.rank < 10 ? `0${repo.rank}` : repo.rank}
                   </span>
-                  <div>
-                    <div className="flex items-center gap-2">
-                      <img
-                        src={repo.avatar}
-                        alt={repo.author}
-                        className="w-5 h-5 rounded-full border border-[#E5E5E5] object-cover object-center"
-                      />
+                  <div className="w-full">
+                    <div className="flex items-center justify-between">
                       <a
                         href={repo.url}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="font-medium text-base text-[#0A0A0A] hover:underline flex items-center gap-1"
+                        className="font-bold text-lg text-[#0A0A0A] hover:underline flex items-center gap-1.5"
                       >
-                        {repo.author} / <span className="font-bold">{repo.name}</span>
-                        <ArrowUpRight className="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity" />
+                        {repo.name}
+                        <ArrowUpRight className="w-4 h-4 text-[#737373] group-hover:text-[#0A0A0A] transition-colors" />
                       </a>
+                      <span className="text-xs bg-[#F5F5F5] border border-[#E5E5E5] text-[#525252] px-2 py-0.5 rounded-sm">
+                        {repo.review?.tag || repo.language}
+                      </span>
                     </div>
-                    <p className="text-sm text-[#525252] mt-2 max-w-2xl leading-relaxed">
+
+                    <p className="text-sm text-[#525252] mt-2 leading-relaxed">
                       {repo.description}
                     </p>
+
+                    {/* AI 洞察分析区块 */}
+                    {repo.review && (
+                      <div className="mt-4 p-4 bg-[#FAFAFA] border border-[#E5E5E5] rounded-sm text-xs space-y-2 text-[#404040]">
+                        <div>
+                          <span className="font-bold text-[#0A0A0A]">【业务痛点与背景】</span>
+                          <p className="mt-0.5 text-[#525252]">{repo.review.bg}</p>
+                        </div>
+                        <div>
+                          <span className="font-bold text-[#0A0A0A]">【核心功能】</span>
+                          <p className="mt-0.5 text-[#525252]">{repo.review.func}</p>
+                        </div>
+                        <div>
+                          <span className="font-bold text-[#0A0A0A]">【技术亮点】</span>
+                          <p className="mt-0.5 whitespace-pre-line text-[#525252]">{repo.review.tech}</p>
+                        </div>
+                        <div>
+                          <span className="font-bold text-[#0A0A0A]">【适用场景】</span>
+                          <p className="mt-0.5 text-[#525252]">{repo.review.scene}</p>
+                        </div>
+                      </div>
+                    )}
                   </div>
                 </div>
               </div>
@@ -141,14 +139,11 @@ export default function Home() {
                 </span>
                 <span className="flex items-center gap-1">
                   <Star className="w-3.5 h-3.5 text-[#D97706]" />
-                  {repo.stars}
+                  {repo.stars.toLocaleString()}
                 </span>
                 <span className="flex items-center gap-1">
                   <GitFork className="w-3.5 h-3.5" />
-                  {repo.forks}
-                </span>
-                <span className="text-[#16A34A] font-medium ml-auto">
-                  {repo.todayStars}
+                  {repo.forks.toLocaleString()}
                 </span>
               </div>
             </div>
