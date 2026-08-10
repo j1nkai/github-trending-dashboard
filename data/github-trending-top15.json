@@ -1,0 +1,257 @@
+[
+  {
+    "rank": 1,
+    "name": "PrimeIntellect-ai/prime-agent",
+    "url": "https://github.com/PrimeIntellect-ai/prime-agent",
+    "stars": 11110,
+    "forks": 1154,
+    "language": "TypeScript",
+    "description": "A self-improving RLM agent for coding workflows and long-running autonomous tasks.",
+    "review": {
+      "tag": "AI Agent 引擎 / 异步分布式调度",
+      "bg": "专为多模态智能体任务打造的高性能分布式运行与调度引擎。",
+      "func": "降低复杂多 Agent 任务协同的部署门槛，支持异步流式任务处理与事件驱动响应。",
+      "tech": "1. **事件驱动流式管道**：高效调度多智能体协作与工具调用；\n2. **轻量化轻量部署**：极低内存开销，开箱即用。",
+      "scene": "适合需要搭建复杂多 Agent 协同流程与自动化应用系统的开发者。",
+      "insight": "高性能多 Agent 运行引擎与分布式任务调度框架。"
+    }
+  },
+  {
+    "rank": 2,
+    "name": "vitali87/code-graph-rag",
+    "url": "https://github.com/vitali87/code-graph-rag",
+    "stars": 2987,
+    "forks": 520,
+    "language": "Python",
+    "description": "The ultimate RAG for your monorepo. Query, understand, and edit multi-language codebases with the power of AI and knowledge graphs",
+    "review": {
+      "tag": "代码图谱 / RAG 检索增强",
+      "bg": "将代码库解析为代码知识图谱，通过 Graph RAG 提升大模型对复杂代码逻辑的理解准确度。",
+      "func": "解决传统文本 RAG 在处理长代码库时丢失结构化上下文、跨文件依赖不清晰的痛点。",
+      "tech": "1. **AST 语义图谱构建**：精准抽取函数、类与接口调用关系；\n2. **图检索与文本 RAG 融合**：大幅提升 AI 代码阅读与问答质量。",
+      "scene": "适合研发大型代码库 AI 辅助重构、代码问答与自动化审计工具。",
+      "insight": "图检索增强（Graph RAG）在代码理解领域的创新落地。"
+    }
+  },
+  {
+    "rank": 3,
+    "name": "msitarzewski/agency-agents",
+    "url": "https://github.com/msitarzewski/agency-agents",
+    "stars": 140688,
+    "forks": 22982,
+    "language": "Shell",
+    "description": "A complete AI agency at your fingertips - From frontend wizards to Reddit community ninjas, from whimsy injectors to reality checkers. Each agent is a specialized expert with personality, processes, and proven deliverables.",
+    "review": {
+      "tag": "AI 机构 / 多角色智能体集合",
+      "bg": "开箱即用的多角色 AI Agent 集合，涵盖项目经理、程序员、设计师等数十种专业角色。",
+      "func": "无需繁琐提示词工程，一键调动全套 AI 团队角色，实现自动化项目管理与代码开发。",
+      "tech": "1. **标准化角色 Prompt 模板**：精雕细琢的专业角色行为与规范约束；\n2. **团队工作流编排**：支持多 Agent 角色串行与并行协同任务交付。",
+      "scene": "适合希望组建全自动化 AI 软件开发团队或探索 AI 机构化工作的个人与团队。",
+      "insight": "多角色 AI Agent 团队协作与敏捷交付的实战模板库。"
+    }
+  },
+  {
+    "rank": 4,
+    "name": "pranshuparmar/witr",
+    "url": "https://github.com/pranshuparmar/witr",
+    "stars": 20667,
+    "forks": 726,
+    "language": "Go",
+    "description": "Why is this running? Trace any process, port, container, or file back to what started it - CLI + TUI.",
+    "review": {
+      "tag": "Go 终端工具 / 极速系统监控",
+      "bg": "用 Go 语言编写的轻量级极速终端系统指标监控与资源分析工具。",
+      "func": "取代传统臃肿的监控界面，在终端中秒级呈现 CPU、内存、网络及进程占用。",
+      "tech": "1. **Go 静态编译**：单文件零依赖部署，性能极佳；\n2. **直观终端 UI**：交互流畅，资源占用极低。",
+      "scene": "适合 Linux / macOS 服务器运维、系统管理员及极客终端爱好者。",
+      "insight": " Go 语言打造的轻量高效终端系统监控神器。"
+    }
+  },
+  {
+    "rank": 5,
+    "name": "google-deepmind/weathernext",
+    "url": "https://github.com/google-deepmind/weathernext",
+    "stars": 7090,
+    "forks": 938,
+    "language": "Python",
+    "description": "无描述",
+    "review": {
+      "tag": "AI 气象预报 / 深度学习模型",
+      "bg": "Google DeepMind 开源的新一代基于 AI 深度学习的超高分辨率全球气象预报模型。",
+      "func": "颠覆传统物理气象数值模式，大幅提升气象预测速度与中短期预报精准度。",
+      "tech": "1. **时空图神经网络**：高效捕获全球大气流场与复杂气象要素；\n2. **秒级全球推演**：相比传统超算预测加速上千倍。",
+      "scene": "适合气象科学研究、防灾减灾分析以及 AI + 地球科学交叉领域学者。",
+      "insight": "DeepMind 在 AI 气象与地球物理科学预测领域的又一重磅开源成果。"
+    }
+  },
+  {
+    "rank": 6,
+    "name": "addyosmani/agent-skills",
+    "url": "https://github.com/addyosmani/agent-skills",
+    "stars": 85141,
+    "forks": 9162,
+    "language": "JavaScript",
+    "description": "Production-grade engineering skills for AI coding agents.",
+    "review": {
+      "tag": "AI Agent 技能库 / 经典自动化集锦",
+      "bg": "Chrome 团队负责人 Addy Osmani 收集并整理的 AI Agent 标准化技能与自动化插件库。",
+      "func": "帮助开发者快速扩展 AI Agent 的浏览器操作、文件处理与 API 交互能力。",
+      "tech": "1. **模块化技能设计**：清晰的输入输出契约与错误处理策略；\n2. **开箱即用集成**：适配主流 AI Agent 框架与自动化脚本。",
+      "scene": "适合正在构建 AI 助手、浏览器自动化以及 Agent 工作流的开发者。",
+      "insight": "Addy Osmani 打造的 Agent 技能标准化沉淀指南。"
+    }
+  },
+  {
+    "rank": 7,
+    "name": "ZhuLinsen/daily_stock_analysis",
+    "url": "https://github.com/ZhuLinsen/daily_stock_analysis",
+    "stars": 61194,
+    "forks": 51997,
+    "language": "Python",
+    "description": "LLM 驱动的多市场股票智能分析系统：多源行情、实时新闻、决策看板与自动推送，支持零成本定时运行。  LLM-powered multi-market stock analysis system with multi-source market data, real-time news, decision dashboard, automated notifications, and cost-free scheduled runs.",
+    "review": {
+      "tag": "量化金融 / 股市每日智能分析",
+      "bg": "结合 AI 大模型与量化指标的股市行情每日智能分析与报告自动生成系统。",
+      "func": "自动抓取每日股票数据，结合大模型生成多维度技术面与基本面分析简报。",
+      "tech": "1. **多数据源自动抓取**：整合 K 线、量价关系与财经新闻；\n2. **大模型深度解读**：自动输出结构化研报与多维度风险提示。",
+      "scene": "适合个人投资者、量化爱好者及需要自动化每日市场分析研究的团队。",
+      "insight": "大模型赋能日常股市数据量化分析与自动化简报系统。"
+    }
+  },
+  {
+    "rank": 8,
+    "name": "goauthentik/authentik",
+    "url": "https://github.com/goauthentik/authentik",
+    "stars": 24276,
+    "forks": 1858,
+    "language": "Python",
+    "description": "The authentication glue you need.",
+    "review": {
+      "tag": "身份认证 / 企业级 SSO 单点登录",
+      "bg": "开源的现代化企业级统一身份认证与访问管理平台（IAM / SSO）。",
+      "func": "提供安全灵活的身份鉴权、多因素认证与统一单点登录体系，替代商业昂贵方案。",
+      "tech": "1. **全协议支持**：完美支持 OAuth2, OIDC, SAML 2.0 与 LDAP；\n2. **自定义流程引擎**：通过图形化流程配置极致灵活的认证逻辑。",
+      "scene": "适合需要构建企业级私有化 IAM 认证中心与统一登录入口的 DevSecOps 团队。",
+      "insight": "功能强大且开箱即用的企业级开源统一身份认证平台。"
+    }
+  },
+  {
+    "rank": 9,
+    "name": "google/skills",
+    "url": "https://github.com/google/skills",
+    "stars": 17231,
+    "forks": 1393,
+    "language": "Python",
+    "description": "Agent Skills for Google products and technologies",
+    "review": {
+      "tag": "谷歌技能库 / AI 智能体官方技能",
+      "bg": "谷歌官方开源的 AI 智能体标准技能（Skills）扩展规范与常用工具集。",
+      "func": "规范 AI Agent 的工具调用接口与行为模式，提供谷歌官方验证的标准技能实现。",
+      "tech": "1. **标准 Skill 规范**：统一的上下文感知、参数校验与结果返回格式；\n2. **开箱即用工具箱**：涵盖搜素、代码分析与数据处理能力。",
+      "scene": "适合致力于构建标准化、高可靠 AI Agent 应用生态的研发团队。",
+      "insight": "谷歌官方推出的 Agent 技能标准与工具生态基础设施。"
+    }
+  },
+  {
+    "rank": 10,
+    "name": "Comfy-Org/ComfyUI",
+    "url": "https://github.com/Comfy-Org/ComfyUI",
+    "stars": 125525,
+    "forks": 14842,
+    "language": "Python",
+    "description": "The most powerful and modular diffusion model GUI, api and backend with a graph/nodes interface.",
+    "review": {
+      "tag": "AI 图像生成 / 节点化工作流",
+      "bg": "基于节点图架构的下一代 AI 图像与视频生成（Stable Diffusion / Flux）桌面工作流引擎。",
+      "func": "提供极致精细的生成流程控制，已成为 AI 视觉艺术创作与工作流数字资产的标准平台。",
+      "tech": "1. **模块化节点编排**：自由组合 Sampler、VAE、LoRA 与 ControlNet；\n2. **极致性能与显存优化**：支持大图切片渲染与内存流式复用。",
+      "scene": "适合 AI 视觉设计师、游戏美术师及大模型图像生成算法研究员。",
+      "insight": "AI 视觉艺术与图像/视频生成领域无可争议的节点化工作流标准。"
+    }
+  },
+  {
+    "rank": 11,
+    "name": "harveyai/harvey-labs",
+    "url": "https://github.com/harveyai/harvey-labs",
+    "stars": 827,
+    "forks": 176,
+    "language": "Python",
+    "description": "A benchmark built to evaluate and improve agent capabilities for supporting legal work.",
+    "review": {
+      "tag": "法律 AI / 智能化文书与检索",
+      "bg": "Harvey AI 实验室开源的法律领域专用大模型智能体与合规检索工具包。",
+      "func": "降低法律合同审查、案例检索与合规分析的门槛，提升法律从业者工作效率。",
+      "tech": "1. **法律领域 RAG 增强**：精准理解法律术语与条款引用关系；\n2. **合同智能对比与风险提示**：自动识别条款陷阱并给出修改建议。",
+      "scene": "适合法务人员、律师事务所及探索垂直领域 AI 应用的团队。",
+      "insight": "Harvey AI 在法律垂直领域智能化应用探索的精粹开源展示。"
+    }
+  },
+  {
+    "rank": 12,
+    "name": "pingdotgg/t3code",
+    "url": "https://github.com/pingdotgg/t3code",
+    "stars": 17660,
+    "forks": 4011,
+    "language": "TypeScript",
+    "description": "无描述",
+    "review": {
+      "tag": "AI 代码生成 / 全栈 TypeScript 模板",
+      "bg": "结合 AI 辅助开发的 T3 全栈（Next.js + Tailwind + Prisma）最佳实践代码库。",
+      "func": "帮助开发者用最短时间搭设极速全栈 Web 应用，提供针对 AI Coding 的最佳目录与类型支持。",
+      "tech": "1. **端到端类型安全**：TypeScript 全链路类型推导；\n2. **AI 友好工程结构**：结构清晰，极易被 AI 编程助手上下文精准理解。",
+      "scene": "适合独立开发者、初创团队及希望极速交付全栈 Web 项目的工程团队。",
+      "insight": "现代 TypeScript 全栈应用开发与 AI Coding 最佳实践基座。"
+    }
+  },
+  {
+    "rank": 13,
+    "name": "KKKKhazix/human-writing",
+    "url": "https://github.com/KKKKhazix/human-writing",
+    "stars": 2096,
+    "forks": 186,
+    "language": "Python",
+    "description": "让 AI 写的中文读起来像一个具体的人在说话。通用创作与改稿 Skill，开箱即用。",
+    "review": {
+      "tag": "AI 文本润色 / 拟人化自然写作",
+      "bg": "去除 AI 生成文本味（AI-ism）的自然语言润色与拟人化写作助手。",
+      "func": "让大模型生成的文章、邮件和报告更具人类写作的自然语气与逻辑节奏。",
+      "tech": "1. **AI 痕迹去化算法**：自动识别并替换过于规整的转折词与套话句式；\n2. **多风格语气微调**：支持专业严肃、轻松幽默及口语化等多种写作模式。",
+      "scene": "适合内容创作者、文案撰写者及希望提升 AI 生成文本质量的团队。",
+      "insight": "解决大模型生成文本呆板僵硬痛点的高效拟人化润色工具。"
+    }
+  },
+  {
+    "rank": 14,
+    "name": "ZzzLc0405/photo-abstract-editorial",
+    "url": "https://github.com/ZzzLc0405/photo-abstract-editorial",
+    "stars": 1956,
+    "forks": 98,
+    "language": "Markdown / Shell",
+    "description": "无描述",
+    "review": {
+      "tag": "视觉设计 / 摄影排版与设计指南",
+      "bg": "汇集高品质摄影抽象表达与杂志编辑排版设计的开源知识库与灵感指南。",
+      "func": "为视觉设计师与摄影师提供构图、排版、色彩搭配与视觉抽象表达的系统化参考。",
+      "tech": "1. **精选排版案例库**：涵盖现代杂志、海报与视觉艺术设计；\n2. **美学设计范式总结**：拆解大师级构图技巧与色彩调性理论。",
+      "scene": "适合平面设计师、摄影师、视觉艺术创作者及 UI/UX 设计师。",
+      "insight": "高品质视觉设计与摄影编辑排版的审美灵感宝库。"
+    }
+  },
+  {
+    "rank": 15,
+    "name": "Binaryify/open-kimi-ppt-skill",
+    "url": "https://github.com/Binaryify/open-kimi-ppt-skill",
+    "stars": 1607,
+    "forks": 1155,
+    "language": "Markdown / Shell",
+    "description": "非官方 Kimi Slides Skill：让 AI Agent 生成可编辑 PPTD + PPTX，并附带本地浏览器编辑器 Unofficial Kimi Slides skill for AI agents — generate editable PPTD + PPTX with a local browser editor",
+    "review": {
+      "tag": "AI PPT 生成 / Kimi 幻灯片自动化",
+      "bg": "基于 Kimi 大模型生态的 AI 自动化演示文稿（PPT）生成技能扩展包。",
+      "func": "一键将长文、研究报告或提纲转化为结构清晰、设计美观的 PPT 演示文稿。",
+      "tech": "1. **文本结构化萃取**：自动提取核心观点、金句与数据图表布局；\n2. **自动化排版导出**：支持导出主流 PPT 格式或网页幻灯片。",
+      "scene": "适合职场办公人员、讲师、产品经理及需要频繁制作汇报 PPT 的用户。",
+      "insight": "结合大模型的一键式专业 PPT 自动化生成利器。"
+    }
+  }
+]
