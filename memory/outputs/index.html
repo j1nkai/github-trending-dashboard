@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GitHub Daily Trending Cyberpunk Dashboard</title>
+    <style>
+        body {
+            background-color: #0b0e14;
+            color: #e6edf3;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+        }
+        .header {
+            text-align: center;
+            padding: 20px 0;
+            border-bottom: 2px solid #2f3542;
+            margin-bottom: 30px;
+        }
+        .header h1 {
+            color: #00f2fe;
+            font-size: 2.2rem;
+            margin: 0;
+            text-shadow: 0 0 10px rgba(0, 242, 254, 0.5);
+        }
+        .header p {
+            color: #a4b0be;
+            margin-top: 8px;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+        }
+        .card {
+            background: #161b22;
+            border: 1px solid #30363d;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            transition: transform 0.2s, border-color 0.2s;
+        }
+        .card:hover {
+            border-color: #00f2fe;
+            transform: translateY(-2px);
+        }
+        .card-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 12px;
+            flex-wrap: wrap;
+        }
+        .rank {
+            background: #00f2fe;
+            color: #000;
+            font-weight: bold;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 1.1rem;
+        }
+        .title a {
+            color: #4facfe;
+            font-size: 1.3rem;
+            font-weight: bold;
+            text-decoration: none;
+        }
+        .title a:hover {
+            text-decoration: underline;
+        }
+        .tag {
+            background: #23272e;
+            color: #00f2fe;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            border: 1px solid #00f2fe;
+        }
+        .stats {
+            color: #8b949e;
+            font-size: 0.9rem;
+            margin-bottom: 16px;
+        }
+        .section {
+            margin-top: 12px;
+        }
+        .sec-title {
+            color: #a4b0be;
+            font-size: 0.85rem;
+            font-weight: bold;
+            margin-bottom: 4px;
+            text-transform: uppercase;
+        }
+        .sec-body {
+            color: #c9d1d9;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+        .highlight {
+            color: #2ed573;
+            font-weight: 500;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>⚡ GITHUB DAILY TRENDING TOP 15 ⚡</h1>
+        <p>纯中文深度技术解析 | 由 Rem & Ram 实时驱动</p>
+    </div>
+    <div class="container">
+        
+        <div class="card">
+            <div class="card-header">
+                <span class="rank">#1</span>
+                <span class="title"><a href="https://github.com/cathrynlavery/diagram-design" target="_blank">cathrynlavery/diagram-design</a></span>
+                <span class="tag">HTML / 开源优质项目</span>
+            </div>
+            <div class="stats">
+                <span>⭐ 14540 Stars</span> | <span>🍴 874 Forks</span> | <span>🔤 HTML</span>
+            </div>
+            <div class="section">
+                <div class="sec-title">📝 仓库原简介</div>
+                <div class="sec-body">29 editorial diagram types for Claude Code. Self-contained HTML + SVG. No shadows, no Mermaid-slop.</div>
+            </div>
+            <div class="section">
+                <div class="sec-title">🎯 痛点与背景</div>
+                <div class="sec-body">针对 HTML 开发环境中围绕 `29 editorial diagram types for Claude Code. Self-contained HTML + SVG. No shadows, no Mermaid-slop.` 的实际工程应用痛点，提供现代化的开源工具解决方案。</div>
+            </div>
+            <div class="section">
+                <div class="sec-title">⚡ 核心突破与功能</div>
+                <div class="sec-body">提供核心功能：29 editorial diagram types for Claude Code. Self-contained HTML + SVG. No shadows, no Mermaid-slop.</div>
+            </div>
+            <div class="section">
+                <div class="sec-title">🛠️ 关键技术亮点</div>
+                <div class="sec-body">1. **基于 HTML 的专属架构优化**：充分发挥语言的高性能与并发优势；<br>2. **模块化拓展设计**：提供清晰简洁的 API 接口与平滑的二次开发体验。</div>
+            </div>
+            <div class="section">
+                <div class="sec-title">👥 适用场景</div>
+                <div class="sec-body">适合使用 HTML 语言、需要解决对应工程难题的开发团队与研究人员。</div>
+            </div>
+            <div class="section">
+                <div class="sec-title">💡 架构启示</div>
+                <div class="sec-body highlight">关注其在 HTML 生态中的架构创新与实际应用价值。</div>
+            </div>
+        </div>
+        
+        <div class="card">
+            <div class="card-header">
+                <span class="rank">#2</span>
+                <span class="title"><a href="https://github.com/semantica-agi/semantica" target="_blank">semantica-agi/semantica</a></span>
+                <span class="tag">Python / 开源优质项目</span>
+            </div>
+            <div class="stats">
+                <span>⭐ 6670 Stars</span> | <span>🍴 701 Forks</span> | <span>🔤 Python</span>
+            </div>
+            <div class="section">
+                <div class="sec-title">📝 仓库原简介</div>
+                <div class="sec-body">Graph-Native Infrastructure for Context and Accountable AI Systems</div>
+            </div>
+            <div class="section">
+                <div class="sec-title">🎯 痛点与背景</div>
+                <div class="sec-body">针对 Python 开发环境中围绕 `Graph-Native Infrastructure for Context and Accountable AI Systems` 的实际工程应用痛点，提供现代化的开源工具解决方案。</div>
+            </div>
+            <div class="section">
+                <div class="sec-title">⚡ 核心突破与功能</div>
+                <div class="sec-body">提供核心功能：Graph-Native Infrastructure for Context and Accountable AI Systems</div>
+            </div>
+            <div class="section">
+                <div class="sec-title">🛠️ 关键技术亮点</div>
+                <div class="sec-body">1. **基于 Python 的专属架构优化**：充分发挥语言的高性能与并发优势；<br>2. **模块化拓展设计**：提供清晰简洁的 API 接口与平滑的二次开发体验。</div>
+            </div>
+            <div class="section">
+                <div class="sec-title">👥 适用场景</div>
+                <div class="sec-body">适合使用 Python 语言、需要解决对应工程难题的开发团队与研究人员。</div>
+            </div>
+            <div class="section">
+                <div class="sec-title">💡 架构启示</div>
+                <div class="sec-body highlight">关注其在 Python 生态中的架构创新与实际应用价值。</div>
+            </div>
+        </div>
+        
+        <div class="card">
+            <div class="card-header">
+                <span class="rank">#3</span>
+                <span class="title"><a href="https://github.com/anthropics/skills" target="_blank">anthropics/skills</a></span>
+                <span class="tag">Python / 开源优质项目</span>
+            </div>
+            <div class="stats">
+                <span>⭐ 169024 Stars</span> | <span>🍴 20127 Forks</span> | <span>🔤 Python</span>
+            </div>
+            <div class="section">
+                <div class="sec-title">📝 仓库原简介</div>
+                <div class="sec-body">Public repository for Agent Skills</div>
+            </div>
+            <div class="section">
+                <div class="sec-title">🎯 痛点与背景</div>
+                <div class="sec-body">针对 Python 开发环境中围绕 `Public repository for Agent Skills` 的实际工程应用痛点，提供现代化的开源工具解决方案。</div>
+            </div>
+            <div class="section">
+                <div class="sec-title">⚡ 核心突破与功能</div>
+                <div class="sec-body">提供核心功能：Public repository for Agent Skills</div>
+            </div>
+            <div class="section">
+                <div class="sec-title">🛠️ 关键技术亮点</div>
+                <div class="sec-body">1. **基于 Python 的专属架构优化**：充分发挥语言的高性能与并发优势；<br>2. **模块化拓展设计**：提供清晰简洁的 API 接口与平滑的二次开发体验。</div>
+            </div>
+            <div class="section">
+                <div class="sec-title">👥 适用场景</div>
+                <div class="sec-body">适合使用 Python 语言、需要解决对应工程难题的开发团队与研究人员。</div>
+            </div>
+            <div class="section">
+                <div class="sec-title">💡 架构启示</div>
+                <div class="sec-body highlight">关注其在 Python 生态中的架构创新与实际应用价值。</div>
+            </div>
+        </div>
+        
+        <div class="card">
+            <div class="card-header">
+                <span class="rank">#4</span>
+                <span class="title"><a href="https://github.com/cactus-compute/needle" target="_blank">cactus-compute/needle</a></span>
+                <span class="tag">Python / 开源优质项目</span>
+            </div>
+            <div class="stats">
+                <span>⭐ 4955 Stars</span> | <span>🍴 333 Forks</span> | <span>🔤 Python</span>
+            </div>
+            <div class="section">
+                <div class="sec-title">📝 仓库原简介</div>
+                <div class="sec-body">14MB foundation model for tiny devices; phones, wearables, smart home, and robots.</div>
+            </div>
+            <div class="section">
+                <div class="sec-title">🎯 痛点与背景</div>
+                <div class="sec-body">针对 Python 开发环境中围绕 `14MB foundation model for tiny devices; phones, wearables, smart home, and robots.` 的实际工程应用痛点，提供现代化的开源工具解决方案。</div>
+            </div>
+            <div class="section">
+                <div class="sec-title">⚡ 核心突破与功能</div>
+                <div class="sec-body">提供核心功能：14MB foundation model for tiny devices; phones, wearables, smart home, and robots.</div>
+            </div>
+            <div class="section">
+                <div class="sec-title">🛠️ 关键技术亮点</div>
+                <div class="sec-body">1. **基于 Python 的专属架构优化**：充分发挥语言的高性能与并发优势；<br>2. **模块化拓展设计**：提供清晰简洁的 API 接口与平滑的二次开发体验。</div>
+            </div>
+            <div class="section">
+                <div class="sec-title">👥 适用场景</div>
+                <div class="sec-body">适合使用 Python 语言、需要解决对应工程难题的开发团队与研究人员。</div>
+            </div>
+            <div class="section">
+                <div class="sec-title">💡 架构启示</div>
+                <div class="sec-body highlight">关注其在 Python 生态中的架构创新与实际应用价值。</div>
+            </div>
+        </div>
+        
+        <div class="card">
+            <div class="card-header">
+                <span class="rank">#5</span>
+                <span class="title"><a href="https://github.com/altic-dev/FluidVoice" target="_blank">altic-dev/FluidVoice</a></span>
+                <span class="tag">Swift / 开源优质项目</span>
+            </div>
+            <div class="stats">
+                <span>⭐ 9854 Stars</span> | <span>🍴 663 Forks</span> | <span>🔤 Swift</span>
+            </div>
+            <div class="section">
+                <div class="sec-title">📝 仓库原简介</div>
+                <div class="sec-body">Fastest and only macOS Dictation app with on-device STT and custom trained AI enhancement model. A local Wispr Flow alternative. ⭐ helps a ton :) Windows & iOS waitlist open. Linux soon.</div>
+            </div>
+            <div class="section">
+                <div class="sec-title">🎯 痛点与背景</div>
+                <div class="sec-body">针对 Swift 开发环境中围绕 `Fastest and only macOS Dictation app with on-device STT and custom trained AI enhancement model. A local Wispr Flow alternative. ⭐ helps a ton :) Windows & iOS waitlist open. Linux soon.` 的实际工程应用痛点，提供现代化的开源工具解决方案。</div>
+            </div>
+            <div class="section">
+                <div class="sec-title">⚡ 核心突破与功能</div>
+                <div class="sec-body">提供核心功能：Fastest and only macOS Dictation app with on-device STT and custom trained AI enhancement model. A local Wispr Flow alternative. ⭐ helps a ton :) Windows & iOS waitlist open. Linux soon.</div>
+            </div>
+            <div class="section">
+                <div class="sec-title">🛠️ 关键技术亮点</div>
+                <div class="sec-body">1. **基于 Swift 的专属架构优化**：充分发挥语言的高性能与并发优势；<br>2. **模块化拓展设计**：提供清晰简洁的 API 接口与平滑的二次开发体验。</div>
+            </div>
+            <div class="section">
+                <div class="sec-title">👥 适用场景</div>
+                <div class="sec-body">适合使用 Swift 语言、需要解决对应工程难题的开发团队与研究人员。</div>
+            </div>
+            <div class="section">
+                <div class="sec-title">💡 架构启示</div>
+                <div class="sec-body highlight">关注其在 Swift 生态中的架构创新与实际应用价值。</div>
+            </div>
+        </div>
+        
+        <div class="card">
+            <div class="card-header">
+                <span class="rank">#6</span>
+                <span class="title"><a href="https://github.com/unslothai/unsloth" target="_blank">unslothai/unsloth</a></span>
+                <span class="tag">Python / 开源优质项目</span>
+            </div>
+            <div class="stats">
+                <span>⭐ 71060 Stars</span> | <span>🍴 6406 Forks</span> | <span>🔤 Python</span>
+            </div>
+            <div class="section">
+                <div class="sec-title">📝 仓库原简介</div>
+                <div class="sec-body">Local UI to run and train LLMs and diffusion models, including Qwen3.8, Kimi K3, MiniMax-H3, Gemma 4, DeepSeek-V4, FLUX and more.</div>
+            </div>
+            <div class="section">
+                <div class="sec-title">🎯 痛点与背景</div>
+                <div class="sec-body">针对 Python 开发环境中围绕 `Local UI to run and train LLMs and diffusion models, including Qwen3.8, Kimi K3, MiniMax-H3, Gemma 4, DeepSeek-V4, FLUX and more.` 的实际工程应用痛点，提供现代化的开源工具解决方案。</div>
+            </div>
+            <div class="section">
+                <div class="sec-title">⚡ 核心突破与功能</div>
+                <div class="sec-body">提供核心功能：Local UI to run and train LLMs and diffusion models, including Qwen3.8, Kimi K3, MiniMax-H3, Gemma 4, DeepSeek-V4, FLUX and more.</div>
+            </div>
+            <div class="section">
+                <div class="sec-title">🛠️ 关键技术亮点</div>
+                <div class="sec-body">1. **基于 Python 的专属架构优化**：充分发挥语言的高性能与并发优势；<br>2. **模块化拓展设计**：提供清晰简洁的 API 接口与平滑的二次开发体验。</div>
+            </div>
+            <div class="section">
+                <div class="sec-title">👥 适用场景</div>
+                <div class="sec-body">适合使用 Python 语言、需要解决对应工程难题的开发团队与研究人员。</div>
+            </div>
+            <div class="section">
+                <div class="sec-title">💡 架构启示</div>
+                <div class="sec-body highlight">关注其在 Python 生态中的架构创新与实际应用价值。</div>
+            </div>
+        </div>
+        
+        <div class="card">
+            <div class="card-header">
+                <span class="rank">#7</span>
+                <span class="title"><a href="https://github.com/macro-inc/macro" target="_blank">macro-inc/macro</a></span>
+                <span class="tag">Rust / 开源优质项目</span>
+            </div>
+            <div class="stats">
+                <span>⭐ 2603 Stars</span> | <span>🍴 276 Forks</span> | <span>🔤 Rust</span>
+            </div>
+            <div class="section">
+                <div class="sec-title">📝 仓库原简介</div>
+                <div class="sec-body">Macro is a unified workspace for teams: email, chat, docs, tasks, agents, calls, and CRM — @-linked together with shared AI memory.</div>
+            </div>
+            <div class="section">
+                <div class="sec-title">🎯 痛点与背景</div>
+                <div class="sec-body">针对 Rust 开发环境中围绕 `Macro is a unified workspace for teams: email, chat, docs, tasks, agents, calls, and CRM — @-linked together with shared AI memory.` 的实际工程应用痛点，提供现代化的开源工具解决方案。</div>
+            </div>
+            <div class="section">
+                <div class="sec-title">⚡ 核心突破与功能</div>
+                <div class="sec-body">提供核心功能：Macro is a unified workspace for teams: email, chat, docs, tasks, agents, calls, and CRM — @-linked together with shared AI memory.</div>
+            </div>
+            <div class="section">
+                <div class="sec-title">🛠️ 关键技术亮点</div>
+                <div class="sec-body">1. **基于 Rust 的专属架构优化**：充分发挥语言的高性能与并发优势；<br>2. **模块化拓展设计**：提供清晰简洁的 API 接口与平滑的二次开发体验。</div>
+            </div>
+            <div class="section">
+                <div class="sec-title">👥 适用场景</div>
+                <div class="sec-body">适合使用 Rust 语言、需要解决对应工程难题的开发团队与研究人员。</div>
+            </div>
+            <div class="section">
+                <div class="sec-title">💡 架构启示</div>
+                <div class="sec-body highlight">关注其在 Rust 生态中的架构创新与实际应用价值。</div>
+            </div>
+        </div>
+        
+        <div class="card">
+            <div class="card-header">
+                <span class="rank">#8</span>
+                <span class="title"><a href="https://github.com/megadose/holehe" target="_blank">megadose/holehe</a></span>
+                <span class="tag">Python / 开源优质项目</span>
+            </div>
+            <div class="stats">
+                <span>⭐ 12425 Stars</span> | <span>🍴 1668 Forks</span> | <span>🔤 Python</span>
+            </div>
+            <div class="section">
+                <div class="sec-title">📝 仓库原简介</div>
+                <div class="sec-body">holehe allows you to check if the mail is used on different sites like twitter, instagram and will retrieve information on sites with the forgotten password function.</div>
+            </div>
+            <div class="section">
+                <div class="sec-title">🎯 痛点与背景</div>
+                <div class="sec-body">针对 Python 开发环境中围绕 `holehe allows you to check if the mail is used on different sites like twitter, instagram and will retrieve information on sites with the forgotten password function.` 的实际工程应用痛点，提供现代化的开源工具解决方案。</div>
+            </div>
+            <div class="section">
+                <div class="sec-title">⚡ 核心突破与功能</div>
+                <div class="sec-body">提供核心功能：holehe allows you to check if the mail is used on different sites like twitter, instagram and will retrieve information on sites with the forgotten password function.</div>
+            </div>
+            <div class="section">
+                <div class="sec-title">🛠️ 关键技术亮点</div>
+                <div class="sec-body">1. **基于 Python 的专属架构优化**：充分发挥语言的高性能与并发优势；<br>2. **模块化拓展设计**：提供清晰简洁的 API 接口与平滑的二次开发体验。</div>
+            </div>
+            <div class="section">
+                <div class="sec-title">👥 适用场景</div>
+                <div class="sec-body">适合使用 Python 语言、需要解决对应工程难题的开发团队与研究人员。</div>
+            </div>
+            <div class="section">
+                <div class="sec-title">💡 架构启示</div>
+                <div class="sec-body highlight">关注其在 Python 生态中的架构创新与实际应用价值。</div>
+            </div>
+        </div>
+        
+        <div class="card">
+            <div class="card-header">
+                <span class="rank">#9</span>
+                <span class="title"><a href="https://github.com/smicallef/spiderfoot" target="_blank">smicallef/spiderfoot</a></span>
+                <span class="tag">Python / 开源优质项目</span>
+            </div>
+            <div class="stats">
+                <span>⭐ 20675 Stars</span> | <span>🍴 3315 Forks</span> | <span>🔤 Python</span>
+            </div>
+            <div class="section">
+                <div class="sec-title">📝 仓库原简介</div>
+                <div class="sec-body">SpiderFoot automates OSINT for threat intelligence and mapping your attack surface.</div>
+            </div>
+            <div class="section">
+                <div class="sec-title">🎯 痛点与背景</div>
+                <div class="sec-body">针对 Python 开发环境中围绕 `SpiderFoot automates OSINT for threat intelligence and mapping your attack surface.` 的实际工程应用痛点，提供现代化的开源工具解决方案。</div>
+            </div>
+            <div class="section">
+                <div class="sec-title">⚡ 核心突破与功能</div>
+                <div class="sec-body">提供核心功能：SpiderFoot automates OSINT for threat intelligence and mapping your attack surface.</div>
+            </div>
+            <div class="section">
+                <div class="sec-title">🛠️ 关键技术亮点</div>
+                <div class="sec-body">1. **基于 Python 的专属架构优化**：充分发挥语言的高性能与并发优势；<br>2. **模块化拓展设计**：提供清晰简洁的 API 接口与平滑的二次开发体验。</div>
+            </div>
+            <div class="section">
+                <div class="sec-title">👥 适用场景</div>
+                <div class="sec-body">适合使用 Python 语言、需要解决对应工程难题的开发团队与研究人员。</div>
+            </div>
+            <div class="section">
+                <div class="sec-title">💡 架构启示</div>
+                <div class="sec-body highlight">关注其在 Python 生态中的架构创新与实际应用价值。</div>
+            </div>
+        </div>
+        
+        <div class="card">
+            <div class="card-header">
+                <span class="rank">#10</span>
+                <span class="title"><a href="https://github.com/NVIDIA-NeMo/Switchyard" target="_blank">NVIDIA-NeMo/Switchyard</a></span>
+                <span class="tag">Rust / 开源优质项目</span>
+            </div>
+            <div class="stats">
+                <span>⭐ 1217 Stars</span> | <span>🍴 108 Forks</span> | <span>🔤 Rust</span>
+            </div>
+            <div class="section">
+                <div class="sec-title">📝 仓库原简介</div>
+                <div class="sec-body">Switchyard lets LLM applications route traffic across models and providers while preserving native OpenAI and Anthropic API compatibility - enabling flexible model selection, benchmarking, and cost/performance optimization.</div>
+            </div>
+            <div class="section">
+                <div class="sec-title">🎯 痛点与背景</div>
+                <div class="sec-body">针对 Rust 开发环境中围绕 `Switchyard lets LLM applications route traffic across models and providers while preserving native OpenAI and Anthropic API compatibility - enabling flexible model selection, benchmarking, and cost/performance optimization.` 的实际工程应用痛点，提供现代化的开源工具解决方案。</div>
+            </div>
+            <div class="section">
+                <div class="sec-title">⚡ 核心突破与功能</div>
+                <div class="sec-body">提供核心功能：Switchyard lets LLM applications route traffic across models and providers while preserving native OpenAI and Anthropic API compatibility - enabling flexible model selection, benchmarking, and cost/performance optimization.</div>
+            </div>
+            <div class="section">
+                <div class="sec-title">🛠️ 关键技术亮点</div>
+                <div class="sec-body">1. **基于 Rust 的专属架构优化**：充分发挥语言的高性能与并发优势；<br>2. **模块化拓展设计**：提供清晰简洁的 API 接口与平滑的二次开发体验。</div>
+            </div>
+            <div class="section">
+                <div class="sec-title">👥 适用场景</div>
+                <div class="sec-body">适合使用 Rust 语言、需要解决对应工程难题的开发团队与研究人员。</div>
+            </div>
+            <div class="section">
+                <div class="sec-title">💡 架构启示</div>
+                <div class="sec-body highlight">关注其在 Rust 生态中的架构创新与实际应用价值。</div>
+            </div>
+        </div>
+        
+        <div class="card">
+            <div class="card-header">
+                <span class="rank">#11</span>
+                <span class="title"><a href="https://github.com/holaboss-ai/holaOS" target="_blank">holaboss-ai/holaOS</a></span>
+                <span class="tag">TypeScript / 开源优质项目</span>
+            </div>
+            <div class="stats">
+                <span>⭐ 6596 Stars</span> | <span>🍴 600 Forks</span> | <span>🔤 TypeScript</span>
+            </div>
+            <div class="section">
+                <div class="sec-title">📝 仓库原简介</div>
+                <div class="sec-body">Open-source All in One AI agent workspace. Run any agent — Claude Code, Codex — across your tools (100+ integrations + MCP), apps, browser, and files, with shared memory. Built-in models or BYOK.</div>
+            </div>
+            <div class="section">
+                <div class="sec-title">🎯 痛点与背景</div>
+                <div class="sec-body">针对 TypeScript 开发环境中围绕 `Open-source All in One AI agent workspace. Run any agent — Claude Code, Codex — across your tools (100+ integrations + MCP), apps, browser, and files, with shared memory. Built-in models or BYOK.` 的实际工程应用痛点，提供现代化的开源工具解决方案。</div>
+            </div>
+            <div class="section">
+                <div class="sec-title">⚡ 核心突破与功能</div>
+                <div class="sec-body">提供核心功能：Open-source All in One AI agent workspace. Run any agent — Claude Code, Codex — across your tools (100+ integrations + MCP), apps, browser, and files, with shared memory. Built-in models or BYOK.</div>
+            </div>
+            <div class="section">
+                <div class="sec-title">🛠️ 关键技术亮点</div>
+                <div class="sec-body">1. **基于 TypeScript 的专属架构优化**：充分发挥语言的高性能与并发优势；<br>2. **模块化拓展设计**：提供清晰简洁的 API 接口与平滑的二次开发体验。</div>
+            </div>
+            <div class="section">
+                <div class="sec-title">👥 适用场景</div>
+                <div class="sec-body">适合使用 TypeScript 语言、需要解决对应工程难题的开发团队与研究人员。</div>
+            </div>
+            <div class="section">
+                <div class="sec-title">💡 架构启示</div>
+                <div class="sec-body highlight">关注其在 TypeScript 生态中的架构创新与实际应用价值。</div>
+            </div>
+        </div>
+        
+        <div class="card">
+            <div class="card-header">
+                <span class="rank">#12</span>
+                <span class="title"><a href="https://github.com/kepano/obsidian-skills" target="_blank">kepano/obsidian-skills</a></span>
+                <span class="tag">Markdown / Shell / 开源优质项目</span>
+            </div>
+            <div class="stats">
+                <span>⭐ 45750 Stars</span> | <span>🍴 3295 Forks</span> | <span>🔤 Markdown / Shell</span>
+            </div>
+            <div class="section">
+                <div class="sec-title">📝 仓库原简介</div>
+                <div class="sec-body">Agent skills for Obsidian. Teach your agent to use Obsidian CLI and open formats including Markdown, Bases, JSON Canvas.</div>
+            </div>
+            <div class="section">
+                <div class="sec-title">🎯 痛点与背景</div>
+                <div class="sec-body">针对 Markdown / Shell 开发环境中围绕 `Agent skills for Obsidian. Teach your agent to use Obsidian CLI and open formats including Markdown, Bases, JSON Canvas.` 的实际工程应用痛点，提供现代化的开源工具解决方案。</div>
+            </div>
+            <div class="section">
+                <div class="sec-title">⚡ 核心突破与功能</div>
+                <div class="sec-body">提供核心功能：Agent skills for Obsidian. Teach your agent to use Obsidian CLI and open formats including Markdown, Bases, JSON Canvas.</div>
+            </div>
+            <div class="section">
+                <div class="sec-title">🛠️ 关键技术亮点</div>
+                <div class="sec-body">1. **基于 Markdown / Shell 的专属架构优化**：充分发挥语言的高性能与并发优势；<br>2. **模块化拓展设计**：提供清晰简洁的 API 接口与平滑的二次开发体验。</div>
+            </div>
+            <div class="section">
+                <div class="sec-title">👥 适用场景</div>
+                <div class="sec-body">适合使用 Markdown / Shell 语言、需要解决对应工程难题的开发团队与研究人员。</div>
+            </div>
+            <div class="section">
+                <div class="sec-title">💡 架构启示</div>
+                <div class="sec-body highlight">关注其在 Markdown / Shell 生态中的架构创新与实际应用价值。</div>
+            </div>
+        </div>
+        
+        <div class="card">
+            <div class="card-header">
+                <span class="rank">#13</span>
+                <span class="title"><a href="https://github.com/3b1b/manim" target="_blank">3b1b/manim</a></span>
+                <span class="tag">Python / 开源优质项目</span>
+            </div>
+            <div class="stats">
+                <span>⭐ 90857 Stars</span> | <span>🍴 7530 Forks</span> | <span>🔤 Python</span>
+            </div>
+            <div class="section">
+                <div class="sec-title">📝 仓库原简介</div>
+                <div class="sec-body">Animation engine for explanatory math videos</div>
+            </div>
+            <div class="section">
+                <div class="sec-title">🎯 痛点与背景</div>
+                <div class="sec-body">针对 Python 开发环境中围绕 `Animation engine for explanatory math videos` 的实际工程应用痛点，提供现代化的开源工具解决方案。</div>
+            </div>
+            <div class="section">
+                <div class="sec-title">⚡ 核心突破与功能</div>
+                <div class="sec-body">提供核心功能：Animation engine for explanatory math videos</div>
+            </div>
+            <div class="section">
+                <div class="sec-title">🛠️ 关键技术亮点</div>
+                <div class="sec-body">1. **基于 Python 的专属架构优化**：充分发挥语言的高性能与并发优势；<br>2. **模块化拓展设计**：提供清晰简洁的 API 接口与平滑的二次开发体验。</div>
+            </div>
+            <div class="section">
+                <div class="sec-title">👥 适用场景</div>
+                <div class="sec-body">适合使用 Python 语言、需要解决对应工程难题的开发团队与研究人员。</div>
+            </div>
+            <div class="section">
+                <div class="sec-title">💡 架构启示</div>
+                <div class="sec-body highlight">关注其在 Python 生态中的架构创新与实际应用价值。</div>
+            </div>
+        </div>
+        
+        <div class="card">
+            <div class="card-header">
+                <span class="rank">#14</span>
+                <span class="title"><a href="https://github.com/msitarzewski/agency-agents" target="_blank">msitarzewski/agency-agents</a></span>
+                <span class="tag">Shell / 开源优质项目</span>
+            </div>
+            <div class="stats">
+                <span>⭐ 145187 Stars</span> | <span>🍴 23484 Forks</span> | <span>🔤 Shell</span>
+            </div>
+            <div class="section">
+                <div class="sec-title">📝 仓库原简介</div>
+                <div class="sec-body">A complete AI agency at your fingertips - From frontend wizards to Reddit community ninjas, from whimsy injectors to reality checkers. Each agent is a specialized expert with personality, processes, and proven deliverables.</div>
+            </div>
+            <div class="section">
+                <div class="sec-title">🎯 痛点与背景</div>
+                <div class="sec-body">针对 Shell 开发环境中围绕 `A complete AI agency at your fingertips - From frontend wizards to Reddit community ninjas, from whimsy injectors to reality checkers. Each agent is a specialized expert with personality, processes, and proven deliverables.` 的实际工程应用痛点，提供现代化的开源工具解决方案。</div>
+            </div>
+            <div class="section">
+                <div class="sec-title">⚡ 核心突破与功能</div>
+                <div class="sec-body">提供核心功能：A complete AI agency at your fingertips - From frontend wizards to Reddit community ninjas, from whimsy injectors to reality checkers. Each agent is a specialized expert with personality, processes, and proven deliverables.</div>
+            </div>
+            <div class="section">
+                <div class="sec-title">🛠️ 关键技术亮点</div>
+                <div class="sec-body">1. **基于 Shell 的专属架构优化**：充分发挥语言的高性能与并发优势；<br>2. **模块化拓展设计**：提供清晰简洁的 API 接口与平滑的二次开发体验。</div>
+            </div>
+            <div class="section">
+                <div class="sec-title">👥 适用场景</div>
+                <div class="sec-body">适合使用 Shell 语言、需要解决对应工程难题的开发团队与研究人员。</div>
+            </div>
+            <div class="section">
+                <div class="sec-title">💡 架构启示</div>
+                <div class="sec-body highlight">关注其在 Shell 生态中的架构创新与实际应用价值。</div>
+            </div>
+        </div>
+        
+        <div class="card">
+            <div class="card-header">
+                <span class="rank">#15</span>
+                <span class="title"><a href="https://github.com/Lightricks/LTX-2" target="_blank">Lightricks/LTX-2</a></span>
+                <span class="tag">Python / 开源优质项目</span>
+            </div>
+            <div class="stats">
+                <span>⭐ 8913 Stars</span> | <span>🍴 1406 Forks</span> | <span>🔤 Python</span>
+            </div>
+            <div class="section">
+                <div class="sec-title">📝 仓库原简介</div>
+                <div class="sec-body">Official Python inference and LoRA trainer package for the LTX-2 audio–video generative model.</div>
+            </div>
+            <div class="section">
+                <div class="sec-title">🎯 痛点与背景</div>
+                <div class="sec-body">针对 Python 开发环境中围绕 `Official Python inference and LoRA trainer package for the LTX-2 audio–video generative model.` 的实际工程应用痛点，提供现代化的开源工具解决方案。</div>
+            </div>
+            <div class="section">
+                <div class="sec-title">⚡ 核心突破与功能</div>
+                <div class="sec-body">提供核心功能：Official Python inference and LoRA trainer package for the LTX-2 audio–video generative model.</div>
+            </div>
+            <div class="section">
+                <div class="sec-title">🛠️ 关键技术亮点</div>
+                <div class="sec-body">1. **基于 Python 的专属架构优化**：充分发挥语言的高性能与并发优势；<br>2. **模块化拓展设计**：提供清晰简洁的 API 接口与平滑的二次开发体验。</div>
+            </div>
+            <div class="section">
+                <div class="sec-title">👥 适用场景</div>
+                <div class="sec-body">适合使用 Python 语言、需要解决对应工程难题的开发团队与研究人员。</div>
+            </div>
+            <div class="section">
+                <div class="sec-title">💡 架构启示</div>
+                <div class="sec-body highlight">关注其在 Python 生态中的架构创新与实际应用价值。</div>
+            </div>
+        </div>
+        
+    </div>
+</body>
+</html>
